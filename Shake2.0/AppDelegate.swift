@@ -7,12 +7,49 @@
 //
 
 import UIKit
+import CoreLocation
+
 
 @UIApplicationMain
-class AppDelegate: UIResponder, UIApplicationDelegate {
+class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate {
 
     var window: UIWindow?
+    var locationManager: CLLocationManager = CLLocationManager()
+    var userCoord: CLLocationCoordinate2D = CLLocationCoordinate2D()
 
+    
+    //MARK: - Location Manager delegate methods
+    
+    // Tells the delegate that the authorization status for the application has changed
+    func locationManager(_ manager: CLLocationManager, didChangeAuthorization
+        status: CLAuthorizationStatus) {
+        if status == .authorizedWhenInUse {
+            locationManager.requestLocation()
+        }
+    }
+    
+    // Tells the delegate that new location data is available
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        // most recent location update at end of locations array
+        if let location = locations.last {
+            self.userCoord = location.coordinate
+        }
+    }
+    
+    // Tells the delegate that the location manager was unable to retrieve a location value
+    func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
+        // TODO: alert on failure
+        print("Location Manager error: \(error)")
+    }
+    
+    // Tells the delegate that the location manager received updated heading information
+    func locationManager(_ manager: CLLocationManager, didUpdateHeading newHeading: CLHeading) {
+        // TODO: implement compass logic here
+    }
+    
+    
+    
+    //MARK: - Application Delegate methods
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
@@ -27,6 +64,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func applicationDidEnterBackground(_ application: UIApplication) {
         // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later.
         // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
+        locationManager.stopUpdatingHeading()
+        locationManager.stopUpdatingLocation()
     }
 
     func applicationWillEnterForeground(_ application: UIApplication) {
