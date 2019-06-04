@@ -7,6 +7,9 @@
 //
 //  LocationView contains an image of the location, the name, and the rating of the location
 //
+//  Visually: the circle/bubble in the middle of the screen which displays basic, upfront
+//            information pertaining to the current "shake"
+//
 
 import Foundation
 import UIKit

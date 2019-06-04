@@ -16,6 +16,7 @@
 		34E40AD222A0E60000E09F92 /* LocationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34E40AD122A0E60000E09F92 /* LocationView.swift */; };
 		34E40AD422A0E61100E09F92 /* DetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34E40AD322A0E61100E09F92 /* DetailView.swift */; };
 		34E40AD622A0E62700E09F92 /* Network.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34E40AD522A0E62700E09F92 /* Network.swift */; };
+		F8A9AB6122A6F44C0096C713 /* SavedLocationsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8A9AB6022A6F44C0096C713 /* SavedLocationsView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -30,6 +31,7 @@
 		34E40AD122A0E60000E09F92 /* LocationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationView.swift; sourceTree = "<group>"; };
 		34E40AD322A0E61100E09F92 /* DetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailView.swift; sourceTree = "<group>"; };
 		34E40AD522A0E62700E09F92 /* Network.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Network.swift; sourceTree = "<group>"; };
+		F8A9AB6022A6F44C0096C713 /* SavedLocationsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SavedLocationsView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -78,6 +80,7 @@
 			isa = PBXGroup;
 			children = (
 				34E40AD122A0E60000E09F92 /* LocationView.swift */,
+				F8A9AB6022A6F44C0096C713 /* SavedLocationsView.swift */,
 				34E40AD322A0E61100E09F92 /* DetailView.swift */,
 			);
 			path = Views;
@@ -167,6 +170,7 @@
 				34E40AD222A0E60000E09F92 /* LocationView.swift in Sources */,
 				34E40AD622A0E62700E09F92 /* Network.swift in Sources */,
 				34E40ABC22A0D85700E09F92 /* AppDelegate.swift in Sources */,
+				F8A9AB6122A6F44C0096C713 /* SavedLocationsView.swift in Sources */,
 				34E40AD422A0E61100E09F92 /* DetailView.swift in Sources */,
 				34E40AD022A0DF1300E09F92 /* Helper.swift in Sources */,
 			);
