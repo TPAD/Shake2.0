@@ -19,51 +19,6 @@ internal func getApiKey() -> String {
 }
 
 
-// Colors used in the project as computed properties
-struct Color {
-    //green for open location (used with white background bar in Location)
-    static var mediumSeaweed: UIColor {
-        return UIColor(red:60/255.0, green:179/255.0, blue:113/255.0, alpha: 0.8)
-    }
-    
-    static var seaweed: UIColor {
-        return UIColor(red:60/255.0, green:179/255.0, blue:113/255.0, alpha: 1.0)
-    }
-    
-    // red for closed location (used with white background bar in Location)
-    static var mediumFirebrick: UIColor {
-        return UIColor(red:205/255.0, green:35/255.0, blue:35/255.0, alpha:0.8)
-    }
-    
-    // Jack's blue
-    static var new: UIColor {
-        return UIColor(red:0/255.0, green:96/255.0, blue:192/255.0, alpha:1.0)
-    }
-    
-    // Tony's blue (used in DualSwitchView)
-    static var blue: UIColor {
-        return UIColor(red: 78/255.0, green:147/255.0, blue:222/255.0, alpha: 1.0)
-    }
-    
-    //used for phone button in DualSwitchView
-    static var green: UIColor {
-        return UIColor(red:70/255.0, green:179/255.0, blue:173/255.0, alpha: 1.0)
-    }
-    
-    static var bgPink: UIColor {
-        return UIColor(red: 236/255.0, green: 221/255.0, blue: 219/255.0, alpha: 1.0)
-    }
-    
-    static var pearlBlack: UIColor {
-        return UIColor(red: 12/255.0, green: 18/255.0, blue: 19/255.0, alpha: 1.0)
-    }
-    
-    static var CFOrange: UIColor {
-        return UIColor(red: 249/255.0, green: 177/255.0, blue: 98/255.0, alpha: 1.0)
-    }
-}
-
-
 public extension UIViewController {
     func topMostViewController() -> UIViewController {
         if let presented = self.presentedViewController {
