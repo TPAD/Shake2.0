@@ -18,6 +18,18 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
     var userCoord: CLLocationCoordinate2D = CLLocationCoordinate2D()
 
     
+    // request location when in use authorization from the user
+    func locationManagerSetup() {
+        // TODO: - need to add logic for when user declines
+        locationManager.requestWhenInUseAuthorization()
+        if CLLocationManager.locationServicesEnabled() {
+            locationManager.delegate = self
+            locationManager.distanceFilter = 20.0
+            locationManager.desiredAccuracy = kCLLocationAccuracyBest
+            locationManager.startUpdatingLocation()
+        }
+    }
+    
     //MARK: - Location Manager delegate methods
     
     // Tells the delegate that the authorization status for the application has changed
@@ -53,6 +65,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
+        locationManagerSetup()
         return true
     }
 

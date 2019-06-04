@@ -13,6 +13,8 @@ import CoreLocation
 ///
 class ViewController: UIViewController {
     
+    @IBOutlet weak var iconImage: UIImageView!
+    
     // light status bar for dark background
     override var preferredStatusBarStyle: UIStatusBarStyle {
         return .lightContent

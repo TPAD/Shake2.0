@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
-    <device id="retina4_7" orientation="portrait">
+    <device id="retina6_5" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
@@ -15,14 +15,39 @@
             <objects>
                 <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="Shake2_0" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="CFBackground" translatesAutoresizingMaskIntoConstraints="NO" id="4hd-py-l9b">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="906"/>
+                            </imageView>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="CFIcon" translatesAutoresizingMaskIntoConstraints="NO" id="Vet-ez-BwK">
+                                <rect key="frame" x="145" y="391" width="124" height="124"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="Vet-ez-BwK" secondAttribute="height" id="H11-HC-NGQ"/>
+                                </constraints>
+                            </imageView>
+                        </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="4hd-py-l9b" firstAttribute="bottom" secondItem="8bC-Xf-vdC" secondAttribute="bottom" constant="10" id="4JT-4f-D50"/>
+                            <constraint firstItem="Vet-ez-BwK" firstAttribute="centerY" secondItem="4hd-py-l9b" secondAttribute="centerY" id="Kjj-nt-Ic6"/>
+                            <constraint firstItem="4hd-py-l9b" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="WZW-BT-l2M"/>
+                            <constraint firstItem="Vet-ez-BwK" firstAttribute="width" secondItem="4hd-py-l9b" secondAttribute="width" multiplier="0.3" id="dFY-9q-Tdm"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="4hd-py-l9b" secondAttribute="trailing" id="gCv-by-axo"/>
+                            <constraint firstAttribute="top" secondItem="4hd-py-l9b" secondAttribute="top" id="owK-E6-bSO"/>
+                            <constraint firstItem="Vet-ez-BwK" firstAttribute="centerX" secondItem="4hd-py-l9b" secondAttribute="centerX" id="rKQ-lh-g6v"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
+            <point key="canvasLocation" x="50.724637681159422" y="20.758928571428569"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="CFBackground" width="138" height="298"/>
+        <image name="CFIcon" width="341" height="341"/>
+    </resources>
 </document>

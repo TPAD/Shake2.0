@@ -14,6 +14,10 @@ import CoreLocation
 // app delegate at fingertips
 internal var appDelegate: AppDelegate = UIApplication.shared.delegate as! AppDelegate
 
+public func getApiKey() -> String {
+    return "AIzaSyCBckYCeXQ6j_voOmOq7UHuWqWjHUYEz7E"
+}
+
 
 // Colors used in the project as computed properties
 struct Color {
