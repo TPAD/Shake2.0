@@ -185,3 +185,13 @@ public extension UILabel {
         return new.frame.height
     }
 }
+
+
+public extension  UIView {
+    // shortcut for getting frame height of a view
+    var frameH: CGFloat { return self.frame.height }
+    // shortcut for gettind frame width of a view
+    var frameW: CGFloat { return self.frame.width }
+    
+    
+}

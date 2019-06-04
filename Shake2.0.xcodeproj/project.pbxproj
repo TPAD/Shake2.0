@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		341A807222A7202E00676B8A /* LocationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 341A807122A7202E00676B8A /* LocationViewModel.swift */; };
 		34E40ABC22A0D85700E09F92 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34E40ABB22A0D85700E09F92 /* AppDelegate.swift */; };
 		34E40ABE22A0D85700E09F92 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34E40ABD22A0D85700E09F92 /* ViewController.swift */; };
 		34E40AC122A0D85700E09F92 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 34E40ABF22A0D85700E09F92 /* Main.storyboard */; };
@@ -24,6 +25,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		341A807122A7202E00676B8A /* LocationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationViewModel.swift; sourceTree = "<group>"; };
 		34E40AB822A0D85600E09F92 /* Shake2.0.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Shake2.0.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		34E40ABB22A0D85700E09F92 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		34E40ABD22A0D85700E09F92 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -53,6 +55,21 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		341A807022A7201A00676B8A /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+				341A807122A7202E00676B8A /* LocationViewModel.swift */,
+			);
+			path = ViewModels;
+			sourceTree = "<group>";
+		};
+		341A807322A7221600676B8A /* Nibs */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Nibs;
+			sourceTree = "<group>";
+		};
 		34D7728B22A71065002B4695 /* Models */ = {
 			isa = PBXGroup;
 			children = (
@@ -80,6 +97,8 @@
 		34E40ABA22A0D85600E09F92 /* Shake2.0 */ = {
 			isa = PBXGroup;
 			children = (
+				341A807322A7221600676B8A /* Nibs */,
+				341A807022A7201A00676B8A /* ViewModels */,
 				34D7728B22A71065002B4695 /* Models */,
 				34E40ACE22A0DF0000E09F92 /* Helpers */,
 				34E40ACD22A0DEDE00E09F92 /* Views */,
@@ -193,6 +212,7 @@
 				34E40AD622A0E62700E09F92 /* Network.swift in Sources */,
 				F8A9AB6722A70C090096C713 /* ImagesView.swift in Sources */,
 				34E40ABC22A0D85700E09F92 /* AppDelegate.swift in Sources */,
+				341A807222A7202E00676B8A /* LocationViewModel.swift in Sources */,
 				F8A9AB6122A6F44C0096C713 /* SavedLocationsView.swift in Sources */,
 				34E40AD422A0E61100E09F92 /* DetailView.swift in Sources */,
 				F8A9AB6322A708BA0096C713 /* HoursView.swift in Sources */,
@@ -343,13 +363,13 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = LXQPWHDUGR;
+				DEVELOPMENT_TEAM = A2N9APJ4GT;
 				INFOPLIST_FILE = Shake2.0/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "com-JAK";
+				PRODUCT_BUNDLE_IDENTIFIER = "com-Shake";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -361,13 +381,13 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = LXQPWHDUGR;
+				DEVELOPMENT_TEAM = A2N9APJ4GT;
 				INFOPLIST_FILE = Shake2.0/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "com-JAK";
+				PRODUCT_BUNDLE_IDENTIFIER = "com-Shake";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
