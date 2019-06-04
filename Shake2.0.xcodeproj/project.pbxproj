@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		341A807222A7202E00676B8A /* LocationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 341A807122A7202E00676B8A /* LocationViewModel.swift */; };
+		341A807522A7224E00676B8A /* LocationView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 341A807422A7224E00676B8A /* LocationView.xib */; };
 		34E40ABC22A0D85700E09F92 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34E40ABB22A0D85700E09F92 /* AppDelegate.swift */; };
 		34E40ABE22A0D85700E09F92 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34E40ABD22A0D85700E09F92 /* ViewController.swift */; };
 		34E40AC122A0D85700E09F92 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 34E40ABF22A0D85700E09F92 /* Main.storyboard */; };
@@ -27,6 +28,7 @@
 
 /* Begin PBXFileReference section */
 		341A807122A7202E00676B8A /* LocationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationViewModel.swift; sourceTree = "<group>"; };
+		341A807422A7224E00676B8A /* LocationView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LocationView.xib; sourceTree = "<group>"; };
 		34E40AB822A0D85600E09F92 /* Shake2.0.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Shake2.0.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		34E40ABB22A0D85700E09F92 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		34E40ABD22A0D85700E09F92 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -68,6 +70,7 @@
 		341A807322A7221600676B8A /* Nibs */ = {
 			isa = PBXGroup;
 			children = (
+				341A807422A7224E00676B8A /* LocationView.xib */,
 			);
 			path = Nibs;
 			sourceTree = "<group>";
@@ -196,6 +199,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				34E40AC622A0D85800E09F92 /* LaunchScreen.storyboard in Resources */,
+				341A807522A7224E00676B8A /* LocationView.xib in Resources */,
 				34E40AC322A0D85800E09F92 /* Assets.xcassets in Resources */,
 				34E40AC122A0D85700E09F92 /* Main.storyboard in Resources */,
 			);
