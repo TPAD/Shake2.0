@@ -51,6 +51,13 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		34D7728B22A71065002B4695 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
 		34E40AAF22A0D85600E09F92 = {
 			isa = PBXGroup;
 			children = (
@@ -70,6 +77,7 @@
 		34E40ABA22A0D85600E09F92 /* Shake2.0 */ = {
 			isa = PBXGroup;
 			children = (
+				34D7728B22A71065002B4695 /* Models */,
 				34E40ACE22A0DF0000E09F92 /* Helpers */,
 				34E40ACD22A0DEDE00E09F92 /* Views */,
 				34E40ABB22A0D85700E09F92 /* AppDelegate.swift */,

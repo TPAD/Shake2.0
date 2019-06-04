@@ -24,6 +24,14 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
+        UIView.animate(withDuration: 0.5, animations: { () -> Void in
+            self.iconImage.transform = CGAffineTransform(scaleX: 2.5, y: 2.5)
+            self.iconImage.rotationAnimation()
+        }, completion: {(_ finished: Bool) -> Void in
+            UIView.animate(withDuration: 0.4, delay: 0, options: .curveEaseOut, animations: {() -> Void in
+                self.iconImage.alpha = 0
+            })
+        })
     }
     
 }
