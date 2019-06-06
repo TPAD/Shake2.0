@@ -9,6 +9,7 @@
 import UIKit
 import CoreLocation
 
+
 /// App launches to this view controller
 ///
 class ViewController: UIViewController {
@@ -45,7 +46,7 @@ extension ViewController {
         let y = iconImage.by(withOffset: -iconImage.frameH/4)
         let w = iconImage.frameW
         let h = iconImage.frameH
-        indicator.color = Color.CFOrange
+        indicator.color = Colors.CFOrange
         view.addSubview(self.indicator)
         indicator.frame = CGRect(x: x, y: y, width: w, height: h)
         indicator.hidesWhenStopped = true
