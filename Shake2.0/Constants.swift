@@ -5,7 +5,8 @@
 //  Created by Jack Kasbeer on 6/4/19.
 //  Copyright © 2019 GenOrg. All rights reserved.
 //
-//  Site-wide constants including things like colors, coordinates, distances, etc.
+//  Global strings & constants including things like colors, coordinates, distances, etc.
+//
 
 import Foundation
 import UIKit

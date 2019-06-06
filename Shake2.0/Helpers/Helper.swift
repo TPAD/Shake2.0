@@ -5,18 +5,11 @@
 //  Created by Antonio Padilla on 5/30/19.
 //  Copyright © 2019 GenOrg. All rights reserved.
 //
-//  Helper functions, extensions, and global strings or constants live here
+//  Helper functions and extensions live here
 //
 
 import UIKit
 import CoreLocation
-
-// app delegate at fingertips
-internal var appDelegate: AppDelegate = UIApplication.shared.delegate as! AppDelegate
-
-internal func getApiKey() -> String {
-    return "AIzaSyCBckYCeXQ6j_voOmOq7UHuWqWjHUYEz7E"
-}
 
 
 public extension UIViewController {

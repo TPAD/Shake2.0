@@ -17,6 +17,7 @@ import Foundation
 import UIKit
 
 // MARK: Location Model
+
 public class Location {
     
 }
