@@ -21,6 +21,7 @@
 		F84F0B7722AAE436004439DD /* Location.swift in Sources */ = {isa = PBXBuildFile; fileRef = F84F0B7622AAE436004439DD /* Location.swift */; };
 		F861B33522A9B640001C20EF /* Template-ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F861B33422A9B640001C20EF /* Template-ViewController.swift */; };
 		F86ACE5522B03E5600445009 /* LocationBubble.xib in Resources */ = {isa = PBXBuildFile; fileRef = F86ACE5422B03E5600445009 /* LocationBubble.xib */; };
+		F86ACE5722B0457000445009 /* LocationDetails.xib in Resources */ = {isa = PBXBuildFile; fileRef = F86ACE5622B0457000445009 /* LocationDetails.xib */; };
 		F8A9AB6122A6F44C0096C713 /* SavedLocationsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8A9AB6022A6F44C0096C713 /* SavedLocationsView.swift */; };
 		F8A9AB6322A708BA0096C713 /* HoursView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8A9AB6222A708BA0096C713 /* HoursView.swift */; };
 		F8A9AB6522A70ADB0096C713 /* ReviewsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8A9AB6422A70ADB0096C713 /* ReviewsView.swift */; };
@@ -44,6 +45,7 @@
 		F84F0B7622AAE436004439DD /* Location.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Location.swift; sourceTree = "<group>"; };
 		F861B33422A9B640001C20EF /* Template-ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Template-ViewController.swift"; sourceTree = "<group>"; };
 		F86ACE5422B03E5600445009 /* LocationBubble.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LocationBubble.xib; sourceTree = "<group>"; };
+		F86ACE5622B0457000445009 /* LocationDetails.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LocationDetails.xib; sourceTree = "<group>"; };
 		F8A9AB6022A6F44C0096C713 /* SavedLocationsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SavedLocationsView.swift; sourceTree = "<group>"; };
 		F8A9AB6222A708BA0096C713 /* HoursView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HoursView.swift; sourceTree = "<group>"; };
 		F8A9AB6422A70ADB0096C713 /* ReviewsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewsView.swift; sourceTree = "<group>"; };
@@ -73,6 +75,7 @@
 			isa = PBXGroup;
 			children = (
 				F86ACE5422B03E5600445009 /* LocationBubble.xib */,
+				F86ACE5622B0457000445009 /* LocationDetails.xib */,
 			);
 			path = Nibs;
 			sourceTree = "<group>";
@@ -202,6 +205,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				F86ACE5522B03E5600445009 /* LocationBubble.xib in Resources */,
+				F86ACE5722B0457000445009 /* LocationDetails.xib in Resources */,
 				34E40AC622A0D85800E09F92 /* LaunchScreen.storyboard in Resources */,
 				34E40AC322A0D85800E09F92 /* Assets.xcassets in Resources */,
 				34E40AC122A0D85700E09F92 /* Main.storyboard in Resources */,
