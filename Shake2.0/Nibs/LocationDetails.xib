@@ -16,57 +16,136 @@
             <rect key="frame" x="0.0" y="0.0" width="414" height="765"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jkF-jB-5Cx">
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jkF-jB-5Cx" userLabel="TitleView">
                     <rect key="frame" x="0.0" y="0.0" width="414" height="160"/>
                     <subviews>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="CoinFlip Bitcoin ATM" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9P8-uG-PZx">
-                            <rect key="frame" x="92" y="34" width="228" height="29"/>
-                            <fontDescription key="fontDescription" type="system" pointSize="24"/>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="CoinFlip Bitcoin ATM (Avondale)" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9P8-uG-PZx" userLabel="NeighborhoodLabel">
+                            <rect key="frame" x="47.5" y="30" width="319" height="27.5"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="23"/>
                             <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <nil key="highlightedColor"/>
                         </label>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1234 Diversey Ave, Chicago IL 60210" textAlignment="center" lineBreakMode="wordWrap" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="djt-xC-J8r">
-                            <rect key="frame" x="64" y="107" width="284" height="20.5"/>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1234 Diversey Ave, Chicago IL 60210" textAlignment="center" lineBreakMode="wordWrap" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="djt-xC-J8r" userLabel="AddressLabel">
+                            <rect key="frame" x="65" y="113" width="284" height="20.5"/>
                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                             <color key="textColor" red="0.88548981640000002" green="0.93325841460000003" blue="0.93109836040000005" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                             <nil key="highlightedColor"/>
                         </label>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="(Avondale)" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PIR-cf-9Db">
-                            <rect key="frame" x="141" y="67" width="131" height="25.5"/>
-                            <fontDescription key="fontDescription" type="system" pointSize="21"/>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Worldwide Food &amp; Liquors" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PIR-cf-9Db" userLabel="StoreNameLabel">
+                            <rect key="frame" x="93" y="67" width="228.5" height="24"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="20"/>
                             <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <nil key="highlightedColor"/>
                         </label>
                     </subviews>
                     <color key="backgroundColor" red="0.23622804880000001" green="0.70279902220000001" blue="0.44373118880000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <constraints>
-                        <constraint firstItem="djt-xC-J8r" firstAttribute="top" secondItem="jkF-jB-5Cx" secondAttribute="top" constant="107" id="2vO-ch-4bP"/>
-                        <constraint firstAttribute="bottom" secondItem="9P8-uG-PZx" secondAttribute="bottom" constant="97" id="4Va-0r-PTV"/>
-                        <constraint firstItem="9P8-uG-PZx" firstAttribute="leading" secondItem="jkF-jB-5Cx" secondAttribute="leading" constant="92" id="E4U-BJ-QA9"/>
-                        <constraint firstAttribute="bottom" secondItem="PIR-cf-9Db" secondAttribute="bottom" constant="67.5" id="IIf-Ra-k0u"/>
-                        <constraint firstAttribute="bottom" secondItem="djt-xC-J8r" secondAttribute="bottom" constant="32.5" id="LZp-vr-Yrb"/>
-                        <constraint firstItem="9P8-uG-PZx" firstAttribute="top" secondItem="jkF-jB-5Cx" secondAttribute="top" constant="34" id="MDK-SD-wLB"/>
+                        <constraint firstItem="9P8-uG-PZx" firstAttribute="centerX" secondItem="jkF-jB-5Cx" secondAttribute="centerX" id="4yZ-Ce-0YC"/>
+                        <constraint firstItem="PIR-cf-9Db" firstAttribute="centerX" secondItem="jkF-jB-5Cx" secondAttribute="centerX" id="L6t-Xb-VRt"/>
                         <constraint firstAttribute="height" constant="160" id="NaL-rp-VwF"/>
-                        <constraint firstAttribute="trailing" secondItem="9P8-uG-PZx" secondAttribute="trailing" constant="94" id="PVF-MY-rPL"/>
-                        <constraint firstItem="PIR-cf-9Db" firstAttribute="leading" secondItem="jkF-jB-5Cx" secondAttribute="leading" constant="141" id="Wax-dS-24m"/>
-                        <constraint firstAttribute="trailing" secondItem="djt-xC-J8r" secondAttribute="trailing" constant="66" id="YAU-Nb-vI0"/>
-                        <constraint firstItem="PIR-cf-9Db" firstAttribute="top" secondItem="jkF-jB-5Cx" secondAttribute="top" constant="67" id="aRX-uL-OrD"/>
-                        <constraint firstItem="djt-xC-J8r" firstAttribute="leading" secondItem="jkF-jB-5Cx" secondAttribute="leading" constant="64" id="fWz-nh-bot"/>
-                        <constraint firstAttribute="trailing" secondItem="PIR-cf-9Db" secondAttribute="trailing" constant="142" id="fgA-vV-8Aj"/>
+                        <constraint firstItem="djt-xC-J8r" firstAttribute="centerX" secondItem="jkF-jB-5Cx" secondAttribute="centerX" id="Zap-4m-8of"/>
+                        <constraint firstAttribute="bottom" secondItem="djt-xC-J8r" secondAttribute="bottom" constant="26.5" id="gll-6V-aqE"/>
+                        <constraint firstItem="djt-xC-J8r" firstAttribute="top" secondItem="PIR-cf-9Db" secondAttribute="bottom" constant="22" id="iKP-hq-cls"/>
+                        <constraint firstItem="PIR-cf-9Db" firstAttribute="top" secondItem="9P8-uG-PZx" secondAttribute="bottom" constant="9.5" id="ivU-Vd-MQB"/>
                     </constraints>
                 </view>
-                <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="eFq-J8-hR0">
+                <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="eFq-J8-hR0" userLabel="ImageScrollView">
                     <rect key="frame" x="0.0" y="161" width="414" height="175"/>
+                    <subviews>
+                        <pageControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" numberOfPages="3" translatesAutoresizingMaskIntoConstraints="NO" id="LSk-8W-bod">
+                            <rect key="frame" x="187.5" y="138" width="39" height="37"/>
+                        </pageControl>
+                    </subviews>
+                    <constraints>
+                        <constraint firstItem="LSk-8W-bod" firstAttribute="centerX" secondItem="eFq-J8-hR0" secondAttribute="centerX" id="T0h-0X-dQx"/>
+                        <constraint firstItem="LSk-8W-bod" firstAttribute="top" secondItem="eFq-J8-hR0" secondAttribute="top" constant="138" id="uFO-GU-gKI"/>
+                        <constraint firstAttribute="bottom" secondItem="LSk-8W-bod" secondAttribute="bottom" id="whg-ks-kpN"/>
+                    </constraints>
                 </scrollView>
+                <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Q0y-XQ-4Nx" userLabel="PhoneNumberView">
+                    <rect key="frame" x="0.0" y="337" width="414" height="64"/>
+                    <subviews>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="(312) 288-4905" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ash-I5-BSH" userLabel="PhoneNumberLabel">
+                            <rect key="frame" x="61" y="11" width="231" height="47"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                            <color key="textColor" cocoaTouchSystemColor="viewFlipsideBackgroundColor"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="phone-icon" translatesAutoresizingMaskIntoConstraints="NO" id="Z39-Ua-xe2" userLabel="PhoneIconImage">
+                            <rect key="frame" x="16" y="17" width="30" height="30"/>
+                        </imageView>
+                    </subviews>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="64" id="W6a-is-GAQ"/>
+                        <constraint firstItem="ash-I5-BSH" firstAttribute="leading" secondItem="Q0y-XQ-4Nx" secondAttribute="leading" constant="61" id="ciG-2R-dhm"/>
+                        <constraint firstItem="Z39-Ua-xe2" firstAttribute="centerY" secondItem="Q0y-XQ-4Nx" secondAttribute="centerY" id="jvd-qq-NGA"/>
+                        <constraint firstItem="Z39-Ua-xe2" firstAttribute="leading" secondItem="Q0y-XQ-4Nx" secondAttribute="leading" constant="16" id="sWX-X7-jq3"/>
+                        <constraint firstAttribute="trailing" secondItem="Z39-Ua-xe2" secondAttribute="trailing" constant="368" id="vCu-aY-QyR"/>
+                    </constraints>
+                </view>
+                <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="c7N-b1-4iF" userLabel="AddressView">
+                    <rect key="frame" x="0.0" y="409" width="414" height="64"/>
+                    <subviews>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1234 Diversey Ave, Chicago IL 60210" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsLetterSpacingToFitWidth="YES" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3Rf-ep-sKp" userLabel="AddressLabel">
+                            <rect key="frame" x="61" y="22" width="284" height="20.5"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                            <color key="textColor" cocoaTouchSystemColor="viewFlipsideBackgroundColor"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="map-marker-shake" translatesAutoresizingMaskIntoConstraints="NO" id="puc-6g-qco" userLabel="MapMarkerIconImage">
+                            <rect key="frame" x="17" y="17" width="30" height="30"/>
+                        </imageView>
+                    </subviews>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <constraints>
+                        <constraint firstItem="3Rf-ep-sKp" firstAttribute="leading" secondItem="c7N-b1-4iF" secondAttribute="leading" constant="61" id="9MM-S3-Wuv"/>
+                        <constraint firstAttribute="trailing" secondItem="3Rf-ep-sKp" secondAttribute="trailing" constant="69" id="CLY-j1-lIa"/>
+                        <constraint firstItem="puc-6g-qco" firstAttribute="centerY" secondItem="c7N-b1-4iF" secondAttribute="centerY" id="EM6-qZ-MBQ"/>
+                        <constraint firstItem="3Rf-ep-sKp" firstAttribute="centerY" secondItem="c7N-b1-4iF" secondAttribute="centerY" id="WXO-3T-Ctg"/>
+                        <constraint firstAttribute="trailing" secondItem="puc-6g-qco" secondAttribute="trailing" constant="367" id="dmk-SM-KcY"/>
+                        <constraint firstItem="puc-6g-qco" firstAttribute="leading" secondItem="c7N-b1-4iF" secondAttribute="leading" constant="17" id="eMB-xm-dIg"/>
+                        <constraint firstAttribute="height" constant="64" id="vrb-Rw-dRy"/>
+                    </constraints>
+                </view>
+                <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="eZO-Ak-yIs" userLabel="HoursView">
+                    <rect key="frame" x="0.0" y="481" width="414" height="60"/>
+                    <subviews>
+                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" image="phone-icon" translatesAutoresizingMaskIntoConstraints="NO" id="dZr-sq-zYe" userLabel="PhoneIconImage">
+                            <rect key="frame" x="16" y="15" width="30" height="30"/>
+                        </imageView>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Tuesday: " lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsLetterSpacingToFitWidth="YES" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="i9s-Me-c5Q" userLabel="AddressLabel">
+                            <rect key="frame" x="54" y="7" width="74" height="21"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                            <color key="textColor" cocoaTouchSystemColor="viewFlipsideBackgroundColor"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                    </subviews>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <constraints>
+                        <constraint firstItem="dZr-sq-zYe" firstAttribute="leading" secondItem="eZO-Ak-yIs" secondAttribute="leading" constant="16" id="ByC-gt-hM9"/>
+                        <constraint firstItem="dZr-sq-zYe" firstAttribute="centerY" secondItem="eZO-Ak-yIs" secondAttribute="centerY" id="gh2-pX-aZc"/>
+                        <constraint firstItem="i9s-Me-c5Q" firstAttribute="centerY" secondItem="eZO-Ak-yIs" secondAttribute="centerY" id="h4k-5X-3er"/>
+                    </constraints>
+                </view>
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
+                <constraint firstAttribute="trailing" secondItem="c7N-b1-4iF" secondAttribute="trailing" id="26j-7J-gXD"/>
                 <constraint firstAttribute="trailing" secondItem="jkF-jB-5Cx" secondAttribute="trailing" id="8cM-le-kAb"/>
                 <constraint firstItem="jkF-jB-5Cx" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="Bst-5a-O6B"/>
+                <constraint firstItem="Q0y-XQ-4Nx" firstAttribute="top" secondItem="eFq-J8-hR0" secondAttribute="bottom" id="IMT-jf-WTf"/>
+                <constraint firstAttribute="trailing" secondItem="Q0y-XQ-4Nx" secondAttribute="trailing" id="K9F-2F-tTk"/>
                 <constraint firstAttribute="trailing" secondItem="eFq-J8-hR0" secondAttribute="trailing" id="MEs-aV-vPD"/>
+                <constraint firstAttribute="trailing" secondItem="eZO-Ak-yIs" secondAttribute="trailing" id="Pff-xK-1yH"/>
+                <constraint firstItem="c7N-b1-4iF" firstAttribute="top" secondItem="Q0y-XQ-4Nx" secondAttribute="bottom" id="WeC-nx-BIp"/>
+                <constraint firstItem="Q0y-XQ-4Nx" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="Yfv-14-ziu"/>
+                <constraint firstItem="c7N-b1-4iF" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="azQ-1a-aAD"/>
                 <constraint firstItem="eFq-J8-hR0" firstAttribute="top" secondItem="jkF-jB-5Cx" secondAttribute="bottom" id="gBC-Fa-qSv"/>
+                <constraint firstItem="eZO-Ak-yIs" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="oDZ-MT-Cpu"/>
                 <constraint firstAttribute="top" secondItem="jkF-jB-5Cx" secondAttribute="top" id="tia-GY-MPo"/>
                 <constraint firstItem="eFq-J8-hR0" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="tpf-7q-QLu"/>
+                <constraint firstItem="eFq-J8-hR0" firstAttribute="bottom" secondItem="Q0y-XQ-4Nx" secondAttribute="top" id="xuW-Im-raF"/>
             </constraints>
             <nil key="simulatedTopBarMetrics"/>
             <nil key="simulatedBottomBarMetrics"/>
@@ -75,4 +154,8 @@
             <point key="canvasLocation" x="131.8840579710145" y="197.20982142857142"/>
         </view>
     </objects>
+    <resources>
+        <image name="map-marker-shake" width="30" height="30"/>
+        <image name="phone-icon" width="30" height="30"/>
+    </resources>
 </document>
