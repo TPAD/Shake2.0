@@ -16,7 +16,7 @@ class ViewController: UIViewController {
     
     @IBOutlet weak var iconImage: UIImageView!
     var indicator: UIActivityIndicatorView = UIActivityIndicatorView(style: .gray)
-    var results = Array<[String:NSObject]>()
+    var results = [Place]()
     var userCoord: CLLocationCoordinate2D?
     var locationNames: [String?]?
     
@@ -86,11 +86,10 @@ extension ViewController {
                     .jsonObject(with: data!, options: .mutableContainers) as! NSDictionary
                 let status: String? = json["status"] as? String
                 if status != nil && status! == "OK" {
-                    let res = json["results"]! as! Array<[String: NSObject]>
-                    for location in res {
-                        results.append(location)
-                    }
-                    locationNames = res.map({($0["name"] as? String)})
+                    let resp = try? JSONDecoder().decode(GooglePlacesResponse.self, from: data!)
+                    let result: [Place] = resp!.results
+                    locationNames = result.map({($0.name)})
+                    print(result[0].pID)
                     let manager = appDelegate.locationManager
                     if let location = manager.location {
                         userCoord = location.coordinate
@@ -98,7 +97,7 @@ extension ViewController {
                     manager.stopUpdatingLocation()
                     DispatchQueue.main.async { self.indicator.stopAnimating() }
                     print("done")
-                    print(json)
+                    //print(GooglePlacesResponse(results: json))
                 } else if status != nil {
                     // TODO: - present alert on bad response status
                     print(status!)
@@ -110,5 +109,4 @@ extension ViewController {
             // TODO: - present alert if the response is invalid or the data is nil
         }
     }
-    
 }

@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		341A807222A7202E00676B8A /* LocationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 341A807122A7202E00676B8A /* LocationViewModel.swift */; };
+		341A807522A7224E00676B8A /* LocationView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 341A807422A7224E00676B8A /* LocationView.xib */; };
+		34BFB50022B058B0003EBCE9 /* Detail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34BFB4FF22B058B0003EBCE9 /* Detail.swift */; };
 		34E40ABC22A0D85700E09F92 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34E40ABB22A0D85700E09F92 /* AppDelegate.swift */; };
 		34E40ABE22A0D85700E09F92 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34E40ABD22A0D85700E09F92 /* ViewController.swift */; };
 		34E40AC122A0D85700E09F92 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 34E40ABF22A0D85700E09F92 /* Main.storyboard */; };
@@ -30,6 +32,8 @@
 
 /* Begin PBXFileReference section */
 		341A807122A7202E00676B8A /* LocationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationViewModel.swift; sourceTree = "<group>"; };
+		341A807422A7224E00676B8A /* LocationView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LocationView.xib; sourceTree = "<group>"; };
+		34BFB4FF22B058B0003EBCE9 /* Detail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Detail.swift; sourceTree = "<group>"; };
 		34E40AB822A0D85600E09F92 /* Shake2.0.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Shake2.0.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		34E40ABB22A0D85700E09F92 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		34E40ABD22A0D85700E09F92 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -85,6 +89,7 @@
 			children = (
 				F84F0B7422AAE3F9004439DD /* Constants.swift */,
 				F84F0B7622AAE436004439DD /* Location.swift */,
+				34BFB4FF22B058B0003EBCE9 /* Detail.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -230,6 +235,7 @@
 				F84F0B7522AAE3F9004439DD /* Constants.swift in Sources */,
 				F8A9AB6122A6F44C0096C713 /* SavedLocationsView.swift in Sources */,
 				34E40AD422A0E61100E09F92 /* DetailView.swift in Sources */,
+				34BFB50022B058B0003EBCE9 /* Detail.swift in Sources */,
 				F8A9AB6322A708BA0096C713 /* HoursView.swift in Sources */,
 				34E40AD022A0DF1300E09F92 /* Helper.swift in Sources */,
 				F861B33522A9B640001C20EF /* Template-ViewController.swift in Sources */,
@@ -380,13 +386,13 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = LXQPWHDUGR;
+				DEVELOPMENT_TEAM = A2N9APJ4GT;
 				INFOPLIST_FILE = Shake2.0/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "com-Shake-jak";
+				PRODUCT_BUNDLE_IDENTIFIER = "com-Shake";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -398,13 +404,13 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = LXQPWHDUGR;
+				DEVELOPMENT_TEAM = A2N9APJ4GT;
 				INFOPLIST_FILE = Shake2.0/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "com-Shake-jak";
+				PRODUCT_BUNDLE_IDENTIFIER = "com-Shake";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
