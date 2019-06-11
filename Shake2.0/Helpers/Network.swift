@@ -35,11 +35,11 @@ public struct GoogleSearch {
     private let httpMethod: String = "GET"
     
     // the following urls will be used for an api request depending on SearchType
-    private var nearbyURL: String =
+    public var nearbyURL: String =
     "https://maps.googleapis.com/maps/api/place/nearbysearch/json"
-    private var detailURL: String =
+    public var detailURL: String =
     "https://maps.googleapis.com/maps/api/place/details/json"
-    private var photoURL: String =
+    public var photoURL: String =
     "https://maps.googleapis.com/maps/api/place/photo"
     
     init(type: SearchType, parameters: Parameters?) {
@@ -55,7 +55,7 @@ public struct GoogleSearch {
     }
     
     // helper function used for appending search parameters to url
-    private mutating func appendParametersToURL() {
+    public mutating func appendParametersToURL() {
         if params == nil { return }
         var paramsArr: [String] = []
         for parameter in self.params! {
