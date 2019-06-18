@@ -10,6 +10,7 @@ import UIKit
 import CoreLocation
 
 
+
 /// App launches to this view controller
 ///
 class ViewController: UIViewController {
@@ -19,6 +20,8 @@ class ViewController: UIViewController {
     var results = [Place]()
     var userCoord: CLLocationCoordinate2D?
     var locationNames: [String?]?
+    var locationViewModel: LocationViewModel = LocationViewModel()
+    var locationView: LocationView?
     
     // light status bar for dark background
     override var preferredStatusBarStyle: UIStatusBarStyle {
@@ -88,8 +91,8 @@ extension ViewController {
                 if status != nil && status! == "OK" {
                     let resp = try? JSONDecoder().decode(GooglePlacesResponse.self, from: data!)
                     let result: [Place] = resp!.results
+                    print(result[0])
                     locationNames = result.map({($0.name)})
-                    print(result[0].pID)
                     let manager = appDelegate.locationManager
                     if let location = manager.location {
                         userCoord = location.coordinate
@@ -97,6 +100,9 @@ extension ViewController {
                     manager.stopUpdatingLocation()
                     DispatchQueue.main.async { self.indicator.stopAnimating() }
                     print("done")
+                    DispatchQueue.main.async {
+                        self.locationViewInit()
+                    }
                     //print(GooglePlacesResponse(results: json))
                 } else if status != nil {
                     // TODO: - present alert on bad response status
@@ -109,4 +115,17 @@ extension ViewController {
             // TODO: - present alert if the response is invalid or the data is nil
         }
     }
+    
+    func locationViewInit() {
+        let w: CGFloat = view.frameH/2.25
+        let x: CGFloat = view.center.x - w/2
+        let y: CGFloat = view.center.y - w/1.5
+        let frame = CGRect(x: x, y: y, width: w, height: w)
+        
+        locationView = LocationView(frame: frame)
+        locationView?.roundView(borderWidth: 2.0)
+        
+        view.addSubview(locationView!)
+    }
 }
+

@@ -17,46 +17,30 @@ import UIKit
 class LocationView: UIView {
     
     var view: UIView!               // to be loaded from xib
-    var info: LocationInfo?         // information related to the location
     var image: UIImage?             // location image
     var ratingView: UIView?         // view containing the location's rating
     var infoView: UIView?           // view containing the rest of the location information
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        //commonInit()
+        commonInit()
     }
     
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
-        //commonInit()
+        commonInit()
     }
     
-//    private func commonInit() {
-//        view = loadViewFromNib()
-//        view.frame = bounds
-//        view.autoresizingMask = [.flexibleWidth, .flexibleHeight]
-//        addSubview(view)
-//    }
-//
-//    private func loadViewFromNib() -> UIView {
-//        return UINib(nibName: "Place", bundle: nil)
-//            .instantiate(withOwner: self, options: nil)[0] as! UIView
-//    }
-    
-}
+    private func commonInit() {
+        view = loadViewFromNib()
+        view.frame = bounds
+        view.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+        addSubview(view)
+    }
 
-//
-//  Structure containing the mimimum information displayed by the Location View
-//
-struct LocationInfo {
-    var image: UIImage?
-    var rating: Double?
-    var name: String?
-    
-    init(image: UIImage, name: String, rating: Double) {
-        self.image = image
-        self.name = name
-        self.rating = rating
+    private func loadViewFromNib() -> UIView {
+        return UINib(nibName: "LocationBubble", bundle: nil)
+            .instantiate(withOwner: self, options: nil)[0] as! UIView
     }
+    
 }

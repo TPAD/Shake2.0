@@ -38,33 +38,3 @@ class DetailView: UIView {
 //    }
     
 }
-
-
-//
-//  structure containing the information for the detail view
-//
-struct DetailInfo {
-//
-//    var name: String?
-//    var price: Int?
-//    var isOpen: Bool?
-//    var image: UIImage?
-//    var coordinates: (Double, Double)
-//    var phone: String?
-//    var formatAddress: String?
-//    var reviews: NSArray?
-//    var weeklyHours: Array<String>?
-//    var openPeriods: Array<[String:AnyObject]>?
-//    var types: Array<String>?
-//    var mainType: String?
-//    var website: String?
-//
-//    init(data: [String: AnyObject?]) {
-//        isOpen = false
-//        name = getName(data)
-//        price = getPrice(data)
-//        image = getImage(data)
-//    }
-//
-
-}

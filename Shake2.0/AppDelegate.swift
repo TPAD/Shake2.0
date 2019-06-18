@@ -94,7 +94,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
             if self.locationManager.location != nil {
                 if let VC = UIApplication.shared.topMostViewController() as?
                     ViewController {
-                    VC.runQuery()
+                    VC.locationViewModel.runNearbyQuery()
                 }
             }
         })
