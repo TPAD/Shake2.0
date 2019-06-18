@@ -21,12 +21,20 @@ struct Detail: Codable {
     let fPNumber: String        // formatted phone number
     let id: String
     let reviews: [Reviews]
+    let photoRef: [PhotoReference]
+    let iconLink: String
+    let name: String
+    let openingHours: OpeningHours
 
     enum CodingKeys: String, CodingKey {
         case fAddress = "formatted_address"
         case fPNumber = "formatted_phone_number"
         case id = "place_id"
         case reviews = "reviews"
+        case photoRef = "photos"
+        case iconLink = "icon"
+        case name = "name"
+        case openingHours = "opening_hours"
     }
 
     struct Reviews: Codable {
@@ -38,6 +46,21 @@ struct Detail: Codable {
             case name = "author_name"
             case text = "text"
             case rating = "rating"
+        }
+    }
+    
+    struct PhotoReference: Codable {
+        let ref = "photo_reference"
+        
+        enum CodingKeys: String, CodingKey {
+            case ref = "photo_reference"
+        }
+    }
+    
+    struct OpeningHours: Codable {
+        let text: [String]
+        enum CodingKeys: String, CodingKey {
+            case text = "weekday_text"
         }
     }
     

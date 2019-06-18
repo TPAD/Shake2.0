@@ -29,6 +29,7 @@ struct Place: Codable {
     let types: [String]
     let address: String
     let pID: String
+    let rating: Float?
     
     enum CodingKeys: String, CodingKey {
         case geometry = "geometry"
@@ -38,6 +39,7 @@ struct Place: Codable {
         case types = "types"
         case address = "vicinity"
         case pID = "place_id"
+        case rating = "rating"
     }
     
     // model for location data
@@ -58,9 +60,6 @@ struct Place: Codable {
     struct OpenNow: Codable {
         let isOpen: Bool
         enum CodingKeys: String, CodingKey { case isOpen = "open_now" }
-        func printReadbale() -> String {
-            return String(isOpen)
-        }
     }
     
     // model for image information to be used in image query

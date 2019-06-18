@@ -17,9 +17,10 @@ import UIKit
 class LocationView: UIView {
     
     var view: UIView!               // to be loaded from xib
-    var image: UIImage?             // location image
-    var ratingView: UIView?         // view containing the location's rating
-    var infoView: UIView?           // view containing the rest of the location information
+    @IBOutlet weak var locationImage: UIImageView!
+    @IBOutlet weak var ratingView: UIView!
+    @IBOutlet weak var infoView: UIView!
+    @IBOutlet weak var name: UILabel!
     
     override init(frame: CGRect) {
         super.init(frame: frame)
