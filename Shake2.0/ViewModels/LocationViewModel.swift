@@ -68,8 +68,10 @@ class LocationViewModel: NSObject {
                     manager.stopUpdatingLocation()
                     //print(json)
                     print("done")
-                    delegate!.runNextDetailSearch()
-                    getImage(from: photoReference, with: imageWidth)
+                    DispatchQueue.main.async {
+                        self.delegate!.runNextDetailSearch()
+                        self.getImage(from: photoReference, with: self.imageWidth)
+                    }
                 } else if status != nil {
                     // TODO: - present alert on bad response status
                     print(status!)
@@ -100,7 +102,7 @@ class LocationViewModel: NSObject {
         if image == nil {
             //TODO: - handle
         } else {
-            self.delegate!.setLocationImage(to: image!)
+            delegate!.setLocationImage(to: image!)
         }
     }
     
