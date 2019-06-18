@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		341A807222A7202E00676B8A /* LocationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 341A807122A7202E00676B8A /* LocationViewModel.swift */; };
+		34693D5822B9A08D0024AB6C /* DetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34693D5722B9A08D0024AB6C /* DetailViewModel.swift */; };
 		34BFB50022B058B0003EBCE9 /* Detail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34BFB4FF22B058B0003EBCE9 /* Detail.swift */; };
 		34E40ABC22A0D85700E09F92 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34E40ABB22A0D85700E09F92 /* AppDelegate.swift */; };
 		34E40ABE22A0D85700E09F92 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34E40ABD22A0D85700E09F92 /* ViewController.swift */; };
@@ -31,6 +32,7 @@
 
 /* Begin PBXFileReference section */
 		341A807122A7202E00676B8A /* LocationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationViewModel.swift; sourceTree = "<group>"; };
+		34693D5722B9A08D0024AB6C /* DetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewModel.swift; sourceTree = "<group>"; };
 		34BFB4FF22B058B0003EBCE9 /* Detail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Detail.swift; sourceTree = "<group>"; };
 		34E40AB822A0D85600E09F92 /* Shake2.0.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Shake2.0.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		34E40ABB22A0D85700E09F92 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -69,6 +71,7 @@
 			isa = PBXGroup;
 			children = (
 				341A807122A7202E00676B8A /* LocationViewModel.swift */,
+				34693D5722B9A08D0024AB6C /* DetailViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -236,6 +239,7 @@
 				34BFB50022B058B0003EBCE9 /* Detail.swift in Sources */,
 				F8A9AB6322A708BA0096C713 /* HoursView.swift in Sources */,
 				34E40AD022A0DF1300E09F92 /* Helper.swift in Sources */,
+				34693D5822B9A08D0024AB6C /* DetailViewModel.swift in Sources */,
 				F861B33522A9B640001C20EF /* Template-ViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

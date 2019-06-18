@@ -9,6 +9,17 @@
 import UIKit
 import CoreLocation
 
+protocol ViewModelDelegate: class {
+    func willLoadData()
+    func runNextDetailSearch()
+    func setLocationImage(to image: UIImage)
+}
+
+protocol DetailViewModelDelegate: class {
+    func willLoadDetail()
+    func detailSearchSucceded()
+}
+
 
 /// App launches to this view controller
 ///
@@ -21,6 +32,10 @@ class ViewController: UIViewController {
     var locationNames: [String?]?
     var locationView: LocationView?
     var initialLoad: Bool = true
+    var viewModel: LocationViewModel = LocationViewModel()
+    var detailModel: DetailViewModel = DetailViewModel()
+    var shakeNum: Int = 0
+    
     
     // light status bar for dark background
     override var preferredStatusBarStyle: UIStatusBarStyle {
@@ -32,13 +47,57 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
         iconImage.rotationAnimation()
+        viewModel.delegate = self
+        detailModel.delegate = self
     }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         locationViewInit()
+        viewModel.imageWidth = 0.5
     }
     
+}
+
+extension ViewController: ViewModelDelegate {
+    func willLoadData() {
+        if initialLoad {
+            activitySetup()
+            indicator.startAnimating()
+        }
+    }
+    
+    func runNextDetailSearch() {
+        // TODO: - run detail query
+        let places = viewModel.places
+        // check if valid indices
+        if places.count > 0 {
+            detailModel.getDetail(from: places, at: shakeNum)
+        }
+    }
+    
+    func setLocationImage(to image: UIImage) {
+        self.indicator.stopAnimating()
+        DispatchQueue.main.async {
+            self.locationView!.locationImage.image = image
+        }
+        if self.initialLoad {
+            UIView.animate(withDuration: 0.5, animations: {
+                self.locationView?.alpha = 1
+            })
+        }
+    }
+    
+}
+
+extension ViewController: DetailViewModelDelegate {
+    func willLoadDetail() {
+        // TODO: - update UI to show activity
+    }
+    
+    func detailSearchSucceded() {
+        // TODO: - send view updates!
+    }
 }
 
 
