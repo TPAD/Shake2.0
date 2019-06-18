@@ -11,8 +11,6 @@
 import UIKit
 import CoreLocation
 
-// MARK: Constants
-
 // MARK: Helper functions and extensions
 
 public extension UIViewController {

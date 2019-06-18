@@ -14,7 +14,7 @@ import UIKit
 // AppDelegate at fingertips
 internal var appDelegate: AppDelegate = UIApplication.shared.delegate as! AppDelegate
 
-internal func getApiKey() -> String {
+func getApiKey() -> String {
     return "AIzaSyCBckYCeXQ6j_voOmOq7UHuWqWjHUYEz7E"
 }
 
