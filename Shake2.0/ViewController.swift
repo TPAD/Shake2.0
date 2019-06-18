@@ -20,7 +20,6 @@ class ViewController: UIViewController {
     var results = [Place]()
     var userCoord: CLLocationCoordinate2D?
     var locationNames: [String?]?
-    var locationViewModel: LocationViewModel = LocationViewModel()
     var locationView: LocationView?
     
     // light status bar for dark background
@@ -56,7 +55,7 @@ extension ViewController {
     }
     
     // runs a nearby search for the closest CoinFlip Bitcoin ATMs
-    func runQuery() {
+    func runNearbyQuery() {
         activitySetup()
         indicator.startAnimating()
         if let location = appDelegate.locationManager.location {
@@ -90,19 +89,19 @@ extension ViewController {
                 let status: String? = json["status"] as? String
                 if status != nil && status! == "OK" {
                     let resp = try? JSONDecoder().decode(GooglePlacesResponse.self, from: data!)
-                    let result: [Place] = resp!.results
-                    print(result[0])
-                    locationNames = result.map({($0.name)})
+                    self.results = resp!.results
+                    locationNames = results.map({($0.name)})
                     let manager = appDelegate.locationManager
                     if let location = manager.location {
                         userCoord = location.coordinate
                     }
                     manager.stopUpdatingLocation()
-                    DispatchQueue.main.async { self.indicator.stopAnimating() }
                     print("done")
                     DispatchQueue.main.async {
                         self.locationViewInit()
                     }
+                    self.getDetail(at: 0)
+//                    self.getDetail(at: 1)
                     //print(GooglePlacesResponse(results: json))
                 } else if status != nil {
                     // TODO: - present alert on bad response status
@@ -126,6 +125,39 @@ extension ViewController {
         locationView?.roundView(borderWidth: 2.0)
         
         view.addSubview(locationView!)
+    }
+    
+    func getDetail(at index: Int) {
+        let id = results[index].pID
+        let params: Parameters = ["placeid": "\(id)",
+            "key": "\(getApiKey())"]
+        let session = URLSession.shared
+        var search = GoogleSearch(type: .DETAIL, parameters: params)
+        search.makeRequest(session, handler: detailCompletion)
+    }
+    
+    func detailCompletion(data: Data?) {
+        if data != nil {
+            DispatchQueue.main.sync {
+                do {
+                    let json = try
+                        JSONSerialization.jsonObject(with: data!,
+                                                     options: .mutableContainers)
+                        as! NSDictionary
+                    let status: String? = json["status"] as? String
+                    if status != nil && status! == "OK" {
+//                        let resp = try? JSONDecoder().decode(GoogleDetailResponse.self, from: data!)
+                        //print(resp!)
+                        print("\n\n\(json)\n\n")
+                        DispatchQueue.main.async { self.indicator.stopAnimating() }
+                    }
+                } catch {
+                    //TODO: - handle invalid json conversion error
+                }
+            }
+        } else {
+            //TODO: - handle invalid response
+        }
     }
 }
 
