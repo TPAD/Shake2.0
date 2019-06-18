@@ -61,10 +61,9 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="MpW-AU-c7b" userLabel="SavedLocationsView">
-                                <rect key="frame" x="47" y="94" width="320" height="60"/>
+                                <rect key="frame" x="45.666666666666657" y="94" width="322.66666666666674" height="60"/>
                                 <color key="backgroundColor" white="1" alpha="0.048112896126760563" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="320" id="uaN-I6-Rcl"/>
                                     <constraint firstAttribute="height" constant="60" id="y7w-lm-OTs"/>
                                 </constraints>
                             </view>
@@ -81,6 +80,7 @@
                             <constraint firstItem="Vet-ez-BwK" firstAttribute="centerY" secondItem="4hd-py-l9b" secondAttribute="centerY" id="Kjj-nt-Ic6"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="top" secondItem="MpW-AU-c7b" secondAttribute="top" constant="-50" id="KuP-39-jL1"/>
                             <constraint firstItem="4hd-py-l9b" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="WZW-BT-l2M"/>
+                            <constraint firstItem="MpW-AU-c7b" firstAttribute="width" secondItem="4hd-py-l9b" secondAttribute="width" multiplier="0.78" id="blc-zm-hmP"/>
                             <constraint firstItem="MpW-AU-c7b" firstAttribute="centerX" secondItem="4hd-py-l9b" secondAttribute="centerX" id="bnO-MC-CPn"/>
                             <constraint firstItem="Vet-ez-BwK" firstAttribute="width" secondItem="4hd-py-l9b" secondAttribute="width" multiplier="0.3" id="dFY-9q-Tdm"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="4hd-py-l9b" secondAttribute="trailing" id="gCv-by-axo"/>
