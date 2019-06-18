@@ -23,8 +23,11 @@
                     <rect key="frame" x="0.0" y="240" width="300" height="60"/>
                     <subviews>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Neighborhood of ATM" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Yad-Rw-Y3m">
-                            <rect key="frame" x="65.5" y="19.5" width="169" height="21"/>
-                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                            <rect key="frame" x="74.5" y="15.5" width="151" height="18"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="151" id="L0f-NF-Jr2"/>
+                            </constraints>
+                            <fontDescription key="fontDescription" type="system" pointSize="15"/>
                             <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <nil key="highlightedColor"/>
                         </label>
@@ -32,27 +35,30 @@
                     <color key="backgroundColor" cocoaTouchSystemColor="darkTextColor"/>
                     <constraints>
                         <constraint firstItem="Yad-Rw-Y3m" firstAttribute="centerX" secondItem="wnD-AJ-eme" secondAttribute="centerX" id="L8M-tk-it2"/>
-                        <constraint firstItem="Yad-Rw-Y3m" firstAttribute="centerY" secondItem="wnD-AJ-eme" secondAttribute="centerY" id="kVe-A4-VHA"/>
+                        <constraint firstItem="Yad-Rw-Y3m" firstAttribute="top" secondItem="wnD-AJ-eme" secondAttribute="top" constant="15.5" id="f4u-tZ-kPz"/>
                     </constraints>
                 </view>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ozB-dW-gyw">
-                    <rect key="frame" x="0.0" y="0.0" width="300" height="45"/>
+                    <rect key="frame" x="0.0" y="0.0" width="300" height="36"/>
                     <subviews>
                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="star-filled" translatesAutoresizingMaskIntoConstraints="NO" id="SBD-gg-d9R">
-                            <rect key="frame" x="133.5" y="11.5" width="33" height="22.5"/>
+                            <rect key="frame" x="110" y="8" width="80" height="12"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="80" id="LQ3-ch-o3H"/>
+                            </constraints>
                         </imageView>
                     </subviews>
                     <color key="backgroundColor" red="0.047058823530000002" green="0.070588235289999995" blue="0.074509803920000006" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <constraints>
-                        <constraint firstItem="SBD-gg-d9R" firstAttribute="height" secondItem="ozB-dW-gyw" secondAttribute="height" multiplier="0.5" id="Fyy-hO-4KH"/>
-                        <constraint firstItem="SBD-gg-d9R" firstAttribute="centerY" secondItem="ozB-dW-gyw" secondAttribute="centerY" id="lqO-Xh-Rv9"/>
-                        <constraint firstItem="SBD-gg-d9R" firstAttribute="centerX" secondItem="ozB-dW-gyw" secondAttribute="centerX" id="yOV-1b-xe4"/>
+                        <constraint firstAttribute="height" constant="36" id="61F-Gl-3Th"/>
+                        <constraint firstItem="SBD-gg-d9R" firstAttribute="centerX" secondItem="ozB-dW-gyw" secondAttribute="centerX" id="ERG-gO-nx1"/>
+                        <constraint firstItem="SBD-gg-d9R" firstAttribute="top" secondItem="ozB-dW-gyw" secondAttribute="top" constant="8" id="OxK-Fv-ybz"/>
+                        <constraint firstItem="SBD-gg-d9R" firstAttribute="height" secondItem="ozB-dW-gyw" secondAttribute="height" multiplier="0.33" id="ybG-up-XSc"/>
                     </constraints>
                 </view>
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
-                <constraint firstItem="ozB-dW-gyw" firstAttribute="height" secondItem="qog-3e-mYM" secondAttribute="height" multiplier="0.15" id="4FA-Bx-9KV"/>
                 <constraint firstAttribute="trailing" secondItem="qog-3e-mYM" secondAttribute="trailing" id="HQb-YG-r4I"/>
                 <constraint firstAttribute="bottom" secondItem="qog-3e-mYM" secondAttribute="bottom" id="ObL-7L-AW7"/>
                 <constraint firstItem="wnD-AJ-eme" firstAttribute="trailing" secondItem="qog-3e-mYM" secondAttribute="trailing" id="Xgb-DJ-nO7"/>
