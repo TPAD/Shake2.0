@@ -31,6 +31,25 @@ public extension UIApplication {
 
 
 public extension UIView {
+    
+    // shortcut for getting frame height of a view
+    var frameH: CGFloat { return self.frame.height }
+    // shortcut for getting frame width of a view
+    var frameW: CGFloat { return self.frame.width }
+    
+    func shakeAnimation() {
+        let animation = CABasicAnimation(keyPath: "position")
+        animation.duration = 0.1
+        animation.repeatCount = 3
+        animation.autoreverses = true
+        animation.fromValue = NSValue(cgPoint: CGPoint(x: self.center.x - 15,
+                                                       y: self.center.y))
+        animation.toValue = NSValue(cgPoint: CGPoint(x: self.center.x + 15,
+                                                     y: self.center.y))
+        layer.add(animation, forKey: "position")
+        
+    }
+    
     // simple rotation animation
     func rotationAnimation() {
         let animation = CABasicAnimation(keyPath: "transform.rotation")
@@ -136,10 +155,3 @@ public extension UILabel {
 }
 
 
-public extension  UIView {
-    // shortcut for getting frame height of a view
-    var frameH: CGFloat { return self.frame.height }
-    // shortcut for getting frame width of a view
-    var frameW: CGFloat { return self.frame.width }
-    
-}

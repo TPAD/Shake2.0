@@ -8,6 +8,10 @@
 
 import Foundation
 
+///
+/// 
+///
+///
 class DetailViewModel: NSObject {
     
     var placeDetails: [Detail] = [Detail]()

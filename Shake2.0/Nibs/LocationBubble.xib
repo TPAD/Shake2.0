@@ -51,7 +51,7 @@
                     <rect key="frame" x="0.0" y="0.0" width="300" height="36"/>
                     <subviews>
                         <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0oC-W3-tPg" customClass="CosmosView" customModule="Shake2_0" customModuleProvider="target">
-                            <rect key="frame" x="98" y="11" width="104" height="20"/>
+                            <rect key="frame" x="94" y="11" width="112" height="20"/>
                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <userDefinedRuntimeAttributes>
                                 <userDefinedRuntimeAttribute type="color" keyPath="emptyBorderColor">
@@ -64,7 +64,7 @@
                                     <color key="value" red="0.99942404029999998" green="0.98555368190000003" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 </userDefinedRuntimeAttribute>
                                 <userDefinedRuntimeAttribute type="number" keyPath="starMargin">
-                                    <real key="value" value="1"/>
+                                    <real key="value" value="3"/>
                                 </userDefinedRuntimeAttribute>
                                 <userDefinedRuntimeAttribute type="boolean" keyPath="updateOnTouch" value="NO"/>
                             </userDefinedRuntimeAttributes>

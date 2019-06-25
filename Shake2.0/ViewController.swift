@@ -9,20 +9,7 @@
 import UIKit
 import CoreLocation
 
-protocol ViewModelDelegate: class {
-    func willLoadData()
-    func runNextDetailSearch()
-    func runNextImageSearch()
-    func setLocationImage(to image: UIImage)
-    func updateLocationUI()
-}
-
-protocol DetailViewModelDelegate: class {
-    func willLoadDetail()
-    func detailSearchSucceded()
-}
-
-
+///
 /// App launches to this view controller
 ///
 class ViewController: UIViewController {
@@ -60,6 +47,24 @@ class ViewController: UIViewController {
         //locationViewInit()
     }
     
+    override func motionBegan(_ motion: UIEvent.EventSubtype, with event: UIEvent?) {
+        // requires that the view is loaded
+        if (self.isViewLoaded == true && self.view.window != nil) {
+            if let motion = event {
+                if motion.subtype == .motionShake {
+                    let max = viewModel.places.count
+                    shakeNum = (shakeNum < max - 1 && max != 0) ? (shakeNum + 1): 0
+                    DispatchQueue.main.async {
+                        self.locationView.shakeAnimation()
+                        self.runNextImageSearch()
+                        self.runNextDetailSearch()
+                        self.updateLocationUI()
+                    }
+                }
+            }
+        }
+    }
+    
     func activitySetup() {
         let x = iconImage.bx(withOffset: -iconImage.frameW)
         let y = iconImage.by(withOffset: -iconImage.frameH/4)
@@ -71,6 +76,20 @@ class ViewController: UIViewController {
         indicator.hidesWhenStopped = true
     }
     
+}
+
+//
+protocol ViewModelDelegate: class {
+    func willLoadData()
+    func runNextDetailSearch()
+    func runNextImageSearch()
+    func setLocationImage(to image: UIImage)
+    func updateLocationUI()
+}
+
+protocol DetailViewModelDelegate: class {
+    func willLoadDetail()
+    func detailSearchSucceded()
 }
 
 extension ViewController: ViewModelDelegate {
@@ -92,11 +111,22 @@ extension ViewController: ViewModelDelegate {
     }
     
     func runNextImageSearch() {
-        let photoRef = viewModel.places[shakeNum].photos[0].photoReference
-        let width = Float(locationView!.frameW)
-        viewModel.getImage(from: photoRef, with: width)
+        let info = viewModel.places[shakeNum].photos
+
+        if info.count != 0 {
+            let photoRef = info[0].photoReference
+            let width = Float(locationView!.frameW)
+            viewModel.getImage(from: photoRef, with: width)
+        } else {    // TODO: - change deafult image in case where location has no images
+            if let warrington = UIImage(named: "warrington") {
+                setLocationImage(to: warrington)
+            }
+            self.locationView.locationImage.backgroundColor = Colors.pearlBlack
+        }
+        
     }
     
+    // called by viewModel in getImage response handler
     func setLocationImage(to image: UIImage) {
         DispatchQueue.main.async {
             self.locationView!.locationImage.image = image
@@ -105,35 +135,18 @@ extension ViewController: ViewModelDelegate {
                 UIView.animate(withDuration: 0.5, animations: {
                     self.locationView.alpha = 1
                 })
+                self.updateLocationUI()
             }
         }
     }
     
     func updateLocationUI() {
         let location = viewModel.places[shakeNum]
-        let addressComponents: [String] = location.address.components(separatedBy: ",")
-        locationNameLabel.text = addressComponents[0]
-        UIView.animate(withDuration: 0.5, animations: {
-            self.locationNameLabel.alpha = 1.0
-            self.distanceLabel.alpha = 1.0
-            self.saveButton.alpha = 1.0
-        })
-        updateLocationBubble()
-    }
-    
-    func updateLocationBubble() {
-        let place = viewModel.places[shakeNum]
-        let name = place.name
-        if let r1 = name.range(of: "(")?.upperBound, let r2 = name.range(of: ")")?.lowerBound {
-            locationView.infoViewLabel.text = String(name[r1..<r2])
-        }
-        if let hrs = place.openingHours {
-            locationView.ratingView.backgroundColor = hrs.isOpen ? Colors.seaweed: Colors.mediumFirebrick
-        }
-        locationView.cosmosView.settings.fillMode = .precise
-        locationView.cosmosView.rating = place.rating
-        locationView.cosmosView.starSize = 15
-        self.view.setNeedsLayout()
+        let manager = appDelegate.locationManager
+        UIView.animate(withDuration: 0.5, animations: { self.saveButton.alpha = 1.0 })
+        viewModel.configureLocationName(locationNameLabel, using: location)
+        viewModel.configureDistance(distanceLabel, using: location, manager)
+        viewModel.configure(locationBubble: locationView, using: location)
     }
     
 }
