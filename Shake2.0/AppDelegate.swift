@@ -87,14 +87,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
 
     func applicationDidBecomeActive(_ application: UIApplication) {
         // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
-        let delayInSeconds: Int64  = 800000000
+        let viewController = UIApplication.shared.topMostViewController() as? ViewController
+        let delayInNS: Int64  = 800000000
         let popTime: DispatchTime =
-            DispatchTime.now() + Double(delayInSeconds) / Double(NSEC_PER_SEC)
+            DispatchTime.now() + Double(delayInNS) / Double(NSEC_PER_SEC)
         DispatchQueue.main.asyncAfter(deadline: popTime, execute: {
-            if self.locationManager.location != nil {
-                if let VC = UIApplication.shared.topMostViewController() as?
-                    ViewController {
-                    VC.viewModel.runNearbyQuery()
+            if self.locationManager.location != nil, let controller = viewController {
+                if controller.initialLoad {
+                    controller.viewModel.runNearbyQuery()
                 }
             }
         })
