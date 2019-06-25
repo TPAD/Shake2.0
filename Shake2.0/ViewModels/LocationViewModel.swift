@@ -97,14 +97,14 @@ class LocationViewModel: NSObject {
     }
     
     func imageCompletion(data: Data?) {
-        if data == nil {
-            //TODO: - handle
-        }
-        let image = UIImage(data: data!)
-        if image == nil {
-            //TODO: - handle
+        if let data = data {
+            if let image = UIImage(data: data) {
+                delegate!.setLocationImage(to: image)
+            } else {
+                // TODO: handle error
+            }
         } else {
-            delegate!.setLocationImage(to: image!)
+            // TODO: handle error
         }
     }
 }
