@@ -11,14 +11,15 @@ import UIKit
 
 class LocationViewModel: NSObject {
     
-    var places: [Place] = [Place]()
-    var locationNames: [String] = [String]()
-    var imageWidth: Float = 0.0
+    var places: [Place]!
+    var locationNames: [String]!
     
     weak var delegate: ViewModelDelegate!
     
     override init() {
         super.init()
+        places = [Place]()
+        locationNames = [String]()
     }
     
     // runs a nearby search for the closest CoinFlip Bitcoin ATMs
@@ -64,13 +65,13 @@ class LocationViewModel: NSObject {
                     }
                     let manager = appDelegate.locationManager
                     // check if results is not empty
-                    let photoReference = places[0].photos[0].photoReference
                     manager.stopUpdatingLocation()
                     //print(json)
                     print("done")
                     DispatchQueue.main.async {
                         self.delegate!.runNextDetailSearch()
-                        self.getImage(from: photoReference, with: self.imageWidth)
+                        self.delegate!.runNextImageSearch()
+                        self.delegate!.setUIData()
                     }
                 } else if status != nil {
                     // TODO: - present alert on bad response status

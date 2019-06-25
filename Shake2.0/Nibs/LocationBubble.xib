@@ -13,6 +13,7 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="LocationView" customModule="Shake2_0" customModuleProvider="target">
             <connections>
                 <outlet property="infoView" destination="wnD-AJ-eme" id="iwr-9O-7pH"/>
+                <outlet property="infoViewLabel" destination="Yad-Rw-Y3m" id="1EH-UC-tXT"/>
                 <outlet property="locationImage" destination="qog-3e-mYM" id="Ytg-UW-JNp"/>
                 <outlet property="name" destination="Yad-Rw-Y3m" id="UrJ-8v-Cdb"/>
                 <outlet property="ratingView" destination="ozB-dW-gyw" id="UtE-e0-0hC"/>
@@ -23,7 +24,7 @@
             <rect key="frame" x="0.0" y="0.0" width="300" height="300"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="warrington" translatesAutoresizingMaskIntoConstraints="NO" id="qog-3e-mYM">
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="warrington" translatesAutoresizingMaskIntoConstraints="NO" id="qog-3e-mYM">
                     <rect key="frame" x="0.0" y="0.0" width="300" height="300"/>
                 </imageView>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wnD-AJ-eme">
@@ -78,11 +79,9 @@
                 <constraint firstItem="ozB-dW-gyw" firstAttribute="centerX" secondItem="qog-3e-mYM" secondAttribute="centerX" id="rjr-rW-eMH"/>
                 <constraint firstItem="qog-3e-mYM" firstAttribute="top" secondItem="ozB-dW-gyw" secondAttribute="top" id="vWS-cC-AmI"/>
             </constraints>
-            <nil key="simulatedTopBarMetrics"/>
-            <nil key="simulatedBottomBarMetrics"/>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
-            <point key="canvasLocation" x="131.8840579710145" y="153.34821428571428"/>
+            <point key="canvasLocation" x="199" y="142"/>
         </view>
     </objects>
     <resources>

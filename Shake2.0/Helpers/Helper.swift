@@ -47,7 +47,7 @@ public extension UIView {
     func roundView(borderWidth: CGFloat) {
         let white: UIColor =
             UIColor(red:255/255.0, green:255/255.0, blue:255/255.0, alpha:0.7)
-        layer.cornerRadius = self.frame.height/2
+        layer.cornerRadius = self.frame.width/2
         layer.borderWidth = borderWidth
         layer.masksToBounds = false
         layer.borderColor = white.cgColor
