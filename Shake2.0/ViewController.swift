@@ -31,6 +31,7 @@ class ViewController: UIViewController {
     @IBOutlet weak var locationView: LocationView!
     @IBOutlet weak var locationNameLabel: UILabel!
     @IBOutlet weak var distanceLabel: UILabel!
+    @IBOutlet weak var saveButton: UIButton!
     var viewModel: LocationViewModel = LocationViewModel()
     var detailModel: DetailViewModel = DetailViewModel()
     var indicator: UIActivityIndicatorView = UIActivityIndicatorView(style: .gray)
@@ -110,12 +111,29 @@ extension ViewController: ViewModelDelegate {
     
     func updateLocationUI() {
         let location = viewModel.places[shakeNum]
-        locationNameLabel.text = location.address
-        let name = location.name
+        let addressComponents: [String] = location.address.components(separatedBy: ",")
+        locationNameLabel.text = addressComponents[0]
+        UIView.animate(withDuration: 0.5, animations: {
+            self.locationNameLabel.alpha = 1.0
+            self.distanceLabel.alpha = 1.0
+            self.saveButton.alpha = 1.0
+        })
+        updateLocationBubble()
+    }
+    
+    func updateLocationBubble() {
+        let place = viewModel.places[shakeNum]
+        let name = place.name
         if let r1 = name.range(of: "(")?.upperBound, let r2 = name.range(of: ")")?.lowerBound {
             locationView.infoViewLabel.text = String(name[r1..<r2])
         }
-        locationView.infoViewLabel.text = location.name
+        if let hrs = place.openingHours {
+            locationView.ratingView.backgroundColor = hrs.isOpen ? Colors.seaweed: Colors.mediumFirebrick
+        }
+        locationView.cosmosView.settings.fillMode = .precise
+        locationView.cosmosView.rating = place.rating
+        locationView.cosmosView.starSize = 15
+        self.view.setNeedsLayout()
     }
     
 }

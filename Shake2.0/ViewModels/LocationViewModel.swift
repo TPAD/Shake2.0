@@ -68,10 +68,11 @@ class LocationViewModel: NSObject {
                     manager.stopUpdatingLocation()
                     //print(json)
                     print("done")
+                    print(json)
                     DispatchQueue.main.async {
                         self.delegate!.runNextDetailSearch()
                         self.delegate!.runNextImageSearch()
-                        self.delegate!.setUIData()
+                        self.delegate!.updateLocationUI()
                     }
                 } else if status != nil {
                     // TODO: - present alert on bad response status
