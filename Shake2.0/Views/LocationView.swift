@@ -22,6 +22,7 @@ class LocationView: UIView {
     @IBOutlet weak var infoView: UIView!
     @IBOutlet weak var name: UILabel!
     @IBOutlet weak var infoViewLabel: UILabel!
+    @IBOutlet weak var cosmosView: CosmosView!
     
     override init(frame: CGRect) {
         super.init(frame: frame)

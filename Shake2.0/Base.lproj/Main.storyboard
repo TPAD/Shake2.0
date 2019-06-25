@@ -44,15 +44,6 @@
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" alpha="0.0" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Address" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="k3D-CP-zIU" userLabel="AddressLabel">
-                                <rect key="frame" x="161" y="551" width="92.333333333333314" height="42"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="42" id="zkj-14-sAK"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="26"/>
-                                <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                             <view alpha="0.0" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="MpW-AU-c7b" userLabel="SavedLocationsView">
                                 <rect key="frame" x="45.666666666666657" y="69" width="322.66666666666674" height="60"/>
                                 <color key="backgroundColor" white="1" alpha="0.048112896126760563" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -93,13 +84,11 @@
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="4hd-py-l9b" secondAttribute="trailing" id="gCv-by-axo"/>
                             <constraint firstItem="c4p-LV-xKh" firstAttribute="width" secondItem="8bC-Xf-vdC" secondAttribute="width" multiplier="0.85" id="gvK-X7-m2g"/>
                             <constraint firstItem="MBG-Fk-9HD" firstAttribute="top" secondItem="OIe-iW-ltU" secondAttribute="bottom" constant="50" id="ieX-Ai-GiX"/>
-                            <constraint firstItem="k3D-CP-zIU" firstAttribute="top" secondItem="gpE-GK-90R" secondAttribute="bottom" constant="8" id="mvh-jI-akM"/>
                             <constraint firstAttribute="top" secondItem="4hd-py-l9b" secondAttribute="top" id="owK-E6-bSO"/>
                             <constraint firstItem="MBG-Fk-9HD" firstAttribute="bottom" secondItem="6Tk-OE-BBY" secondAttribute="bottom" id="paA-XT-r1X"/>
                             <constraint firstItem="MBG-Fk-9HD" firstAttribute="centerX" secondItem="4hd-py-l9b" secondAttribute="centerX" id="qpb-HN-JR0"/>
                             <constraint firstItem="Vet-ez-BwK" firstAttribute="centerX" secondItem="4hd-py-l9b" secondAttribute="centerX" id="rKQ-lh-g6v"/>
                             <constraint firstItem="gpE-GK-90R" firstAttribute="top" secondItem="c4p-LV-xKh" secondAttribute="bottom" constant="10" id="vb8-De-Bzt"/>
-                            <constraint firstItem="k3D-CP-zIU" firstAttribute="centerX" secondItem="4hd-py-l9b" secondAttribute="centerX" id="wwF-NO-4Kj"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
@@ -108,6 +97,7 @@
                         <outlet property="iconImage" destination="Vet-ez-BwK" id="nzE-bV-IVX"/>
                         <outlet property="locationNameLabel" destination="gpE-GK-90R" id="aEh-bT-tX4"/>
                         <outlet property="locationView" destination="c4p-LV-xKh" id="mml-oB-6yI"/>
+                        <outlet property="saveButton" destination="MBG-Fk-9HD" id="CFI-Kp-h5R"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>

@@ -12,6 +12,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="LocationView" customModule="Shake2_0" customModuleProvider="target">
             <connections>
+                <outlet property="cosmosView" destination="0oC-W3-tPg" id="hQZ-zp-M1l"/>
                 <outlet property="infoView" destination="wnD-AJ-eme" id="iwr-9O-7pH"/>
                 <outlet property="infoViewLabel" destination="Yad-Rw-Y3m" id="1EH-UC-tXT"/>
                 <outlet property="locationImage" destination="qog-3e-mYM" id="Ytg-UW-JNp"/>
@@ -27,7 +28,7 @@
                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="warrington" translatesAutoresizingMaskIntoConstraints="NO" id="qog-3e-mYM">
                     <rect key="frame" x="0.0" y="0.0" width="300" height="300"/>
                 </imageView>
-                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wnD-AJ-eme">
+                <view alpha="0.90000000000000002" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wnD-AJ-eme">
                     <rect key="frame" x="0.0" y="240" width="300" height="60"/>
                     <subviews>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Neighborhood of ATM" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Yad-Rw-Y3m">
@@ -40,7 +41,7 @@
                             <nil key="highlightedColor"/>
                         </label>
                     </subviews>
-                    <color key="backgroundColor" cocoaTouchSystemColor="darkTextColor"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <constraints>
                         <constraint firstItem="Yad-Rw-Y3m" firstAttribute="centerX" secondItem="wnD-AJ-eme" secondAttribute="centerX" id="L8M-tk-it2"/>
                         <constraint firstItem="Yad-Rw-Y3m" firstAttribute="top" secondItem="wnD-AJ-eme" secondAttribute="top" constant="15.5" id="f4u-tZ-kPz"/>
@@ -49,19 +50,31 @@
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ozB-dW-gyw">
                     <rect key="frame" x="0.0" y="0.0" width="300" height="36"/>
                     <subviews>
-                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="star-filled" translatesAutoresizingMaskIntoConstraints="NO" id="SBD-gg-d9R">
-                            <rect key="frame" x="110" y="12" width="80" height="12"/>
-                            <constraints>
-                                <constraint firstAttribute="width" constant="80" id="LQ3-ch-o3H"/>
-                            </constraints>
-                        </imageView>
+                        <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0oC-W3-tPg" customClass="CosmosView" customModule="Shake2_0" customModuleProvider="target">
+                            <rect key="frame" x="98" y="11" width="104" height="20"/>
+                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <userDefinedRuntimeAttributes>
+                                <userDefinedRuntimeAttribute type="color" keyPath="emptyBorderColor">
+                                    <color key="value" red="0.99942404029999998" green="0.98555368190000003" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </userDefinedRuntimeAttribute>
+                                <userDefinedRuntimeAttribute type="color" keyPath="filledColor">
+                                    <color key="value" red="0.99942404029999998" green="0.98555368190000003" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </userDefinedRuntimeAttribute>
+                                <userDefinedRuntimeAttribute type="color" keyPath="filledBorderColor">
+                                    <color key="value" red="0.99942404029999998" green="0.98555368190000003" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </userDefinedRuntimeAttribute>
+                                <userDefinedRuntimeAttribute type="number" keyPath="starMargin">
+                                    <real key="value" value="1"/>
+                                </userDefinedRuntimeAttribute>
+                                <userDefinedRuntimeAttribute type="boolean" keyPath="updateOnTouch" value="NO"/>
+                            </userDefinedRuntimeAttributes>
+                        </view>
                     </subviews>
                     <color key="backgroundColor" red="0.047058823530000002" green="0.070588235289999995" blue="0.074509803920000006" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="36" id="61F-Gl-3Th"/>
-                        <constraint firstItem="SBD-gg-d9R" firstAttribute="centerX" secondItem="ozB-dW-gyw" secondAttribute="centerX" id="ERG-gO-nx1"/>
-                        <constraint firstItem="SBD-gg-d9R" firstAttribute="centerY" secondItem="ozB-dW-gyw" secondAttribute="centerY" id="w46-kK-bBP"/>
-                        <constraint firstItem="SBD-gg-d9R" firstAttribute="height" secondItem="ozB-dW-gyw" secondAttribute="height" multiplier="0.33" id="ybG-up-XSc"/>
+                        <constraint firstAttribute="bottom" secondItem="0oC-W3-tPg" secondAttribute="bottom" constant="5" id="Swi-zo-q1U"/>
+                        <constraint firstItem="0oC-W3-tPg" firstAttribute="centerX" secondItem="ozB-dW-gyw" secondAttribute="centerX" id="ZdW-Gp-73v"/>
                     </constraints>
                 </view>
             </subviews>
@@ -81,11 +94,10 @@
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
-            <point key="canvasLocation" x="199" y="142"/>
+            <point key="canvasLocation" x="198.55072463768118" y="141.29464285714286"/>
         </view>
     </objects>
     <resources>
-        <image name="star-filled" width="33" height="33"/>
         <image name="warrington" width="880" height="880"/>
     </resources>
 </document>

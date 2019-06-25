@@ -29,7 +29,7 @@ struct Place: Codable {
     let types: [String]
     let address: String
     let pID: String
-    let rating: Float?
+    let rating: Double
     
     enum CodingKeys: String, CodingKey {
         case geometry = "geometry"
