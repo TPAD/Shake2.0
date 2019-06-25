@@ -106,6 +106,4 @@ class LocationViewModel: NSObject {
             delegate!.setLocationImage(to: image!)
         }
     }
-    
-    
 }
