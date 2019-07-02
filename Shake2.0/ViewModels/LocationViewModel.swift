@@ -87,29 +87,9 @@ class LocationViewModel: NSObject {
                     } else {
                         // TODO: - status != OK
                         // handleHttpStatusError(json, status)
-                if status != nil && status! == "OK" {
-                    do {
-                        let resp = try JSONDecoder().decode(GooglePlacesResponse.self, from: data!)
-                        places = resp.results
-                        locationNames = places.map({($0.name)})
-                    } catch {
-                        // TODO: - handle json decoder error robustly
-                        print("error: \(error)")
-                    }
-                    //let manager = appDelegate.locationManager
-                    // check if results is not empty
-                    //manager.stopUpdatingLocation()
-                    DispatchQueue.main.sync {
-                        self.delegate!.runNextDetailSearch()
-                        self.delegate!.runNextImageSearch()
-                    }
-                } else {
-                    // TODO: - present alert on bad response status
-                    // SHOULD NEVER REACH HERE
-                    print(status!)
-                }
             } catch {
                 // TODO: - present alert on json conversion error
+                
             }
         } else {
             // TODO: - present alert if the response is invalid or the data is nil
