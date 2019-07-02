@@ -35,15 +35,6 @@
                                 </constraints>
                                 <state key="normal" image="saveButton-unsaved"/>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" alpha="0.0" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Name of Store" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" enabled="NO" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gpE-GK-90R" userLabel="NameLabel">
-                                <rect key="frame" x="121.33333333333333" y="501" width="171.33333333333337" height="42"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="42" id="pMe-rl-F7J"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="28"/>
-                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                             <view alpha="0.0" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="MpW-AU-c7b" userLabel="SavedLocationsView">
                                 <rect key="frame" x="45.666666666666657" y="69" width="322.66666666666674" height="60"/>
                                 <color key="backgroundColor" white="1" alpha="0.048112896126760563" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -67,6 +58,12 @@
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <label opaque="NO" userInteractionEnabled="NO" alpha="0.0" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Name of Store" textAlignment="center" lineBreakMode="tailTruncation" enabled="NO" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gpE-GK-90R" userLabel="NameLabel">
+                                <rect key="frame" x="31" y="506.00000000000006" width="352" height="33.666666666666686"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="28"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
@@ -84,11 +81,12 @@
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="4hd-py-l9b" secondAttribute="trailing" id="gCv-by-axo"/>
                             <constraint firstItem="c4p-LV-xKh" firstAttribute="width" secondItem="8bC-Xf-vdC" secondAttribute="width" multiplier="0.85" id="gvK-X7-m2g"/>
                             <constraint firstItem="MBG-Fk-9HD" firstAttribute="top" secondItem="OIe-iW-ltU" secondAttribute="bottom" constant="50" id="ieX-Ai-GiX"/>
+                            <constraint firstItem="gpE-GK-90R" firstAttribute="width" secondItem="c4p-LV-xKh" secondAttribute="width" id="jkS-Z1-mM2"/>
                             <constraint firstAttribute="top" secondItem="4hd-py-l9b" secondAttribute="top" id="owK-E6-bSO"/>
                             <constraint firstItem="MBG-Fk-9HD" firstAttribute="bottom" secondItem="6Tk-OE-BBY" secondAttribute="bottom" id="paA-XT-r1X"/>
                             <constraint firstItem="MBG-Fk-9HD" firstAttribute="centerX" secondItem="4hd-py-l9b" secondAttribute="centerX" id="qpb-HN-JR0"/>
                             <constraint firstItem="Vet-ez-BwK" firstAttribute="centerX" secondItem="4hd-py-l9b" secondAttribute="centerX" id="rKQ-lh-g6v"/>
-                            <constraint firstItem="gpE-GK-90R" firstAttribute="top" secondItem="c4p-LV-xKh" secondAttribute="bottom" constant="10" id="vb8-De-Bzt"/>
+                            <constraint firstItem="gpE-GK-90R" firstAttribute="top" secondItem="c4p-LV-xKh" secondAttribute="bottom" constant="15" id="vb8-De-Bzt"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
