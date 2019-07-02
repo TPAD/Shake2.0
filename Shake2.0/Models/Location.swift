@@ -6,18 +6,25 @@
 //  Copyright © 2019 GenOrg. All rights reserved.
 //
 //
-//  This file contains thee location model
+//  Core models related to the points of interest obtained from
+//  a Google HTTP response
 //
 
 import Foundation
 
-// Response codable struct to contain the initial response from google nearby api
+// MARK: GooglePlacesResponse
+
+// Response codable struct to contain the initial response from
+// Google's Nearby API request
 struct GooglePlacesResponse: Codable {
     let results: [Place]
+    
     enum CodingKeys: String, CodingKey {
         case results = "results"
     }
 }
+
+// MARK: Place model
 
 // place model
 struct Place: Codable {
@@ -42,13 +49,19 @@ struct Place: Codable {
         case rating = "rating"
     }
     
-    // model for location data
+    // MARK: Location model
+    
     struct Location: Codable {
         let location: LatLong
-        enum CodingKeys: String, CodingKey { case location = "location" }
+        
+        enum CodingKeys: String, CodingKey {
+            case location = "location"
+        }
+        
         struct LatLong: Codable {
             let latitude: Double
             let longitude: Double
+            
             enum CodingKeys: String, CodingKey {
                 case latitude = "lat"
                 case longitude = "lng"
@@ -56,17 +69,21 @@ struct Place: Codable {
         }
     }
     
-    // model for getting open data
+    // Model for getting open data
     struct OpenNow: Codable {
         let isOpen: Bool
-        enum CodingKeys: String, CodingKey { case isOpen = "open_now" }
+        
+        enum CodingKeys: String, CodingKey {
+            case isOpen = "open_now"
+        }
     }
     
-    // model for image information to be used in image query
+    // Model for image information to be used in image query
     struct PhotoInfo: Codable {
         let height: Int
         let width: Int
         let photoReference: String
+        
         enum CodingKeys: String, CodingKey {
             case height = "height"
             case width = "width"

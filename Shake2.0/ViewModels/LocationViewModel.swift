@@ -10,10 +10,12 @@ import Foundation
 import UIKit
 import CoreLocation
 
-///
-///
-///
-///
+// MARK: LocationViewModel
+
+/// A LocationViewModel consists of:
+///  - an array of Place's
+///  - a ViewModelDelegate
+///  -
 class LocationViewModel: NSObject {
     
     var places: [Place]!
@@ -27,7 +29,9 @@ class LocationViewModel: NSObject {
         locationNames = [String]()
     }
     
-    // runs a nearby search for the closest CoinFlip Bitcoin ATMs
+    
+    // GoogleMaps API call
+    // Runs a nearby search for the closest CoinFlip Bitcoin ATMs
     func runNearbyQuery() {
         delegate!.willLoadData()
         if let location = appDelegate.locationManager.location {
@@ -54,10 +58,9 @@ class LocationViewModel: NSObject {
         }
     }
     
-    ///
-    /// retrieves JSON data on a successful http request with a successful response and parses
-    /// location names
-    ///
+    
+    // Retrieves JSON data on a successful http request with a successful response and parses
+    // location names
     func responseHandler(data: Data?) {
         if let data = data {
             do {
@@ -84,15 +87,17 @@ class LocationViewModel: NSObject {
                             self.delegate!.runNextImageSearch()
                             self.delegate!.updateLocationUI()
                         }
-                    } else {
-                        // TODO: - status != OK
-                        // handleHttpStatusError(json, status)
+                    }
+                } else {
+                // TODO: - status != OK
+                    // handleHttpStatusError(json, status)
+                }
             } catch {
-                // TODO: - present alert on json conversion error
-                
+            // TODO: - present alert on json conversion error
+                // Error on app-side: handleInHouseError(json)
             }
         } else {
-            // TODO: - present alert if the response is invalid or the data is nil
+        // TODO: - present alert if the response is invalid or the data is nil
         }
     }
     
@@ -147,6 +152,7 @@ class LocationViewModel: NSObject {
             // Some default way of handling non-OK HTTP response statuses
             let _ = 5
         }
+    }
 
     func configureLocationName(_ label: UILabel, using place: Place) {
         let addressComponents: [String] = place.address.components(separatedBy: ",")

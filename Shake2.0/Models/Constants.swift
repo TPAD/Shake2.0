@@ -9,10 +9,11 @@
 import Foundation
 import UIKit
 
-// MARK: Constants
+// MARK: AppDelegate at fingertips
 
-// AppDelegate at fingertips
 internal var appDelegate: AppDelegate = UIApplication.shared.delegate as! AppDelegate
+
+// MARK: Constants (Strings, Colors, etc.)
 
 func getApiKey() -> String {
     return "AIzaSyCBckYCeXQ6j_voOmOq7UHuWqWjHUYEz7E"
