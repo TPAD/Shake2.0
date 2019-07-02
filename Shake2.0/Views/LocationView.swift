@@ -14,9 +14,11 @@
 import Foundation
 import UIKit
 
+// MARK: LocationView
+
 class LocationView: UIView {
     
-    var view: UIView!               // to be loaded from xib
+    var view: UIView!  // this will be our nib
     @IBOutlet weak var locationImage: UIImageView!
     @IBOutlet weak var ratingView: UIView!
     @IBOutlet weak var infoView: UIView!
@@ -24,6 +26,7 @@ class LocationView: UIView {
     @IBOutlet weak var infoViewLabel: UILabel!
     @IBOutlet weak var cosmosView: CosmosView!
     
+    // Initialization
     override init(frame: CGRect) {
         super.init(frame: frame)
         commonInit()
@@ -40,7 +43,8 @@ class LocationView: UIView {
         view.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         addSubview(view)
     }
-
+    
+    // Load the corresponding nib & replace aliases
     private func loadViewFromNib() -> UIView {
         return UINib(nibName: "LocationBubble", bundle: nil)
             .instantiate(withOwner: self, options: nil)[0] as! UIView

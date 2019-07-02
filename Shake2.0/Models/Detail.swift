@@ -8,12 +8,17 @@
 
 import Foundation
 
+// MARK: GoogleDetailResponse
+
 struct GoogleDetailResponse: Codable {
     let result: Detail
+    
     enum CodingKeys: String, CodingKey {
         case result = "result"
     }
 }
+
+// MARK: Detail
 
 struct Detail: Codable {
     
@@ -74,6 +79,7 @@ struct Detail: Codable {
     
     struct OpeningHours: Codable {
         let text: [String]
+        
         enum CodingKeys: String, CodingKey {
             case text = "weekday_text"
         }

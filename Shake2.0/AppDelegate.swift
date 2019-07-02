@@ -9,20 +9,34 @@
 import UIKit
 import CoreLocation
 
+// MARK: AppDelegate
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate {
-
+    
+    // The window, location manager, and user's coordinates are all we need globally
+    //  and at all times.
     var window: UIWindow?
     var locationManager: CLLocationManager = CLLocationManager()
     var userCoord: CLLocationCoordinate2D = CLLocationCoordinate2D()
+    var locationServicesOn: Bool = false
 
+    // MARK: Location Manager setup method
     
-    // request location when in use authorization from the user
+    // Request permission from the user to use their location
+    // Granted => start shaking for CoinFlip ATMs!
+    // Denied => Display alternate screen with directions for user to allow location access
+    //           through the Settings app on the device (only way to use Shake! for CoinFlip)
     func locationManagerSetup() {
         // TODO: - need to add logic for when user declines
+        //
+        // IDEA - 7.2.19
+        // Instead of a branch here, why not instead store a variable indicating
+        //  whether or not the user has given permission or not?  I suggest this
+        //  bc this function is CALLED IN APPLICATION()
         locationManager.requestWhenInUseAuthorization()
         if CLLocationManager.locationServicesEnabled() {
+            locationServicesOn = true
             locationManager.delegate = self
             locationManager.distanceFilter = 20.0
             locationManager.desiredAccuracy = kCLLocationAccuracyBest
@@ -33,10 +47,38 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
     //MARK: - Location Manager delegate methods
     
     // Tells the delegate that the authorization status for the application has changed
-    func locationManager(_ manager: CLLocationManager, didChangeAuthorization
-        status: CLAuthorizationStatus) {
-        if status == .authorizedWhenInUse {
+    func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
+        
+        if CLLocationManager.locationServicesEnabled() {
+            locationServicesOn = true
+        }
+        switch status {
+        // User hasn't yet made a choice
+        case .notDetermined:
+            locationServicesOn = false
+            locationManager.requestWhenInUseAuthorization()
+        // User explicitly denied location service access
+        case .denied,
+             .restricted:
+            // TODO: - replace location bubble etc. with directions to turn on location
+            //         services in the Settings app:
+            //         iOS Settings > Privacy > Location Services
+            locationServicesOn = false
+        
+        // App is authorized to start most location services while in the foreground
+        case .authorizedWhenInUse:
             locationManager.requestLocation()
+            
+        // App is authorized to start location services AT ANY TIME
+        case .authorizedAlways:
+            // TODO: - only request location if the user has moved X meters since
+            //         requesting previously
+            locationManager.requestLocation()
+            
+        default:
+            // Default behavior should be identical to .notDetermined
+            locationServicesOn = false
+            locationManager.requestAlwaysAuthorization()
         }
     }
     
@@ -110,4 +152,3 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
 
 
 }
-
