@@ -41,6 +41,11 @@ class LocationViewModel: NSObject {
             searchCF.makeRequest(session, handler: responseHandler)
         } else {
             //TODO: - alert on nil location
+            // 1) Present dialog box on screen:
+            // "Unfortunately, there are no CoinFlip ATMs within 100 mi of you.
+            //  Call us for more info: (773) 800-0106"
+            //
+            // 2) Make view the background + ':(' where location bubble would normally be
         }
     }
     
@@ -49,33 +54,38 @@ class LocationViewModel: NSObject {
     /// location names
     ///
     func responseHandler(data: Data?) {
-        if data != nil {
+        if let data = data {
             do {
                 let json = try JSONSerialization
-                    .jsonObject(with: data!, options: .mutableContainers) as! NSDictionary
+                    .jsonObject(with: data, options: .mutableContainers) as! NSDictionary
                 let status: String? = json["status"] as? String
-                if status != nil && status! == "OK" {
-                    do {
-                        let resp = try JSONDecoder().decode(GooglePlacesResponse.self, from: data!)
-                        places = resp.results
-                        locationNames = places.map({($0.name)})
-                    } catch {
-                        // TODO: - handle json decoder error robustly
-                        print("error: \(error)")
+                if let status = status {
+                    if status == "OK" {
+                        do {
+                            let resp = try JSONDecoder().decode(GooglePlacesResponse.self, from: data)
+                            places = resp.results
+                            locationNames = places.map({($0.name)})
+                        } catch {
+                            // TODO: - handle json decoder error robustly
+                            print("error: \(error)")
+                        }
+                        let manager = appDelegate.locationManager
+                        // check if results is not empty
+                        manager.stopUpdatingLocation()
+                        print("done")
+                        print(json)
+                        DispatchQueue.main.async {
+                            self.delegate!.runNextDetailSearch()
+                            self.delegate!.runNextImageSearch()
+                            self.delegate!.updateLocationUI()
+                        }
+                    } else {
+                        // TODO: - status != OK
+                        // handleHttpStatusError(json, status)
                     }
-                    let manager = appDelegate.locationManager
-                    // check if results is not empty
-                    manager.stopUpdatingLocation()
-                    //print(json)
-                    print("done")
-                    print(json)
-                    DispatchQueue.main.async {
-                        self.delegate!.runNextDetailSearch()
-                        self.delegate!.runNextImageSearch()
-                        self.delegate!.updateLocationUI()
-                    }
-                } else if status != nil {
+                } else {
                     // TODO: - present alert on bad response status
+                    // SHOULD NEVER REACH HERE
                     print(status!)
                 }
             } catch {
@@ -105,6 +115,37 @@ class LocationViewModel: NSObject {
             }
         } else {
             // TODO: handle error
+        }
+    }
+    
+    // MARK: Helper functions
+    
+    // Function to handle all HTTP responses with status != OK
+    // e.g. 301, 304, 404,...
+    func handleHttpStatusError(response: NSDictionary, status: String) {
+        switch status {
+        case "Moved Permanently",
+             "Permanent Redirect":
+            // Re-execute HTTP request with new URI from response
+            let _ = 5
+        case "Not Modified":
+            // Re-use previous results (they haven't been altered)
+            let _ = 5
+        case "Bad Request",
+             "Forbidden",
+             "Not Found":
+            // Error on OUR PART: misformed URI
+            let _ = 5
+        case "Request Timeout":
+            // Re-configure connection to server & re-excute request
+            let _ = 5
+        case "Internal Server Error",
+             "Service Unavailable":
+            // GoogleMaps API is failing (on their end); inform the user service is unavailable
+            let _ = 5
+        default:
+            // Some default way of handling non-OK HTTP response statuses
+            let _ = 5
         }
     }
 }
