@@ -40,6 +40,7 @@ class DetailViewModel: NSObject {
                                                      options: .mutableContainers)
                         as! NSDictionary
                     let status: String? = json["status"] as? String
+                    //print(json)
                     if status != nil && status! == "OK" {
                         do {
                             let resp = try JSONDecoder().decode(GoogleDetailResponse.self, from: data!)

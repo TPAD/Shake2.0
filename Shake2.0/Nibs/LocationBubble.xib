@@ -31,18 +31,16 @@
                 <view alpha="0.90000000000000002" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wnD-AJ-eme">
                     <rect key="frame" x="0.0" y="240" width="300" height="60"/>
                     <subviews>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Neighborhood of ATM" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Yad-Rw-Y3m">
-                            <rect key="frame" x="74.5" y="15.5" width="151" height="18"/>
-                            <constraints>
-                                <constraint firstAttribute="width" constant="151" id="L0f-NF-Jr2"/>
-                            </constraints>
-                            <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Neighborhood of ATM" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Yad-Rw-Y3m">
+                            <rect key="frame" x="60" y="15.5" width="180" height="19.5"/>
+                            <fontDescription key="fontDescription" type="boldSystem" pointSize="16"/>
                             <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <nil key="highlightedColor"/>
                         </label>
                     </subviews>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <constraints>
+                        <constraint firstItem="Yad-Rw-Y3m" firstAttribute="width" secondItem="wnD-AJ-eme" secondAttribute="width" multiplier="0.6" id="5Or-FC-nf6"/>
                         <constraint firstItem="Yad-Rw-Y3m" firstAttribute="centerX" secondItem="wnD-AJ-eme" secondAttribute="centerX" id="L8M-tk-it2"/>
                         <constraint firstItem="Yad-Rw-Y3m" firstAttribute="top" secondItem="wnD-AJ-eme" secondAttribute="top" constant="15.5" id="f4u-tZ-kPz"/>
                     </constraints>
