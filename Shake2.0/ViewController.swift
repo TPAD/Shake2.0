@@ -19,12 +19,33 @@ class ViewController: UIViewController {
     @IBOutlet weak var locationNameLabel: UILabel!
     @IBOutlet weak var distanceLabel: UILabel!
     @IBOutlet weak var saveButton: UIButton!
+    
+    
     var viewModel: LocationViewModel = LocationViewModel()
     var detailModel: DetailViewModel = DetailViewModel()
     var indicator: UIActivityIndicatorView = UIActivityIndicatorView(style: .gray)
     var userCoord: CLLocationCoordinate2D?
     var initialLoad: Bool = true
-    var shakeNum: Int = 0
+    var detailView: DetailView?
+    var detailShouldDisplay: Bool = false {
+        didSet {
+            DispatchQueue.main.async {
+                if self.detailShouldDisplay {
+                    self.initDetailView()
+                    UIView.animate(withDuration: 0.5, animations:{
+                        self.detailView!.frame.origin.y = self.view.frameH - self.detailView!.frameH
+                    })
+                } else {
+                    if self.detailView == nil { return }
+                    UIView.animate(withDuration: 0.5, animations: {
+                        self.detailView!.frame.origin.y += self.view.frameH
+                    }, completion: { (completed) in
+                        if completed { self.detailView!.removeFromSuperview() }
+                    })
+                }
+            }
+        }
+    }
     
     
     // light status bar for dark background
@@ -40,11 +61,24 @@ class ViewController: UIViewController {
         viewModel.delegate = self
         detailModel.delegate = self
         DispatchQueue.main.async { self.locationView.view.roundView(borderWidth: 6) }
+        let tap = UITapGestureRecognizer(target: self, action: #selector(toggleDetail(_:)))
+        view.addGestureRecognizer(tap)
+        initDetailView()
     }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        //locationViewInit()
+    }
+    
+    func initDetailView() {
+        let w = view.frameW*0.9
+        let h = view.frameH*0.825
+        let x = view.frame.origin.x + (view.frameW - w)/2
+        let y = view.frameH
+        let rect = CGRect(x: x, y: y, width: w, height: h)
+        detailView = DetailView(frame: rect)
+        detailView!.backgroundColor = UIColor.blue
+        view.addSubview(detailView!)
     }
     
     override func motionBegan(_ motion: UIEvent.EventSubtype, with event: UIEvent?) {
@@ -53,7 +87,7 @@ class ViewController: UIViewController {
             if let motion = event {
                 if motion.subtype == .motionShake {
                     let max = viewModel.places.count
-                    shakeNum = (shakeNum < max - 1 && max != 0) ? (shakeNum + 1): 0
+                    shakeNum = (shakeNum < max && max != 0) ? (shakeNum + 1): 0
                     DispatchQueue.main.async {
                         self.locationView.shakeAnimation()
                         self.runNextImageSearch()
@@ -76,9 +110,21 @@ class ViewController: UIViewController {
         indicator.hidesWhenStopped = true
     }
     
+    @objc func toggleDetail(_ sender: UITapGestureRecognizer) {
+        if detailShouldDisplay == false {
+            let bounds: CGRect = locationView!.frame
+            let pointTapped: CGPoint = sender.location(in: view)
+            if bounds.contains(pointTapped) {
+                detailShouldDisplay = !detailShouldDisplay
+            }
+        }
+    }
 }
 
-//
+
+
+
+// MARK: - delegate funtions
 protocol ViewModelDelegate: class {
     func willLoadData()
     func runNextDetailSearch()
@@ -88,7 +134,6 @@ protocol ViewModelDelegate: class {
 }
 
 protocol DetailViewModelDelegate: class {
-    func willLoadDetail()
     func detailSearchSucceded()
 }
 
@@ -102,7 +147,6 @@ extension ViewController: ViewModelDelegate {
     }
     
     func runNextDetailSearch() {
-        // TODO: - run detail query
         let places = viewModel.places!
         // check if valid indices
         if places.count > 0 {
@@ -112,7 +156,6 @@ extension ViewController: ViewModelDelegate {
     
     func runNextImageSearch() {
         let info = viewModel.places[shakeNum].photos
-
         if info.count != 0 {
             let photoRef = info[0].photoReference
             let width = Float(locationView!.frameW)
@@ -135,7 +178,6 @@ extension ViewController: ViewModelDelegate {
                 UIView.animate(withDuration: 0.5, animations: {
                     self.locationView.alpha = 1
                 })
-                self.updateLocationUI()
             }
         }
     }
@@ -152,13 +194,14 @@ extension ViewController: ViewModelDelegate {
 }
 
 extension ViewController: DetailViewModelDelegate {
-    func willLoadDetail() {
-        // TODO: - update UI to show activity
-    }
     
     func detailSearchSucceded() {
         // TODO: - send view updates!
+        DispatchQueue.main.async {
+            self.updateLocationUI()
+        }
     }
+    
 }
 
 

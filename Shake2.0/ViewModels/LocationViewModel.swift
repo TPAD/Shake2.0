@@ -17,6 +17,7 @@ import CoreLocation
 class LocationViewModel: NSObject {
     
     var places: [Place]!
+    var placeImgs: [UIImage] = [UIImage]()
     var locationNames: [String]!
     
     weak var delegate: ViewModelDelegate!
@@ -78,35 +79,14 @@ class LocationViewModel: NSObject {
                         // check if results is not empty
                         manager.stopUpdatingLocation()
                         print("done")
-                        print(json)
-                        DispatchQueue.main.async {
-                            self.delegate!.runNextDetailSearch()
+                        DispatchQueue.main.sync {
                             self.delegate!.runNextImageSearch()
-                            self.delegate!.updateLocationUI()
+                            self.delegate!.runNextDetailSearch()
                         }
-                    } else {
-                        // TODO: - status != OK
-                        // handleHttpStatusError(json, status)
-                if status != nil && status! == "OK" {
-                    do {
-                        let resp = try JSONDecoder().decode(GooglePlacesResponse.self, from: data!)
-                        places = resp.results
-                        locationNames = places.map({($0.name)})
-                    } catch {
-                        // TODO: - handle json decoder error robustly
-                        print("error: \(error)")
-                    }
-                    //let manager = appDelegate.locationManager
-                    // check if results is not empty
-                    //manager.stopUpdatingLocation()
-                    DispatchQueue.main.sync {
-                        self.delegate!.runNextDetailSearch()
-                        self.delegate!.runNextImageSearch()
                     }
                 } else {
-                    // TODO: - present alert on bad response status
-                    // SHOULD NEVER REACH HERE
-                    print(status!)
+                        // TODO: - status != OK
+                        // handleHttpStatusError(json, status)
                 }
             } catch {
                 // TODO: - present alert on json conversion error
@@ -129,6 +109,7 @@ class LocationViewModel: NSObject {
     func imageCompletion(data: Data?) {
         if let data = data {
             if let image = UIImage(data: data) {
+                placeImgs.append(image)
                 delegate!.setLocationImage(to: image)
             } else {
                 // TODO: handle error
@@ -167,6 +148,7 @@ class LocationViewModel: NSObject {
             // Some default way of handling non-OK HTTP response statuses
             let _ = 5
         }
+    }
 
     func configureLocationName(_ label: UILabel, using place: Place) {
         let addressComponents: [String] = place.address.components(separatedBy: ",")

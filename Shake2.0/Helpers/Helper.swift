@@ -11,6 +11,11 @@
 import UIKit
 import CoreLocation
 
+// index for the current onscreen location
+internal var shakeNum: Int = 0
+// upper bound: number of locations 
+internal var numOfLocations: Int = 0
+
 // MARK: Helper functions and extensions
 
 public extension UIViewController {

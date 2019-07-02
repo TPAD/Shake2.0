@@ -12,22 +12,13 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="UIScrollView">
+        <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="DetailView" customModule="Shake2_0" customModuleProvider="target">
             <rect key="frame" x="0.0" y="0.0" width="414" height="765"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jkF-jB-5Cx" userLabel="TitleView">
                     <rect key="frame" x="0.0" y="0.0" width="414" height="160"/>
                     <subviews>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="CoinFlip Bitcoin ATM (Avondale)" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9P8-uG-PZx" userLabel="NeighborhoodLabel">
-                            <rect key="frame" x="47.5" y="29.5" width="319" height="27.5"/>
-                            <constraints>
-                                <constraint firstAttribute="width" constant="319" id="ni5-LS-zkf"/>
-                            </constraints>
-                            <fontDescription key="fontDescription" type="system" pointSize="23"/>
-                            <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                            <nil key="highlightedColor"/>
-                        </label>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1234 Diversey Ave, Chicago IL 60210" textAlignment="center" lineBreakMode="wordWrap" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="djt-xC-J8r" userLabel="AddressLabel">
                             <rect key="frame" x="8" y="112.5" width="398" height="21"/>
                             <constraints>
@@ -46,6 +37,15 @@
                             <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <nil key="highlightedColor"/>
                         </label>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="CoinFlip Bitcoin ATM (Avondale)" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9P8-uG-PZx" userLabel="NeighborhoodLabel">
+                            <rect key="frame" x="47.5" y="29.5" width="319" height="27.5"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="319" id="ni5-LS-zkf"/>
+                            </constraints>
+                            <fontDescription key="fontDescription" type="system" pointSize="23"/>
+                            <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <nil key="highlightedColor"/>
+                        </label>
                     </subviews>
                     <color key="backgroundColor" red="0.23622804880000001" green="0.70279902220000001" blue="0.44373118880000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <constraints>
@@ -58,26 +58,15 @@
                         <constraint firstItem="PIR-cf-9Db" firstAttribute="top" secondItem="9P8-uG-PZx" secondAttribute="bottom" constant="9.5" id="ivU-Vd-MQB"/>
                     </constraints>
                 </view>
-                <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" alwaysBounceHorizontal="YES" translatesAutoresizingMaskIntoConstraints="NO" id="eFq-J8-hR0" userLabel="ImageScrollView">
+                <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" alwaysBounceHorizontal="YES" showsHorizontalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eFq-J8-hR0" userLabel="ImageScrollView">
                     <rect key="frame" x="0.0" y="160" width="414" height="175"/>
                     <subviews>
                         <pageControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" numberOfPages="3" translatesAutoresizingMaskIntoConstraints="NO" id="LSk-8W-bod">
                             <rect key="frame" x="187.5" y="138" width="39" height="37"/>
                         </pageControl>
-                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="f3O-bj-B1d">
-                            <rect key="frame" x="0.0" y="0.0" width="414" height="175"/>
-                            <constraints>
-                                <constraint firstAttribute="height" constant="175" id="hGn-TS-W4M"/>
-                                <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="414" id="myO-U3-jdS"/>
-                                <constraint firstAttribute="width" constant="414" id="tUV-Fj-JOR"/>
-                            </constraints>
-                        </imageView>
                     </subviews>
                     <constraints>
-                        <constraint firstItem="f3O-bj-B1d" firstAttribute="centerY" secondItem="eFq-J8-hR0" secondAttribute="centerY" id="1jH-vh-BCO"/>
-                        <constraint firstItem="f3O-bj-B1d" firstAttribute="leading" secondItem="eFq-J8-hR0" secondAttribute="leading" id="4OH-LW-Ghz"/>
                         <constraint firstItem="LSk-8W-bod" firstAttribute="centerX" secondItem="eFq-J8-hR0" secondAttribute="centerX" id="T0h-0X-dQx"/>
-                        <constraint firstItem="f3O-bj-B1d" firstAttribute="centerX" secondItem="eFq-J8-hR0" secondAttribute="centerX" id="VDN-1Z-cbS"/>
                         <constraint firstAttribute="width" constant="414" id="dsd-BO-yKP"/>
                         <constraint firstAttribute="height" constant="175" id="tCd-fU-j9X"/>
                         <constraint firstItem="LSk-8W-bod" firstAttribute="top" secondItem="eFq-J8-hR0" secondAttribute="top" constant="138" id="uFO-GU-gKI"/>
@@ -211,6 +200,9 @@
             <nil key="simulatedBottomBarMetrics"/>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
+            <connections>
+                <outlet property="titleView" destination="jkF-jB-5Cx" id="pwn-B3-Ihh"/>
+            </connections>
             <point key="canvasLocation" x="131.8840579710145" y="197.20982142857142"/>
         </view>
     </objects>

@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import UIKit
 
 ///
 /// 
@@ -22,7 +23,6 @@ class DetailViewModel: NSObject {
     }
     
     func getDetail(from place: [Place], at index: Int) {
-        delegate.willLoadDetail()
         let id = place[index].pID
         let params: Parameters = ["placeid": "\(id)",
             "key": "\(getApiKey())"]
@@ -44,7 +44,8 @@ class DetailViewModel: NSObject {
                     if status != nil && status! == "OK" {
                         do {
                             let resp = try JSONDecoder().decode(GoogleDetailResponse.self, from: data!)
-                            print(resp)
+                            placeDetails.append(resp.result)
+                            delegate!.detailSearchSucceded()
                         } catch {
                             // TODO: - handle json decoding error robustly
                             print("error: \(error)")

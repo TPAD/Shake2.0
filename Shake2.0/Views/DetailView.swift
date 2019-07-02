@@ -11,30 +11,55 @@
 import Foundation
 import UIKit
 
-class DetailView: UIView {
+class DetailView: UIView, UIScrollViewDelegate {
     
-    var view: UIView!
+    var titleView: TitleView?
+    var imgsView: LocationImagesView?
+    var contactView: ContactView?
+    var localeView: LocaleView?
+    var opnHrsView: OpeningHoursView?
+    var reviewsView: ReviewsView?
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        //commonInit()
+        initSubviews()
     }
     
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
-        //commonInit()
     }
     
-//    private func commonInit() {
-//        view = loadViewFromNib()
-//        view.frame = bounds
-//        view.autoresizingMask = [.flexibleWidth, .flexibleHeight]
-//        addSubview(view)
-//    }
-//
-//    private func loadViewFromNib() -> UIView {
-//        return UINib(nibName: "DetailView", bundle: nil)
-//            .instantiate(withOwner: self, options: nil)[0] as! UIView
-//    }
+    func initSubviews() {
+        initTitleView()
+        initImgsView()
+        initContactView()
+        initLocaleView()
+        initOpnHrsView()
+        initReviewsView()
+    }
+    
+    func initTitleView() {
+        
+    }
+    
+    func initImgsView() {
+        
+    }
+    
+    func initContactView() {
+        
+    }
+    
+    func initLocaleView() {
+        
+    }
+    
+    func initOpnHrsView() {
+        
+    }
+    
+    func initReviewsView() {
+        
+    }
     
 }

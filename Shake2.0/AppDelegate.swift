@@ -59,7 +59,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
         // TODO: implement compass logic here
         let viewController = UIApplication.shared.topMostViewController() as? ViewController
         if let controller = viewController {
-            let i = controller.shakeNum
+            let i = shakeNum
             let label: UILabel = controller.distanceLabel
             let place: Place = controller.viewModel.places[i]
             controller.viewModel.configureDistance(label, using: place, manager)
