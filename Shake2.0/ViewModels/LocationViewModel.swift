@@ -86,7 +86,6 @@ class LocationViewModel: NSObject {
                             self.delegate!.runNextImageSearch()
                             self.delegate!.runNextDetailSearch()
                         }
-<<<<<<< HEAD
                     } else {
                         // TODO: - status != OK
                         // handleHttpStatusError(json, status)
@@ -94,12 +93,6 @@ class LocationViewModel: NSObject {
                 } else {
                         // TODO: - status != OK
                         // handleHttpStatusError(json, status)
-=======
-                    }
-                } else {
-                // TODO: - status != OK
-                    // handleHttpStatusError(json, status)
->>>>>>> cleanse
                 }
             } catch {
             // TODO: - present alert on json conversion error
