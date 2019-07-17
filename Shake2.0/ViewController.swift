@@ -31,7 +31,7 @@ class ViewController: UIViewController {
         didSet {
             DispatchQueue.main.async {
                 if self.detailShouldDisplay {
-                    self.initDetailView()
+                    if self.detailView == nil { self.initDetailView() }
                     UIView.animate(withDuration: 0.5, animations:{
                         self.detailView!.frame.origin.y = self.view.frameH - self.detailView!.frameH
                     })
@@ -64,6 +64,7 @@ class ViewController: UIViewController {
         let tap = UITapGestureRecognizer(target: self, action: #selector(toggleDetail(_:)))
         view.addGestureRecognizer(tap)
         initDetailView()
+        detailView!.delegate = self
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -77,7 +78,7 @@ class ViewController: UIViewController {
         let y = view.frameH
         let rect = CGRect(x: x, y: y, width: w, height: h)
         detailView = DetailView(frame: rect)
-        detailView!.backgroundColor = UIColor.blue
+        detailView!.backgroundColor = UIColor.white
         view.addSubview(detailView!)
     }
     
@@ -137,6 +138,10 @@ protocol DetailViewModelDelegate: class {
     func detailSearchSucceded()
 }
 
+protocol DetailViewDelegate: class {
+    func removeDetailView()
+}
+
 extension ViewController: ViewModelDelegate {
     
     func willLoadData() {
@@ -155,18 +160,24 @@ extension ViewController: ViewModelDelegate {
     }
     
     func runNextImageSearch() {
-        let info = viewModel.places[shakeNum].photos
-        if info.count != 0 {
-            let photoRef = info[0].photoReference
-            let width = Float(locationView!.frameW)
-            viewModel.getImage(from: photoRef, with: width)
-        } else {    // TODO: - change deafult image in case where location has no images
+        if let info = viewModel.places[shakeNum].photos {
+            if info.count != 0 {
+                let photoRef = info[0].photoReference
+                let width = Float(locationView!.frameW)
+                viewModel.getImage(from: photoRef, with: width)
+            } else {    // TODO: - change deafult image in case where location has no images
+                if let warrington = UIImage(named: "warrington") {
+                    setLocationImage(to: warrington)
+                }
+                self.locationView.locationImage.backgroundColor = Colors.pearlBlack
+            }
+        } else {
+            print("no photos")
             if let warrington = UIImage(named: "warrington") {
                 setLocationImage(to: warrington)
             }
             self.locationView.locationImage.backgroundColor = Colors.pearlBlack
         }
-        
     }
     
     // called by viewModel in getImage response handler
@@ -197,9 +208,19 @@ extension ViewController: DetailViewModelDelegate {
     
     func detailSearchSucceded() {
         // TODO: - send view updates!
+        let detail = detailModel.placeDetails[shakeNum]
         DispatchQueue.main.async {
+            self.detailView!.details = detail
             self.updateLocationUI()
         }
+    }
+    
+}
+
+extension ViewController: DetailViewDelegate {
+    
+    func removeDetailView() {
+        self.detailShouldDisplay = false
     }
     
 }

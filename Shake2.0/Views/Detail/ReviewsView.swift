@@ -15,6 +15,8 @@ class ReviewsView: UIView {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
+        self.backgroundColor = UIColor.white
+        initViews()
     }
     
      // no implementation needed but function in required
@@ -22,11 +24,29 @@ class ReviewsView: UIView {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func initLabel() {
-        
+    private func initViews() {
+        initLabel()
+        initTap()
     }
     
-    func initTap() {
+    private func initLabel() {
+        let label = UILabel(frame: .zero)
+        label.translatesAutoresizingMaskIntoConstraints = false
+        self.addSubview(label)
+        let leadingConstant: CGFloat = self.frameW*0.085
+        NSLayoutConstraint.activate([
+            label.widthAnchor.constraint(equalToConstant: 0.65*frameW),
+            label.heightAnchor.constraint(equalToConstant: 0.5*(frameH)),
+            label.centerYAnchor.constraint(equalTo: self.centerYAnchor),
+            label.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: leadingConstant)
+            ])
+        label.text = "Reviews"
+        label.font = UIFont(name: "System", size: 20.0)
+        label.adjustsFontSizeToFitWidth = true
+        self.label = label
+    }
+    
+    private func initTap() {
         
     }
     

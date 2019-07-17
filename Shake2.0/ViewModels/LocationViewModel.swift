@@ -76,7 +76,7 @@ class LocationViewModel: NSObject {
                             locationNames = places.map({($0.name)})
                         } catch {
                             // TODO: - handle json decoder error robustly
-                            print("error: \(error)")
+                            print("Location Completion Error: \(error)")
                         }
                         let manager = appDelegate.locationManager
                         // check if results is not empty
@@ -86,7 +86,6 @@ class LocationViewModel: NSObject {
                             self.delegate!.runNextImageSearch()
                             self.delegate!.runNextDetailSearch()
                         }
-<<<<<<< HEAD
                     } else {
                         // TODO: - status != OK
                         // handleHttpStatusError(json, status)
@@ -94,12 +93,6 @@ class LocationViewModel: NSObject {
                 } else {
                         // TODO: - status != OK
                         // handleHttpStatusError(json, status)
-=======
-                    }
-                } else {
-                // TODO: - status != OK
-                    // handleHttpStatusError(json, status)
->>>>>>> cleanse
                 }
             } catch {
             // TODO: - present alert on json conversion error

@@ -10,12 +10,13 @@ import UIKit
 
 class OpeningHoursView: UIView {
     
-    var label: UILabel?
-    var iconImg: UIImageView?
+    weak var label: UILabel?
+    weak var iconImg: UIImageView?
     var tap: UITapGestureRecognizer?
     
     override init(frame: CGRect) {
         super.init(frame: frame)
+        self.backgroundColor = .white
         initSubviews()
         
     }
@@ -25,22 +26,46 @@ class OpeningHoursView: UIView {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func initSubviews() {
-        initLabel()
+    private func initSubviews() {
         initIconImg()
+        initLabel()
         initTap()
     }
     
     
-    func initLabel() {
-        
+    private func initLabel() {
+        let label = UILabel(frame: .zero)
+        label.translatesAutoresizingMaskIntoConstraints = false
+        self.addSubview(label)
+        let leadingConstant: CGFloat = self.frameW*0.085
+        NSLayoutConstraint.activate([
+            label.widthAnchor.constraint(equalToConstant: 0.65*frameW),
+            label.heightAnchor.constraint(equalToConstant: 0.5*(frameH)),
+            label.centerYAnchor.constraint(equalTo: self.centerYAnchor),
+            label.leadingAnchor.constraint(equalTo: self.iconImg!.trailingAnchor, constant: leadingConstant)
+            ])
+        label.text = "Tuesday: 9:00am - 9:00pm"
+        label.font = UIFont(name: "System", size: 20.0)
+        label.adjustsFontSizeToFitWidth = true
+        self.label = label
     }
     
-    func initIconImg() {
-        
+    private func initIconImg() {
+        let img = UIImageView(frame: .zero)
+        img.translatesAutoresizingMaskIntoConstraints = false
+        self.addSubview(img)
+        let leadingConstant: CGFloat = self.frameW*0.05
+        NSLayoutConstraint.activate([
+            img.widthAnchor.constraint(equalToConstant: 0.65*(frameH)),
+            img.widthAnchor.constraint(equalTo: img.heightAnchor),
+            img.centerYAnchor.constraint(equalTo: self.centerYAnchor),
+            img.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: leadingConstant)
+            ])
+        img.image = UIImage(named: "clock-icon")
+        self.iconImg = img
     }
     
-    func initTap() {
+    private func initTap() {
         
     }
     
