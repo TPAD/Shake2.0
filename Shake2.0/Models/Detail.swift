@@ -31,6 +31,7 @@ struct Detail: Codable {
     let name: String
     let openingHours: OpeningHours
     let components: [AddressComponents]?
+    let rating: Double
 
     enum CodingKeys: String, CodingKey {
         case fAddress = "formatted_address"
@@ -42,6 +43,7 @@ struct Detail: Codable {
         case name = "name"
         case openingHours = "opening_hours"
         case components = "address_components"
+        case rating = "rating"
     }
 
     struct AddressComponents: Codable {
@@ -79,9 +81,11 @@ struct Detail: Codable {
     
     struct OpeningHours: Codable {
         let text: [String]
+        let openNow: Bool
         
         enum CodingKeys: String, CodingKey {
             case text = "weekday_text"
+            case openNow = "open_now"
         }
     }
     

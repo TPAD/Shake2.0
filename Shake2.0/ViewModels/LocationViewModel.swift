@@ -76,7 +76,7 @@ class LocationViewModel: NSObject {
                             locationNames = places.map({($0.name)})
                         } catch {
                             // TODO: - handle json decoder error robustly
-                            print("error: \(error)")
+                            print("Location Completion Error: \(error)")
                         }
                         let manager = appDelegate.locationManager
                         // check if results is not empty
