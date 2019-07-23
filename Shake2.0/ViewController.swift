@@ -233,14 +233,15 @@ extension ViewController: DetailViewDelegate {
         self.detailShouldDisplay = false
     }
     
-    // expands the detail view to fit screen 
+    // expands the detail view to fit screen
     func expandDetailView() {
         DispatchQueue.main.async {
             UIView.animate(withDuration: 0.5, animations: {
                 self.detailView!.frame.origin.y = self.view.frame.origin.y
-                self.detailView!.frame.size.width = self.view.frame.width
-                self.detailView!.frame.size.height = self.view.frame.height
+                self.detailView!.frame.size.width = self.view.frameW
+                self.detailView!.frame.size.height = self.view.frameH
                 self.detailView!.frame.origin.x = self.view.frame.origin.x
+                self.detailView!.expandScrollView()
             })
         }
     }

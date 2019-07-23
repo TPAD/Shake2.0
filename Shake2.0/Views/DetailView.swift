@@ -37,6 +37,16 @@ class DetailView: UIView, UIScrollViewDelegate {
         self.scrollView.showsHorizontalScrollIndicator = false
     }
     
+    func expandScrollView() {
+        scrollView!.frame.origin.y = self.frame.origin.y
+        scrollView!.frame.size.width = self.frameW
+        scrollView!.frame.size.height = self.frameH
+        scrollView!.frame.origin.x = self.frame.origin.x
+        let dHeight: CGFloat = self.frameH*1.01
+        scrollView!.contentSize = CGSize(width: self.frameW, height: dHeight)
+        scrollView!.expandSubviews()
+    }
+    
     //MARK: - scrollview delgate functions
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         // user will have to scroll down about a third of the view height to dismiss detail view

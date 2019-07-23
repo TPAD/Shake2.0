@@ -90,4 +90,17 @@ class DatailScrollView: UIScrollView {
         self.addSubview(reviewsView!)
     }
     
+    func expandSubviews() {
+        DispatchQueue.main.async {
+            UIView.animate(withDuration: 0.5, animations: {
+                self.titleView!.frame.size.width = self.frameW
+                self.imgsView!.frame.size.width = self.frameW
+                self.contactView!.frame.size.width = self.frameW
+                self.localeView!.frame.size.width = self.frameW
+                self.opnHrsView!.frame.size.width = self.frameW
+                self.reviewsView!.frame.size.width = self.frameW
+            })
+        }
+    }
+    
 }
