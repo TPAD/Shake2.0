@@ -44,7 +44,7 @@ class DetailViewModel: NSObject {
                         do {
                             let resp = try JSONDecoder().decode(GoogleDetailResponse.self, from: data!)
                             placeDetails.append(resp.result)
-                            print(resp.result)
+                            //print(resp.result)
                             delegate!.detailSearchSucceded()
                         } catch {
                             // TODO: - handle json decoding error robustly

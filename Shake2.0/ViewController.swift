@@ -37,10 +37,10 @@ class ViewController: UIViewController {
                     })
                 } else {
                     if self.detailView == nil { return }
-                    UIView.animate(withDuration: 0.5, animations: {
+                    UIView.animate(withDuration: 0.25, animations: {
                         self.detailView!.frame.origin.y += self.view.frameH
                     }, completion: { (completed) in
-                        if completed { self.detailView!.removeFromSuperview() }
+                        self.shrinkDetailView()
                     })
                 }
             }
@@ -64,7 +64,6 @@ class ViewController: UIViewController {
         let tap = UITapGestureRecognizer(target: self, action: #selector(toggleDetail(_:)))
         view.addGestureRecognizer(tap)
         initDetailView()
-        detailView!.delegate = self
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -79,6 +78,7 @@ class ViewController: UIViewController {
         let rect = CGRect(x: x, y: y, width: w, height: h)
         detailView = DetailView(frame: rect)
         detailView!.backgroundColor = UIColor.white
+        detailView!.delegate = self
         view.addSubview(detailView!)
     }
     
@@ -140,6 +140,7 @@ protocol DetailViewModelDelegate: class {
 
 protocol DetailViewDelegate: class {
     func removeDetailView()
+    func expandDetailView()
 }
 
 extension ViewController: ViewModelDelegate {
@@ -210,7 +211,7 @@ extension ViewController: DetailViewModelDelegate {
         // TODO: - send view updates!
         let detail = detailModel.placeDetails[shakeNum]
         DispatchQueue.main.async {
-            self.detailView!.details = detail
+            self.detailView?.scrollView!.details = detail
             self.updateLocationUI()
         }
     }
@@ -219,12 +220,32 @@ extension ViewController: DetailViewModelDelegate {
 
 extension ViewController: DetailViewDelegate {
     
+    // returns detail view to the dimensions of when it should display
+    private func shrinkDetailView() {
+        let w = view.frameW*0.9
+        let h = view.frameH*0.825
+        let x = view.frame.origin.x + (view.frameW - w)/2
+        let y = view.frameH
+        self.detailView!.frame = CGRect(x: x, y: y, width: w, height: h)
+    }
+    
     func removeDetailView() {
         self.detailShouldDisplay = false
     }
     
+    // expands the detail view to fit screen 
+    func expandDetailView() {
+        DispatchQueue.main.async {
+            UIView.animate(withDuration: 0.5, animations: {
+                self.detailView!.frame.origin.y = self.view.frame.origin.y
+                self.detailView!.frame.size.width = self.view.frame.width
+                self.detailView!.frame.size.height = self.view.frame.height
+                self.detailView!.frame.origin.x = self.view.frame.origin.x
+            })
+        }
+    }
+    
 }
-
 
 
 
