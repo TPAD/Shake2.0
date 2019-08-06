@@ -15,7 +15,8 @@ import CoreLocation
 /// A LocationViewModel consists of:
 ///  - an array of Place's
 ///  - a ViewModelDelegate
-///  -
+///  - an array of images for the Place's
+///  - an array of location names
 class LocationViewModel: NSObject {
     
     var places: [Place]!
@@ -91,11 +92,10 @@ class LocationViewModel: NSObject {
                         // handleHttpStatusError(json, status)
                     }
                 } else {
-                        // TODO: - status != OK
-                        // handleHttpStatusError(json, status)
+                        // TODO: - status is nil
                 }
             } catch {
-            // TODO: - present alert on json conversion error
+                // TODO: - present alert on json conversion error
                 // Error on app-side: handleInHouseError(json)
             }
         } else {

@@ -8,11 +8,21 @@
 
 import UIKit
 
+// MARK: TitleView
 
+///
+/// TitleView
+///
+/// Composed of a red/green background (depending on whether the location is open),
+///  a neighborhood label for a quick understanding of the location,
+///  a store name label, and the address of the store
+///
 internal class TitleView: UIView {
     var neighborhoodLabel: UILabel?
     var storeNameLabel: UILabel?
     var addressLabel: UILabel?
+    
+    // MARK: Init
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -23,12 +33,15 @@ internal class TitleView: UIView {
         fatalError("init(coder:) has not been implemented")
     }
     
+    // Initialize TitleView with a neighborhood label, store name label,
+    // and address label
     private func initLabels() {
         initNeighborhoodLabel()
         initStoreNameLabel()
         initAddressLabel()
     }
     
+    // Initialize the neighborhood label for the TitleView
     private func initNeighborhoodLabel() {
         let midY: CGFloat = 0.25*self.frameH
         let w: CGFloat = 0.9*self.frameW
@@ -39,11 +52,12 @@ internal class TitleView: UIView {
         neighborhoodLabel!.center.x = self.center.x
         neighborhoodLabel!.center.y = midY
         neighborhoodLabel!.textAlignment = .center
-        neighborhoodLabel!.font = UIFont(name: "System", size: 23.0)
+        neighborhoodLabel!.font = Fonts.fontSystemLarge
         neighborhoodLabel!.bounds.size.height = neighborhoodLabel!.requiredHeight()
         self.addSubview(neighborhoodLabel!)
     }
     
+    // Initialize the store name label for the TitleView
     private func initStoreNameLabel() {
         let w: CGFloat = 0.9*self.frameW
         let midY: CGFloat = neighborhoodLabel!.by(withOffset: 0.175*self.frameH)
@@ -53,13 +67,14 @@ internal class TitleView: UIView {
         storeNameLabel!.textColor = UIColor.white
         storeNameLabel!.center.x = self.center.x
         storeNameLabel!.center.y = midY
-        storeNameLabel!.font = UIFont(name: "System", size: 20.0)
+        storeNameLabel!.font = Fonts.fontSystemMedium
         storeNameLabel!.textAlignment = .center
         storeNameLabel!.bounds.size.height = storeNameLabel!.requiredHeight()
         self.addSubview(storeNameLabel!)
         
     }
     
+    // Initialize the address label for the TitleView
     private func initAddressLabel() {
         let midY: CGFloat = storeNameLabel!.by(withOffset: 0.225*self.frameH)
         let rect = CGRect(x: 0.0, y: 0.0, width: frameW, height: 20.0)
@@ -68,7 +83,7 @@ internal class TitleView: UIView {
         addressLabel!.textColor = UIColor.white
         addressLabel!.center.x = self.center.x
         addressLabel!.center.y = midY
-        addressLabel!.font = UIFont(name: "System", size: 17.0)
+        addressLabel!.font = Fonts.fontSystemSmall
         addressLabel!.adjustsFontSizeToFitWidth = true
         addressLabel!.textAlignment = .center
         addressLabel!.bounds.size.height = addressLabel!.requiredHeight()
@@ -76,6 +91,7 @@ internal class TitleView: UIView {
         
     }
     
+    // Fill the corresponding views using a Detail object
     func updateViews(using detail: Detail) {
         let neighborhoodText: String = detail.name
         let storeText: String = detail.components![1].longName

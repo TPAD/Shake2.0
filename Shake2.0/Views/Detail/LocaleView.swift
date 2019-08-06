@@ -8,11 +8,21 @@
 
 import UIKit
 
+// MARK: LocaleView
+
+///
+/// LocaleView
+///
+/// Composed of a map icon, the location's address, and is 'tappable' in order to
+///  allow the user to instantly map directions to the store.
+///
 class LocaleView: UIView {
     
     var label: UILabel?
     weak var imgIcon: UIImageView?
     var tap: UITapGestureRecognizer?
+    
+    // MARK: Init
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -24,12 +34,15 @@ class LocaleView: UIView {
         fatalError("init(coder:) has not been implemented")
     }
     
+    // Initialize a LocaleView with a label (for loc. address), a map icon,
+    //  and functionality for mapping directions post-tap
     private func initSubviews() {
         initImgIcon()
         initLabel()
         initTap()
     }
     
+    // Initialize a label for the address of the location for LocaleView
     private func initLabel() {
         let label = UILabel(frame: .zero)
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -42,11 +55,12 @@ class LocaleView: UIView {
             label.leadingAnchor.constraint(equalTo: self.imgIcon!.trailingAnchor, constant: leadingConstant)
             ])
         label.text = "1234 Diversey Ave, Chicago IL 60210"
-        label.font = UIFont(name: "System", size: 20.0)
+        label.font = Fonts.fontSystemMedium
         label.adjustsFontSizeToFitWidth = true
         self.label = label
     }
     
+    // Initialize a map icon for the Localeview
     private func initImgIcon() {
         let img = UIImageView(frame: .zero)
         img.translatesAutoresizingMaskIntoConstraints = false
@@ -62,6 +76,7 @@ class LocaleView: UIView {
         self.imgIcon = img
     }
     
+    // Give the LocaleView the functionality to map directions post-tap
     private func initTap() {
         
     }

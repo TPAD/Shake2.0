@@ -158,5 +158,3 @@ public extension UILabel {
         return new.frame.height
     }
 }
-
-

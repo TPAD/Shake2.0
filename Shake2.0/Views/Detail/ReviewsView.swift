@@ -8,10 +8,20 @@
 
 import UIKit
 
+// MARK: ReviewsView
+
+///
+/// ReviewsView
+///
+/// Composed of a label 'Reviews', and is 'tappable' in order to allow the user to
+///  view the available Google reviews for this ATM
+///
 class ReviewsView: UIView {
     
     var label: UILabel = UILabel()
     var tap: UITapGestureRecognizer?
+    
+    // MARK: Init
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -19,16 +29,18 @@ class ReviewsView: UIView {
         initViews()
     }
     
-     // no implementation needed but function in required
     required init?(coder aDecoder: NSCoder) {
+        // no implementation needed but function in required
         fatalError("init(coder:) has not been implemented")
     }
     
+    // Initialize a ReviewsView with a label and the functionality to expand post-tap
     private func initViews() {
         initLabel()
         initTap()
     }
     
+    // Initialize the label for ReviewView
     private func initLabel() {
         let label = UILabel(frame: .zero)
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -41,11 +53,13 @@ class ReviewsView: UIView {
             label.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: leadingConstant)
             ])
         label.text = "Reviews"
-        label.font = UIFont(name: "System", size: 20.0)
+        label.font = Fonts.fontSystemMedium
         label.adjustsFontSizeToFitWidth = true
         self.label = label
     }
     
+    // Give the ReviewsView the functionality to expand and show available reviews
+    //  after the user taps 'Reviews'
     private func initTap() {
         
     }
