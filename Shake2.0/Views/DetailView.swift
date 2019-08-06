@@ -13,92 +13,39 @@ import UIKit
 
 class DetailView: UIView, UIScrollViewDelegate {
     
-    var titleView: TitleView?
-    var imgsView: LocationImagesView?
-    var contactView: ContactView?
-    var localeView: LocaleView?
-    var opnHrsView: OpeningHoursView?
-    var reviewsView: ReviewsView?
-    var delegate: DetailViewDelegate?
-    var details: Detail! {
-        didSet {
-            titleView!.updateViews(using: details)
-        }
-    }
+    var scrollView: DatailScrollView!
+    weak var delegate: DetailViewDelegate!
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        initSubviews()
+        initScrollView()
     }
     
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
+        initScrollView()
     }
     
-    private func initSubviews() {
-        initTitleView()
-        initImgsView()
-        initContactView()
-        initLocaleView()
-        initOpnHrsView()
-        initReviewsView()
+    func initScrollView() {
+        let scrollView: DatailScrollView = DatailScrollView(frame: self.bounds)
+        let dHeight: CGFloat = self.frameH*1.01
+        scrollView.contentSize = CGSize(width: self.frameW, height: dHeight)
+        self.scrollView = scrollView
+        self.addSubview(scrollView)
+        self.scrollView.delegate = self
+        self.scrollView.showsVerticalScrollIndicator = false
+        self.scrollView.showsHorizontalScrollIndicator = false
     }
     
-    private func initTitleView() {
-        let h = 0.225*(self.frameH)
-        let rect = CGRect(x: 0.0, y: 0.0, width: frameW, height: h)
-        titleView = TitleView(frame: rect)
-        self.addSubview(titleView!)
-    }
-    
-    private func initImgsView() {
-        let h: CGFloat = 0.225*(frameH)
-        let y: CGFloat = titleView!.by(withOffset: 0.0)
-        let rect = CGRect(x: 0.0, y: y, width: frameW, height: h)
-        imgsView = LocationImagesView(frame: rect)
-        self.addSubview(imgsView!)
-    }
-    
-    private func initContactView() {
-        let h: CGFloat = 0.1*(frameH)
-        let y: CGFloat = imgsView!.by(withOffset: 0.0)
-        let rect = CGRect(x: 0.0, y: y, width: frameW, height: h)
-        contactView = ContactView(frame: rect)
-        self.addSubview(contactView!)
-    }
-    
-    private func initLocaleView() {
-        let h: CGFloat = 0.1*(frameH)
-        let y: CGFloat = contactView!.by(withOffset: 0.0)
-        let rect = CGRect(x: 0.0, y: y, width: frameW, height: h)
-        localeView = LocaleView(frame: rect)
-        self.addSubview(localeView!)
-        
-    }
-    
-    private func initOpnHrsView() {
-        let h: CGFloat = 0.1*(frameH)
-        let y: CGFloat = localeView!.by(withOffset: 0.0)
-        let rect = CGRect(x: 0.0, y: y, width: frameW, height: h)
-        opnHrsView = OpeningHoursView(frame: rect)
-        self.addSubview(opnHrsView!)
-    }
-    
-    private func initReviewsView() {
-        let h: CGFloat = 0.1*(frameH)
-        let y: CGFloat = opnHrsView!.by(withOffset: 0.0)
-        let rect = CGRect(x: 0.0, y: y, width: frameW, height: h)
-        reviewsView = ReviewsView(frame: rect)
-        self.addSubview(reviewsView!)
-    }
-    
-    /// MARK: - ScrollViewDelegate methods
-    
+    //MARK: - scrollview delgate functions
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        print("SCROLLING")
-        let threshold: CGFloat = -(0.3)*frame.height
-        if scrollView.contentOffset.y < threshold {
-            delegate?.removeDetailView()
+        // user will have to scroll down about a third of the view height to dismiss detail view
+        let downScrollThreshold: CGFloat = -(0.3)*frame.height
+        if scrollView.contentOffset.y < downScrollThreshold {
+            delegate.removeDetailView()
+        // user scrolls upward and the detail view will expand
+        } else if scrollView.contentOffset.y > 0 {
+            delegate.expandDetailView()
         }
     }
     

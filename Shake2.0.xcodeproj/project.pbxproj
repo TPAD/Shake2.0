@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		341A807222A7202E00676B8A /* LocationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 341A807122A7202E00676B8A /* LocationViewModel.swift */; };
+		341E36BC22E78962004E09DC /* DetailScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 341E36BB22E78962004E09DC /* DetailScrollView.swift */; };
 		34693D5822B9A08D0024AB6C /* DetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34693D5722B9A08D0024AB6C /* DetailViewModel.swift */; };
 		3475860A22C2A7E600E1E8A4 /* StarFillMode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3475860922C2A7E600E1E8A4 /* StarFillMode.swift */; };
 		3475860C22C2A81300E1E8A4 /* StarLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3475860B22C2A81300E1E8A4 /* StarLayer.swift */; };
@@ -49,6 +50,7 @@
 
 /* Begin PBXFileReference section */
 		341A807122A7202E00676B8A /* LocationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationViewModel.swift; sourceTree = "<group>"; };
+		341E36BB22E78962004E09DC /* DetailScrollView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailScrollView.swift; sourceTree = "<group>"; };
 		34693D5722B9A08D0024AB6C /* DetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewModel.swift; sourceTree = "<group>"; };
 		3475860922C2A7E600E1E8A4 /* StarFillMode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StarFillMode.swift; sourceTree = "<group>"; };
 		3475860B22C2A81300E1E8A4 /* StarLayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StarLayer.swift; sourceTree = "<group>"; };
@@ -206,6 +208,7 @@
 				34E40AD122A0E60000E09F92 /* LocationView.swift */,
 				F8A9AB6022A6F44C0096C713 /* SavedLocationsView.swift */,
 				34E40AD322A0E61100E09F92 /* DetailView.swift */,
+				341E36BB22E78962004E09DC /* DetailScrollView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -300,6 +303,7 @@
 				3475861422C2A91E00E1E8A4 /* CosmosSize.swift in Sources */,
 				348A689022CC114700308B9F /* TitleView.swift in Sources */,
 				34E40AD222A0E60000E09F92 /* LocationView.swift in Sources */,
+				341E36BC22E78962004E09DC /* DetailScrollView.swift in Sources */,
 				34E40AD622A0E62700E09F92 /* Network.swift in Sources */,
 				34E40ABC22A0D85700E09F92 /* AppDelegate.swift in Sources */,
 				F84F0B7722AAE436004439DD /* Location.swift in Sources */,

@@ -19,6 +19,7 @@ internal var numOfLocations: Int = 0
 // MARK: Helper functions and extensions
 
 public extension UIViewController {
+    // grabs the topmost viewcontroller
     func topMostViewController() -> UIViewController {
         if let presented = self.presentedViewController {
             return presented.topMostViewController()
@@ -100,6 +101,7 @@ public extension UIView {
 }
 
 
+/// logic for converting between floats, cgfloats and doubles
 protocol DoubleConvertible {
     init(_ double: Double)
     var double: Double { get }
