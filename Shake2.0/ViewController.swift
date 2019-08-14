@@ -20,6 +20,15 @@ class ViewController: UIViewController {
     @IBOutlet weak var distanceLabel: UILabel!
     @IBOutlet weak var saveButton: UIButton!
     
+    var TVShouldDisplay: Bool = false
+    var TVExpanded: Bool = false
+    var tableView: UITableView = UITableView(frame: .zero)
+    var showHiddenHoursView = false
+    var showHiddenReviewsView = false
+    var tableViewInitialFrame: CGRect?
+    var headerCellHeightNeedsAdjustment = false
+    var staturBarHeight: CGFloat = UIApplication.shared.statusBarFrame.height
+    
     
     var viewModel: LocationViewModel = LocationViewModel()
     var detailModel: DetailViewModel = DetailViewModel()
@@ -29,23 +38,26 @@ class ViewController: UIViewController {
     var detailView: DetailView?
     var detailShouldDisplay: Bool = false {
         didSet {
+            print("DV width: \(detailView!.frame.width)\t View width: \(view.frame.width)")
             DispatchQueue.main.async {
                 if self.detailShouldDisplay {
                     if self.detailView == nil { self.initDetailView() }
                     UIView.animate(withDuration: 0.5, animations:{
                         self.detailView!.frame.origin.y = self.view.frameH - self.detailView!.frameH
+                        self.detailView!.center.x = self.view.center.x
+                        self.detailView!.frame.size.width = self.initialDVFrameWidth
                     })
                 } else {
                     if self.detailView == nil { return }
-                    UIView.animate(withDuration: 0.25, animations: {
-                        self.detailView!.frame.origin.y += self.view.frameH
-                    }, completion: { (completed) in
+                    UIView.animate(withDuration: 0.5, animations: {
+                        self.detailView!.frame.size.width = self.initialDVFrameWidth
                         self.shrinkDetailView()
                     })
                 }
             }
         }
     }
+    var initialDVFrameWidth: CGFloat = 0.0
     
     
     // light status bar for dark background
@@ -73,12 +85,13 @@ class ViewController: UIViewController {
     func initDetailView() {
         let w = view.frameW*0.9
         let h = view.frameH*0.825
-        let x = view.frame.origin.x + (view.frameW - w)/2
         let y = view.frameH
-        let rect = CGRect(x: x, y: y, width: w, height: h)
+        let rect = CGRect(x: 0.0, y: y, width: w, height: h)
         detailView = DetailView(frame: rect)
+        detailView!.center.x = view.center.x
         detailView!.backgroundColor = UIColor.white
         detailView!.delegate = self
+        initialDVFrameWidth = w
         view.addSubview(detailView!)
     }
     
@@ -222,11 +235,12 @@ extension ViewController: DetailViewDelegate {
     
     // returns detail view to the dimensions of when it should display
     private func shrinkDetailView() {
-        let w = view.frameW*0.9
         let h = view.frameH*0.825
-        let x = view.frame.origin.x + (view.frameW - w)/2
-        let y = view.frameH
-        self.detailView!.frame = CGRect(x: x, y: y, width: w, height: h)
+        self.detailView!.frame.origin.y += self.view.frameH
+        self.detailView!.frame.size.width = initialDVFrameWidth
+        self.detailView!.frame.size.height = h
+        self.detailView!.center.x = view.center.x
+        self.detailView!.scrollView.titleView!.adjustLabelFrames(false)
     }
     
     func removeDetailView() {

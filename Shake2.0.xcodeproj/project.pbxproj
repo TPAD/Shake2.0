@@ -32,6 +32,7 @@
 		348A689822CC124D00308B9F /* OpeningHoursView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 348A689722CC124D00308B9F /* OpeningHoursView.swift */; };
 		348A689A22CC127500308B9F /* ReviewsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 348A689922CC127500308B9F /* ReviewsView.swift */; };
 		34BFB50022B058B0003EBCE9 /* Detail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34BFB4FF22B058B0003EBCE9 /* Detail.swift */; };
+		34DD498422F131EB00D878D8 /* DHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 34DD498322F131EB00D878D8 /* DHeaderView.xib */; };
 		34E40ABC22A0D85700E09F92 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34E40ABB22A0D85700E09F92 /* AppDelegate.swift */; };
 		34E40ABE22A0D85700E09F92 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34E40ABD22A0D85700E09F92 /* ViewController.swift */; };
 		34E40AC122A0D85700E09F92 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 34E40ABF22A0D85700E09F92 /* Main.storyboard */; };
@@ -74,6 +75,7 @@
 		348A689722CC124D00308B9F /* OpeningHoursView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpeningHoursView.swift; sourceTree = "<group>"; };
 		348A689922CC127500308B9F /* ReviewsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewsView.swift; sourceTree = "<group>"; };
 		34BFB4FF22B058B0003EBCE9 /* Detail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Detail.swift; sourceTree = "<group>"; };
+		34DD498322F131EB00D878D8 /* DHeaderView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DHeaderView.xib; sourceTree = "<group>"; };
 		34E40AB822A0D85600E09F92 /* Shake2.0.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Shake2.0.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		34E40ABB22A0D85700E09F92 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		34E40ABD22A0D85700E09F92 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -117,6 +119,7 @@
 			children = (
 				F86ACE5422B03E5600445009 /* LocationBubble.xib */,
 				F86ACE5622B0457000445009 /* LocationDetails.xib */,
+				34DD498322F131EB00D878D8 /* DHeaderView.xib */,
 			);
 			path = Nibs;
 			sourceTree = "<group>";
@@ -282,6 +285,7 @@
 			files = (
 				F86ACE5522B03E5600445009 /* LocationBubble.xib in Resources */,
 				F86ACE5722B0457000445009 /* LocationDetails.xib in Resources */,
+				34DD498422F131EB00D878D8 /* DHeaderView.xib in Resources */,
 				34E40AC622A0D85800E09F92 /* LaunchScreen.storyboard in Resources */,
 				F86ACE5B22B05D5B00445009 /* Assets.xcassets in Resources */,
 				34E40AC122A0D85700E09F92 /* Main.storyboard in Resources */,

@@ -11,7 +11,7 @@ import UIKit
 
 class DatailScrollView: UIScrollView {
     
-    var titleView: TitleView?
+    var titleView: DVHeader?
     var imgsView: LocationImagesView?
     var contactView: ContactView?
     var localeView: LocaleView?
@@ -45,7 +45,7 @@ class DatailScrollView: UIScrollView {
     private func initTitleView() {
         let h = 0.225*(self.frameH)
         let rect = CGRect(x: 0.0, y: 0.0, width: frameW, height: h)
-        titleView = TitleView(frame: rect)
+        titleView = DVHeader(frame: rect)
         self.addSubview(titleView!)
     }
     
@@ -94,6 +94,7 @@ class DatailScrollView: UIScrollView {
         DispatchQueue.main.async {
             UIView.animate(withDuration: 0.5, animations: {
                 self.titleView!.frame.size.width = self.frameW
+                self.titleView!.adjustLabelFrames(true)
                 self.imgsView!.frame.size.width = self.frameW
                 self.contactView!.frame.size.width = self.frameW
                 self.localeView!.frame.size.width = self.frameW
