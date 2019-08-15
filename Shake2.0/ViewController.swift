@@ -19,15 +19,10 @@ class ViewController: UIViewController {
     @IBOutlet weak var locationNameLabel: UILabel!
     @IBOutlet weak var distanceLabel: UILabel!
     @IBOutlet weak var saveButton: UIButton!
-    
-    var TVShouldDisplay: Bool = false
-    var TVExpanded: Bool = false
-    var tableView: UITableView = UITableView(frame: .zero)
+
     var showHiddenHoursView = false
     var showHiddenReviewsView = false
-    var tableViewInitialFrame: CGRect?
-    var headerCellHeightNeedsAdjustment = false
-    var staturBarHeight: CGFloat = UIApplication.shared.statusBarFrame.height
+    //var statusBarHeight: CGFloat = UIApplication.shared.statusBarFrame.height
     
     
     var viewModel: LocationViewModel = LocationViewModel()
@@ -35,29 +30,24 @@ class ViewController: UIViewController {
     var indicator: UIActivityIndicatorView = UIActivityIndicatorView(style: .gray)
     var userCoord: CLLocationCoordinate2D?
     var initialLoad: Bool = true
-    var detailView: DetailView?
+    var detailView: DetailSView = DetailSView.init(frame: .zero)
+    var initialDVFrame: CGRect = .zero
     var detailShouldDisplay: Bool = false {
         didSet {
-            //print("DV width: \(detailView!.frame.width)\t View width: \(view.frame.width)")
             DispatchQueue.main.async {
                 if self.detailShouldDisplay {
-                    if self.detailView == nil { self.initDetailView() }
                     UIView.animate(withDuration: 0.5, animations:{
-                        self.detailView!.frame.origin.y = self.view.frameH - self.detailView!.frameH
-                        self.detailView!.center.x = self.view.center.x
-                        self.detailView!.frame.size.width = self.initialDVFrameWidth
+                        self.detailView.frame.origin.y = self.view.frameH - self.detailView.frameH
+                        self.detailView.center.x = self.view.center.x
                     })
                 } else {
-                    if self.detailView == nil { return }
                     UIView.animate(withDuration: 0.5, animations: {
-                        self.detailView!.frame.size.width = self.initialDVFrameWidth
-                        self.shrinkDetailView()
+                        self.removeDetailView()
                     })
                 }
             }
         }
     }
-    var initialDVFrameWidth: CGFloat = 0.0
     
     
     // light status bar for dark background
@@ -87,12 +77,14 @@ class ViewController: UIViewController {
         let h = view.frameH*0.825
         let y = view.frameH
         let rect = CGRect(x: 0.0, y: y, width: w, height: h)
-        detailView = DetailView(frame: rect)
-        detailView!.center.x = view.center.x
-        detailView!.backgroundColor = UIColor.white
-        detailView!.delegate = self
-        initialDVFrameWidth = w
-        view.addSubview(detailView!)
+        detailView = DetailSView(frame: rect)
+        detailView.center.x = view.center.x
+        detailView.backgroundColor = UIColor.white
+        detailView.dVDelegate = self
+        initialDVFrame = CGRect(x: detailView.frame.origin.x,
+                                y: detailView.frame.origin.y, width: w, height: h)
+        view.addSubview(detailView)
+        detailView.headerView.activateLayoutConstraint()
     }
     
     override func motionBegan(_ motion: UIEvent.EventSubtype, with event: UIEvent?) {
@@ -224,7 +216,7 @@ extension ViewController: DetailViewModelDelegate {
         // TODO: - send view updates!
         let detail = detailModel.placeDetails[shakeNum]
         DispatchQueue.main.async {
-            self.detailView?.scrollView!.details = detail
+            self.detailView.details = detail
             self.updateLocationUI()
         }
     }
@@ -233,29 +225,22 @@ extension ViewController: DetailViewModelDelegate {
 
 extension ViewController: DetailViewDelegate {
     
-    // returns detail view to the dimensions of when it should display
-    private func shrinkDetailView() {
-        let h = view.frameH*0.825
-        self.detailView!.frame.origin.y += self.view.frameH
-        self.detailView!.frame.size.width = initialDVFrameWidth
-        self.detailView!.frame.size.height = h
-        self.detailView!.center.x = view.center.x
-        //self.detailView!.scrollView.titleView!.adjustLabelFrames(false)
-    }
-    
     func removeDetailView() {
         self.detailShouldDisplay = false
+        DispatchQueue.main.async {
+            UIView.animate(withDuration: 0.5, animations: {
+                self.detailView.frame = self.initialDVFrame
+                self.detailView.adjustSubviews()
+            })
+        }
     }
     
     // expands the detail view to fit screen
     func expandDetailView() {
         DispatchQueue.main.async {
             UIView.animate(withDuration: 0.5, animations: {
-                self.detailView!.frame.origin.y = self.view.frame.origin.y
-                self.detailView!.frame.size.width = self.view.frameW
-                self.detailView!.frame.size.height = self.view.frameH
-                self.detailView!.frame.origin.x = self.view.frame.origin.x
-                self.detailView!.expandScrollView()
+                self.detailView.frame = self.view.frame
+                self.detailView.adjustSubviews()
             })
         }
     }

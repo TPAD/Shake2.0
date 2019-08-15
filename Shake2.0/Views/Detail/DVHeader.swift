@@ -17,9 +17,7 @@ internal class DVHeader: UIView {
     
     /// constants
     let labelWidthMultiplier: CGFloat = 0.9             // relative to superview
-    let nameLabelMidYMultiplier: CGFloat = 0.25         // relative to superview
-    let locationLabelMidYMultiplier: CGFloat = 0.175    // relative to nameLabel base y coord
-    let addressLabelMidYMultiplier: CGFloat = 0.225     // relative to locationLabel base y coord
+    let labelYPosContraintConstant: CGFloat = 10.0
     let labelHeight: CGFloat = 25.0
     
     override init(frame: CGRect) {
@@ -40,21 +38,21 @@ internal class DVHeader: UIView {
     private func nameLabelInit() {
         nameLabel.textAlignment = .center
         nameLabel.font = UIFont.preferredFont(forTextStyle: .title1)
-        nameLabel.adjustsFontForContentSizeCategory = true
+        nameLabel.textColor = .white
         addSubview(nameLabel)
     }
     
     private func locationLabelInit() {
         locationLabel.textAlignment = .center
         locationLabel.font = UIFont.preferredFont(forTextStyle: .title2)
-        locationLabel.adjustsFontForContentSizeCategory = true
+        locationLabel.textColor = .white
         addSubview(locationLabel)
     }
     
     private func addressLabelInit() {
         addressLabel.textAlignment = .center
         addressLabel.font = UIFont.preferredFont(forTextStyle: .title3)
-        addressLabel.adjustsFontForContentSizeCategory = true
+        addressLabel.textColor = .white
         addSubview(addressLabel)
     }
     
@@ -63,12 +61,13 @@ internal class DVHeader: UIView {
         let w: CGFloat = frameW * labelWidthMultiplier
         let cXAnchor: NSLayoutAnchor = self.centerXAnchor
         let yAnchor: NSLayoutAnchor = self.locationLabel.topAnchor
+        let c: CGFloat = -labelYPosContraintConstant
         let wConstraint: NSLayoutConstraint = nameLabel.widthAnchor.constraint(equalToConstant: w)
         let hConstraint: NSLayoutConstraint =
             nameLabel.heightAnchor.constraint(equalToConstant: labelHeight)
         let cXConstraint: NSLayoutConstraint = nameLabel.centerXAnchor.constraint(equalTo: cXAnchor)
         let yConstraint: NSLayoutConstraint =
-            nameLabel.bottomAnchor.constraint(equalTo: yAnchor, constant: -10.0)
+            nameLabel.bottomAnchor.constraint(equalTo: yAnchor, constant: c)
         NSLayoutConstraint.activate([wConstraint, hConstraint, cXConstraint, yConstraint])
     }
     
@@ -90,12 +89,13 @@ internal class DVHeader: UIView {
         let w: CGFloat = frameW
         let cXAnchor: NSLayoutAnchor = self.centerXAnchor
         let yAnchor: NSLayoutAnchor = self.locationLabel.bottomAnchor
+        let c: CGFloat = labelYPosContraintConstant
         let wConstraint: NSLayoutConstraint = addressLabel.widthAnchor.constraint(equalToConstant: w)
         let hConstraint: NSLayoutConstraint =
             addressLabel.heightAnchor.constraint(equalToConstant: labelHeight)
         let cXConstraint: NSLayoutConstraint = addressLabel.centerXAnchor.constraint(equalTo: cXAnchor)
         let yConstraint: NSLayoutConstraint =
-            addressLabel.topAnchor.constraint(equalTo: yAnchor, constant: 10.0)
+            addressLabel.topAnchor.constraint(equalTo: yAnchor, constant: c)
         NSLayoutConstraint.activate([wConstraint, hConstraint, cXConstraint, yConstraint])
     }
     
@@ -121,5 +121,4 @@ internal class DVHeader: UIView {
         activateNameLabelLayoutConstraints()
         activateAddressLabelLayoutConstraints()
     }
-    
 }

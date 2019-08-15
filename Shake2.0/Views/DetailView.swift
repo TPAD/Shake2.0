@@ -11,52 +11,95 @@
 import Foundation
 import UIKit
 
-class DetailView: UIView, UIScrollViewDelegate {
+class DetailSView: UIScrollView {
     
-    var scrollView: DatailScrollView!
-    weak var delegate: DetailViewDelegate!
+    weak var dVDelegate: DetailViewDelegate!
+    var headerView: DVHeader = DVHeader(frame: .zero)
+    var imageCollection: DVImageCollection =
+        DVImageCollection(frame: .zero, collectionViewLayout: UICollectionViewFlowLayout())
+    var phoneNumberView: DVActionView = DVActionView(frame: .zero, actionType: .phoneNumber)
+    var details: Detail! {
+        didSet {
+            headerView.updateViews(using: details)
+            backgroundColor = details.openingHours.openNow ? Colors.seaweed:Colors.mediumFirebrick
+        }
+    }
+    
+    var upSwipe: UISwipeGestureRecognizer?
+    var downSwipe: UISwipeGestureRecognizer?
+    
+    let headerHeightMultiplier: CGFloat = 0.225             // relative to superview height
+    let actionHeightMultiplier: CGFloat = 0.1               // relative to superview height
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        initScrollView()
+        initSubViews()
     }
     
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
-        initScrollView()
     }
     
-    func initScrollView() {
-        let scrollView: DatailScrollView = DatailScrollView(frame: self.bounds)
-        let dHeight: CGFloat = self.frameH*1.01
-        scrollView.contentSize = CGSize(width: self.frameW, height: dHeight)
-        self.scrollView = scrollView
-        self.addSubview(scrollView)
-        self.scrollView.delegate = self
-        self.scrollView.showsVerticalScrollIndicator = false
-        self.scrollView.showsHorizontalScrollIndicator = false
+    private func initSubViews() {
+        initDetailHeader()
+        initImageCollection()
+        initPhoneNumberView()
+        upSwipe = UISwipeGestureRecognizer(target: self, action: #selector(handleSwipe(_:)))
+        downSwipe = UISwipeGestureRecognizer(target: self, action: #selector(handleSwipe(_:)))
+        upSwipe!.direction = .up
+        downSwipe!.direction = .down
+        self.addGestureRecognizer(upSwipe!)
+        self.addGestureRecognizer(downSwipe!)
     }
     
-    func expandScrollView() {
-        scrollView!.frame.origin.y = self.frame.origin.y
-        scrollView!.frame.size.width = self.frameW
-        scrollView!.frame.size.height = self.frameH
-        scrollView!.frame.origin.x = self.frame.origin.x
-        let dHeight: CGFloat = self.frameH*1.01
-        scrollView!.contentSize = CGSize(width: self.frameW, height: dHeight)
-        scrollView!.expandSubviews()
+    @objc func handleSwipe(_ sender: UISwipeGestureRecognizer) {
+        if (sender.direction == .down) { dVDelegate.removeDetailView() }
+        else if (sender.direction == .up) { dVDelegate.expandDetailView() }
     }
     
-    //MARK: - scrollview delgate functions
-    func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        // user will have to scroll down about a third of the view height to dismiss detail view
-        let downScrollThreshold: CGFloat = -(0.3)*frame.height
-        if scrollView.contentOffset.y < downScrollThreshold {
-            delegate.removeDetailView()
-        // user scrolls upward and the detail view will expand
-        } else if scrollView.contentOffset.y > 0 {
-            delegate.expandDetailView()
-        }
+    private func initDetailHeader() {
+        adjustHeaderRect()
+        headerView.activateLayoutConstraint()
+        self.addSubview(headerView)
+    }
+    
+    private func adjustHeaderRect() {
+        let h = headerHeightMultiplier * frameH
+        let rect = CGRect(x: 0.0, y: 0.0, width: frameW, height: h)
+        self.headerView.frame = rect
+    }
+    
+    private func initImageCollection() {
+        adjustCollectionRect()
+        imageCollection.backgroundColor = .lightText
+        self.addSubview(imageCollection)
+    }
+    
+    private func adjustCollectionRect() {
+        let h = headerHeightMultiplier * frameH
+        let rect = CGRect(x: 0.0, y: h, width: frameW, height: h)
+        self.imageCollection.frame = rect
+    }
+    
+    private func initPhoneNumberView() {
+        adjustPhoneNumberRect()
+        phoneNumberView.activateLayoutConstraints()
+        phoneNumberView.backgroundColor = .white
+        self.addSubview(phoneNumberView)
+    }
+    
+    private func adjustPhoneNumberRect() {
+        let h = actionHeightMultiplier * frameH
+        let y = headerHeightMultiplier * frameH * 2
+        let rect = CGRect(x: 0.0, y: y, width: frameW, height: h)
+        self.phoneNumberView.frame = rect
+    }
+    
+    
+    func adjustSubviews() {
+        adjustHeaderRect()
+        adjustCollectionRect()
+        adjustPhoneNumberRect()
     }
     
 }
