@@ -38,7 +38,7 @@ class ViewController: UIViewController {
     var detailView: DetailView?
     var detailShouldDisplay: Bool = false {
         didSet {
-            print("DV width: \(detailView!.frame.width)\t View width: \(view.frame.width)")
+            //print("DV width: \(detailView!.frame.width)\t View width: \(view.frame.width)")
             DispatchQueue.main.async {
                 if self.detailShouldDisplay {
                     if self.detailView == nil { self.initDetailView() }
@@ -240,7 +240,7 @@ extension ViewController: DetailViewDelegate {
         self.detailView!.frame.size.width = initialDVFrameWidth
         self.detailView!.frame.size.height = h
         self.detailView!.center.x = view.center.x
-        self.detailView!.scrollView.titleView!.adjustLabelFrames(false)
+        //self.detailView!.scrollView.titleView!.adjustLabelFrames(false)
     }
     
     func removeDetailView() {
