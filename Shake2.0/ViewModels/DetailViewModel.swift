@@ -60,4 +60,12 @@ class DetailViewModel: NSObject {
         }
     }
     
+    func hideDetailView() {
+        delegate!.hideDV()
+    }
+    
+    func expandDetailView() {
+        delegate!.expandDV()
+    }
+    
 }

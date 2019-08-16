@@ -8,6 +8,13 @@
 
 import UIKit
 
+/// DVHeader - header (topmost) view on DetailSView
+///
+/// - contains three labels for location name, location store, and location address
+///
+
+// TODO: - make sure label text size apppropriately across devices; might have to set no. of lines to 0
+//       - change label heights and y position constants according to device screen size
 internal class DVHeader: UIView {
     
     /// Header View Labels
@@ -15,110 +22,87 @@ internal class DVHeader: UIView {
     var locationLabel: UILabel = UILabel(frame: .zero)
     var addressLabel: UILabel = UILabel(frame: .zero)
     
-    /// constants
-    let labelWidthMultiplier: CGFloat = 0.9             // relative to superview
-    let labelYPosContraintConstant: CGFloat = 10.0
-    let labelHeight: CGFloat = 25.0
+    // label width multiplier used relative to superview
+    private let wM: CGFloat = 0.9
+    // label y position constant relative to label centered in superview
+    private let pC: CGFloat = 10.0
+    // arbitrary label height
+    private let h: CGFloat = 30.0
     
+    // MARK: - initializer for DVHeader and its subviews
     override init(frame: CGRect) {
         super.init(frame: frame)
-        headerLabelsInit()
+        for label in [nameLabel, locationLabel, addressLabel] {
+            config(label)
+            addSubview(label)
+        }
+        activateLocationLabelLayoutConstraints()
+        activateNameLabelLayoutConstraints()
+        activateAddressLabelLayoutConstraints()
     }
     
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
-    private func headerLabelsInit() {
-        locationLabelInit()
-        nameLabelInit()
-        addressLabelInit()
+    
+    // MARK: - label configuration
+    private func config(_ label: UILabel) {
+        let customFont: UIFont = UIFont(name: appFont, size: UIFont.labelFontSize)!
+        label.textAlignment = .center
+        label.font = UIFontMetrics.default.scaledFont(for: customFont)
+        label.textColor = .white
+        label.textAlignment = .center
+        label.adjustsFontForContentSizeCategory = true
     }
     
-    private func nameLabelInit() {
-        nameLabel.textAlignment = .center
-        nameLabel.font = UIFont.preferredFont(forTextStyle: .title1)
-        nameLabel.textColor = .white
-        addSubview(nameLabel)
-    }
+    // MARK: - label auto layout constraints
     
-    private func locationLabelInit() {
-        locationLabel.textAlignment = .center
-        locationLabel.font = UIFont.preferredFont(forTextStyle: .title2)
-        locationLabel.textColor = .white
-        addSubview(locationLabel)
-    }
-    
-    private func addressLabelInit() {
-        addressLabel.textAlignment = .center
-        addressLabel.font = UIFont.preferredFont(forTextStyle: .title3)
-        addressLabel.textColor = .white
-        addSubview(addressLabel)
-    }
-    
+    // centers nameLabel along view x-axis & pins bottomAnchor to locationLabel topAnchor w/ offset
     private func activateNameLabelLayoutConstraints() {
         nameLabel.translatesAutoresizingMaskIntoConstraints = false
-        let w: CGFloat = frameW * labelWidthMultiplier
-        let cXAnchor: NSLayoutAnchor = self.centerXAnchor
         let yAnchor: NSLayoutAnchor = self.locationLabel.topAnchor
-        let c: CGFloat = -labelYPosContraintConstant
-        let wConstraint: NSLayoutConstraint = nameLabel.widthAnchor.constraint(equalToConstant: w)
-        let hConstraint: NSLayoutConstraint =
-            nameLabel.heightAnchor.constraint(equalToConstant: labelHeight)
-        let cXConstraint: NSLayoutConstraint = nameLabel.centerXAnchor.constraint(equalTo: cXAnchor)
-        let yConstraint: NSLayoutConstraint =
-            nameLabel.bottomAnchor.constraint(equalTo: yAnchor, constant: c)
-        NSLayoutConstraint.activate([wConstraint, hConstraint, cXConstraint, yConstraint])
+        let wC: NSLayoutConstraint = nameLabel.equalWidthsConstraint(to: self, m: wM)
+        let hC: NSLayoutConstraint = nameLabel.heightAnchor.constraint(equalToConstant: h)
+        let xC: NSLayoutConstraint = nameLabel.centerXAnchorConstraint(to: self)
+        let yC: NSLayoutConstraint = nameLabel.bottomAnchor.constraint(equalTo: yAnchor, constant: -pC)
+        NSLayoutConstraint.activate([wC, hC, xC, yC])
     }
     
+    // centers location label along view x-axis & y-axis
     private func activateLocationLabelLayoutConstraints() {
         locationLabel.translatesAutoresizingMaskIntoConstraints = false
-        let w: CGFloat = frameW * labelWidthMultiplier
-        let cXAnchor: NSLayoutAnchor = self.centerXAnchor
-        let cYAnchor: NSLayoutAnchor = self.centerYAnchor
-        let wConstraint: NSLayoutConstraint = locationLabel.widthAnchor.constraint(equalToConstant: w)
-        let hConstraint: NSLayoutConstraint =
-            locationLabel.heightAnchor.constraint(equalToConstant: labelHeight)
-        let cXConstraint: NSLayoutConstraint = locationLabel.centerXAnchor.constraint(equalTo: cXAnchor)
-        let cYConstraint: NSLayoutConstraint = locationLabel.centerYAnchor.constraint(equalTo: cYAnchor)
-        NSLayoutConstraint.activate([wConstraint, hConstraint, cXConstraint, cYConstraint])
+        let wC: NSLayoutConstraint = locationLabel.equalWidthsConstraint(to: self, m: wM)
+        let hC: NSLayoutConstraint = locationLabel.heightAnchor.constraint(equalToConstant: h)
+        let xC: NSLayoutConstraint = locationLabel.centerXAnchorConstraint(to: self)
+        let yC: NSLayoutConstraint = locationLabel.centerYAnchorConstraint(to: self)
+        NSLayoutConstraint.activate([wC, hC, xC, yC])
     }
     
+    // centers addressLabel along view x-axis & pins topAnchor to locationLabel bottomAnchor w/ offset
     private func activateAddressLabelLayoutConstraints() {
         addressLabel.translatesAutoresizingMaskIntoConstraints = false
-        let w: CGFloat = frameW
-        let cXAnchor: NSLayoutAnchor = self.centerXAnchor
         let yAnchor: NSLayoutAnchor = self.locationLabel.bottomAnchor
-        let c: CGFloat = labelYPosContraintConstant
-        let wConstraint: NSLayoutConstraint = addressLabel.widthAnchor.constraint(equalToConstant: w)
-        let hConstraint: NSLayoutConstraint =
-            addressLabel.heightAnchor.constraint(equalToConstant: labelHeight)
-        let cXConstraint: NSLayoutConstraint = addressLabel.centerXAnchor.constraint(equalTo: cXAnchor)
-        let yConstraint: NSLayoutConstraint =
-            addressLabel.topAnchor.constraint(equalTo: yAnchor, constant: c)
-        NSLayoutConstraint.activate([wConstraint, hConstraint, cXConstraint, yConstraint])
+        let wC: NSLayoutConstraint = addressLabel.equalWidthsConstraint(to: self, m: 1.0)
+        let hC: NSLayoutConstraint = addressLabel.heightAnchor.constraint(equalToConstant: h)
+        let xC: NSLayoutConstraint = addressLabel.centerXAnchorConstraint(to: self)
+        let yC: NSLayoutConstraint = addressLabel.topAnchor.constraint(equalTo: yAnchor, constant: pC)
+        NSLayoutConstraint.activate([wC, hC, xC, yC])
     }
     
-    func updateViews(using detail: Detail) {
-        let isOpen: Bool = detail.openingHours.openNow
-        let addressComponents = detail.fAddress.components(separatedBy: ",")
+    // MARK: - view updates
+    
+    // populates the labels with the respective location detail
+    func updateView(using info: Detail) {
+        let isOpen: Bool = info.openingHours.openNow
+        let addressComponents = info.fAddress.components(separatedBy: ",")
         let max: Int = addressComponents.count
         var address: String = ""
         for i in 1...max-1 { address.append(addressComponents[i]) }
-        nameLabel.text = detail.name
-        locationLabel.text = detail.components![0].longName
+        nameLabel.text = info.name
+        locationLabel.text = info.components![0].longName
         addressLabel.text = address
         backgroundColor = isOpen ? Colors.mediumSeaweed:Colors.mediumFirebrick
-        DispatchQueue.main.async {
-            self.nameLabel.adjustsFontSizeToFitWidth = true
-            self.locationLabel.adjustsFontSizeToFitWidth = true
-            self.addressLabel.adjustsFontSizeToFitWidth = true
-        }
     }
-    
-    func activateLayoutConstraint() {
-        activateLocationLabelLayoutConstraints()
-        activateNameLabelLayoutConstraints()
-        activateAddressLabelLayoutConstraints()
-    }
+
 }

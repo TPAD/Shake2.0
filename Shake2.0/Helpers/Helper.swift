@@ -43,6 +43,22 @@ public extension UIView {
     // shortcut for getting frame width of a view
     var frameW: CGFloat { return self.frame.width }
     
+    func centerXAnchorConstraint(to parent: UIView) -> NSLayoutConstraint {
+        return self.centerXAnchor.constraint(equalTo: parent.centerXAnchor)
+    }
+    
+    func centerYAnchorConstraint(to parent: UIView) -> NSLayoutConstraint {
+        return self.centerYAnchor.constraint(equalTo: parent.centerYAnchor)
+    }
+    
+    func equalWidthsConstraint(to parent: UIView, m: CGFloat) -> NSLayoutConstraint {
+        return self.widthAnchor.constraint(equalTo: parent.widthAnchor, multiplier: m)
+    }
+    
+    func equalHeightsConstraint(to parent: UIView, m: CGFloat) -> NSLayoutConstraint {
+        return self.heightAnchor.constraint(equalTo: parent.heightAnchor, multiplier: m)
+    }
+    
     func shakeAnimation() {
         let animation = CABasicAnimation(keyPath: "position")
         animation.duration = 0.1
@@ -92,12 +108,6 @@ public extension UIView {
         let width = self.frame.width
         return originx + width + withOffset
     }
-    
-    // check if a view is beneath another
-    func frameIsBelow(view: UIView) -> Bool {
-        return self.frame.origin.y >= view.by(withOffset: 0) &&
-            view != self
-    }
 }
 
 
@@ -144,21 +154,29 @@ public extension CLLocationCoordinate2D {
     }
 }
 
-
-public extension UILabel {
-    // adjusts height
-    func requiredHeight() -> CGFloat {
-        let frame: CGRect = CGRect(x: 0, y: 0, width: self.frame.width,
-                                   height: CGFloat.greatestFiniteMagnitude)
-        let new: UILabel = UILabel(frame: frame)
-        new.numberOfLines = 0
-        new.lineBreakMode = .byWordWrapping
-        new.font = self.font
-        new.text = self.text
-        new.sizeToFit()
-        
-        return new.frame.height
+internal func showGoToSettingsController(from parent: ViewController) {
+    let title: String = "Shake2.0 requires location services"
+    let message: String = "Please go into settings and enable \"when in use\" authorization"
+    let alertController: UIAlertController =
+        UIAlertController(title: title, message: message, preferredStyle: .alert)
+    let cancelAction: UIAlertAction =
+        UIAlertAction(title: "Cancel", style: .default) { (_) in
+            print("cancelled") // TODO: - update UI to show that user has denied location services
+            parent.animateUserCancelledLabel()
     }
+    let settingsAction: UIAlertAction =
+        UIAlertAction(title: "Settings", style: .default) {
+            (_) in
+            guard let settingsURL = URL(string: UIApplication.openSettingsURLString) else {
+                return
+            }
+            if UIApplication.shared.canOpenURL(settingsURL) {
+                UIApplication.shared.open(settingsURL)
+            }
+            //TODO: - update UI case: "open settings failed". Ask user to go into settings manually
+        }
+    alertController.addAction(settingsAction)
+    alertController.addAction(cancelAction)
+    parent.present(alertController, animated: true, completion: nil)
 }
-
 

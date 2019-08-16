@@ -9,6 +9,13 @@
 import Foundation
 import UIKit
 
+internal let appFont: String = "TitilliumWeb-SemiBold"
+internal let locationManagerFailureMessage: String =
+    """
+    Shake App requires location services to be enabled for use. To enable location services
+    go to Settings > Shake > Location and enable location services
+    """
+
 // MARK: AppDelegate at fingertips
 
 internal var appDelegate: AppDelegate = UIApplication.shared.delegate as! AppDelegate
@@ -44,15 +51,3 @@ enum Colors {
     // Green used for phone button in DualSwitchview
     static let phoneGreen = #colorLiteral(red:0.275, green:0.702, blue:0.678, alpha:1.0)
 }
-
-
-/// Global constants for use in Detail TableView
-let numberOfCells: Int = 8
-let TVInitialHeightMultiplier: CGFloat = 0.75           // relative to superview
-let TVInitialWidthMultiplier: CGFloat = 0.85            // relative to superview
-let TVOriginYMultiplier: CGFloat = 0.25                 // relative to superview
-let TVDefaultCellHeightMultiplier: CGFloat = 0.08625    // relative to tableview
-let TVHeaderHeightMultiplier: CGFloat = 0.20            // relative to tableview
-let TVCollectionHeightMultiplier: CGFloat = 0.175       // relative to tableview
-let TVScrollMultiplier: CGFloat = 0.2                   // relative to tableview
-let TVAnimationDuration: Double = 0.5

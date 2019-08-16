@@ -14,13 +14,17 @@ import UIKit
 class DetailSView: UIScrollView {
     
     weak var dVDelegate: DetailViewDelegate!
+    
     var headerView: DVHeader = DVHeader(frame: .zero)
     var imageCollection: DVImageCollection =
         DVImageCollection(frame: .zero, collectionViewLayout: UICollectionViewFlowLayout())
     var phoneNumberView: DVActionView = DVActionView(frame: .zero, actionType: .phoneNumber)
+    var addressView: DVActionView = DVActionView(frame: .zero, actionType: .location)
+    var openHrsView: DVActionView = DVActionView(frame: .zero, actionType: .openingHour)
+
     var details: Detail! {
         didSet {
-            headerView.updateViews(using: details)
+            headerView.updateView(using: details)
             backgroundColor = details.openingHours.openNow ? Colors.seaweed:Colors.mediumFirebrick
         }
     }
@@ -59,7 +63,6 @@ class DetailSView: UIScrollView {
     
     private func initDetailHeader() {
         adjustHeaderRect()
-        headerView.activateLayoutConstraint()
         self.addSubview(headerView)
     }
     

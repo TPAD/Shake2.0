@@ -12,6 +12,11 @@ import CoreLocation
 ///
 /// App launches to this view controller
 ///
+// TODO: - add control flow and UI updates for when the user connects/disconnects from network.
+//         add control flow and UI updates for when the user is not within range of any coinflip atms
+//         maybe let the user know where the nearest coinflip atms are.
+//         fix bug where the detail model or view model fail to retrieve every piece of info.
+//         fix bug: shakeNum index out of range error
 class ViewController: UIViewController {
     
     @IBOutlet weak var iconImage: UIImageView!
@@ -19,6 +24,8 @@ class ViewController: UIViewController {
     @IBOutlet weak var locationNameLabel: UILabel!
     @IBOutlet weak var distanceLabel: UILabel!
     @IBOutlet weak var saveButton: UIButton!
+    
+    var userCanceledMessageLabel: UILabel?
 
     var showHiddenHoursView = false
     var showHiddenReviewsView = false
@@ -68,10 +75,6 @@ class ViewController: UIViewController {
         initDetailView()
     }
     
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-    }
-    
     func initDetailView() {
         let w = view.frameW*0.9
         let h = view.frameH*0.825
@@ -84,7 +87,6 @@ class ViewController: UIViewController {
         initialDVFrame = CGRect(x: detailView.frame.origin.x,
                                 y: detailView.frame.origin.y, width: w, height: h)
         view.addSubview(detailView)
-        detailView.headerView.activateLayoutConstraint()
     }
     
     override func motionBegan(_ motion: UIEvent.EventSubtype, with event: UIEvent?) {
@@ -117,6 +119,11 @@ class ViewController: UIViewController {
     }
     
     @objc func toggleDetail(_ sender: UITapGestureRecognizer) {
+        if viewModel.places == nil { return }
+        if viewModel.places.count == 0 {
+            // TODO: - detail should not be displayed if there are no locations in range
+            return
+        }
         if detailShouldDisplay == false {
             let bounds: CGRect = locationView!.frame
             let pointTapped: CGPoint = sender.location(in: view)
@@ -141,11 +148,14 @@ protocol ViewModelDelegate: class {
 
 protocol DetailViewModelDelegate: class {
     func detailSearchSucceded()
+    func hideDV()
+    func expandDV()
 }
 
 protocol DetailViewDelegate: class {
     func removeDetailView()
     func expandDetailView()
+    func loadDetailView(with info: Detail)
 }
 
 extension ViewController: ViewModelDelegate {
@@ -212,20 +222,15 @@ extension ViewController: ViewModelDelegate {
 
 extension ViewController: DetailViewModelDelegate {
     
+    // TODO: - animation for when view model is waiting for detail query response
     func detailSearchSucceded() {
         // TODO: - send view updates!
         let detail = detailModel.placeDetails[shakeNum]
-        DispatchQueue.main.async {
-            self.detailView.details = detail
-            self.updateLocationUI()
-        }
+        self.detailView.dVDelegate.loadDetailView(with: detail)
+        DispatchQueue.main.async { self.updateLocationUI() }
     }
     
-}
-
-extension ViewController: DetailViewDelegate {
-    
-    func removeDetailView() {
+    func hideDV() {
         self.detailShouldDisplay = false
         DispatchQueue.main.async {
             UIView.animate(withDuration: 0.5, animations: {
@@ -235,8 +240,7 @@ extension ViewController: DetailViewDelegate {
         }
     }
     
-    // expands the detail view to fit screen
-    func expandDetailView() {
+    func expandDV() {
         DispatchQueue.main.async {
             UIView.animate(withDuration: 0.5, animations: {
                 self.detailView.frame = self.view.frame
@@ -247,5 +251,73 @@ extension ViewController: DetailViewDelegate {
     
 }
 
+extension ViewController: DetailViewDelegate {
+    
+    func removeDetailView() {
+        self.detailModel.hideDetailView()
+    }
+    
+    // expands the detail view to fit screen
+    func expandDetailView() {
+        self.detailModel.expandDetailView()
+    }
+    
+    func loadDetailView(with info: Detail) {
+        self.detailView.details = info
+    }
+}
 
-
+//MARK: - display messages for user flow in case of location services denied or failed
+extension ViewController {
+    
+    private func initFailureLabel() -> UILabel {
+        let label = UILabel(frame: .zero)
+        // TODO: - will have to check if this font is nil
+        let customFont: UIFont = UIFont(name: appFont, size: UIFont.labelFontSize)!
+        label.textAlignment = .center
+        label.font = UIFontMetrics.default.scaledFont(for: customFont)
+        label.adjustsFontForContentSizeCategory = true
+        return label
+    }
+    
+    private func initUserCancelledLabel() {
+        userCanceledMessageLabel = initFailureLabel()
+        self.view.addSubview(userCanceledMessageLabel!)
+        userCanceledMessageLabel!.translatesAutoresizingMaskIntoConstraints = false
+        userCanceledMessageLabel!.numberOfLines = 0
+        userCanceledMessageLabel!.lineBreakMode = .byWordWrapping
+        userCanceledMessageLabel!.text = locationManagerFailureMessage
+        userCanceledMessageLabel!.textColor = .white
+        userCanceledMessageLabel!.adjustsFontSizeToFitWidth = false
+        self.activateCancelLabelConstraints()
+    }
+    
+    private func activateCancelLabelConstraints() {
+        let wM: CGFloat = 0.9
+        let wH: CGFloat = 0.4
+        let l: UILabel = userCanceledMessageLabel!
+        let wC: NSLayoutConstraint = l.equalWidthsConstraint(to: self.view, m: wM)
+        let hC: NSLayoutConstraint = l.equalHeightsConstraint(to: self.view, m: wH)
+        let cX: NSLayoutConstraint = l.centerXAnchorConstraint(to: self.view)
+        let cY: NSLayoutConstraint = l.centerYAnchorConstraint(to: self.view)
+        NSLayoutConstraint.activate([wC, hC, cX, cY])
+    }
+    
+    private func hideDevaultViewInterface() {
+        self.iconImage.alpha = 0
+        self.locationView.alpha = 0
+        self.locationNameLabel.alpha = 0
+        self.distanceLabel.alpha = 0
+        self.saveButton.alpha = 0
+    }
+    
+    func animateUserCancelledLabel() {
+        DispatchQueue.main.async {
+            UIView.animate(withDuration: 0.25, animations: { self.hideDevaultViewInterface() })
+            { (_) in
+                UIView.animate(withDuration: 0.5, animations: { self.initUserCancelledLabel() })
+            }
+        }
+    }
+    
+}
