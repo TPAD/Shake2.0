@@ -50,7 +50,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
         
         if CLLocationManager.locationServicesEnabled() {
             locationServicesOn = true
-            //runNearbyQuery()
+            print("Location Services Enabled")
         }
         switch status {
         // User hasn't yet made a choice
@@ -80,6 +80,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
             
         default:
             // Default behavior should be identical to .notDetermined
+            print("Location Manager Status: \(status)")
             locationServicesOn = false
             locationManager.requestWhenInUseAuthorization()
         }
@@ -166,6 +167,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
 
     func applicationDidBecomeActive(_ application: UIApplication) {
         // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
+        // TODO : - we don't want the query to be run EVERY time the user goes back into the app once they have left
         runNearbyQuery()
     }
 

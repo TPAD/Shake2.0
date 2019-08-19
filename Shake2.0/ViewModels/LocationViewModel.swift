@@ -59,6 +59,24 @@ class LocationViewModel: NSObject {
         }
     }
     
+    private func handleStatusOK(data: Data) {
+        do {
+            let resp = try JSONDecoder().decode(GooglePlacesResponse.self, from: data)
+            places = resp.results
+            locationNames = places.map({($0.name)})
+        } catch {
+            // TODO: - handle json decoder error robustly
+            print("Location Completion Error: \(error)")
+        }
+        // check if results is not empty
+        appDelegate.locationManager.stopUpdatingLocation()
+        print("done")
+        DispatchQueue.main.sync {
+            self.delegate!.runNextImageSearch()
+            self.delegate!.runNextDetailSearch()
+        }
+    }
+    
     
     // Retrieves JSON data on a successful http request with a successful response and parses
     // location names
@@ -69,30 +87,34 @@ class LocationViewModel: NSObject {
                     .jsonObject(with: data, options: .mutableContainers) as! NSDictionary
                 let status: String? = json["status"] as? String
                 if let status = status {
-                    if status == "OK" {
-                        do {
-                            let resp = try JSONDecoder().decode(GooglePlacesResponse.self, from: data)
-                            places = resp.results
-                            locationNames = places.map({($0.name)})
-                        } catch {
-                            // TODO: - handle json decoder error robustly
-                            print("Location Completion Error: \(error)")
-                        }
-                        let manager = appDelegate.locationManager
-                        // check if results is not empty
-                        manager.stopUpdatingLocation()
-                        print("done")
-                        DispatchQueue.main.sync {
-                            self.delegate!.runNextImageSearch()
-                            self.delegate!.runNextDetailSearch()
-                        }
-                    } else {
-                        // TODO: - status != OK
-                        // handleHttpStatusError(json, status)
+                    switch(status) {
+                    case "OK":
+                        print("status OK")
+                        handleStatusOK(data: data); break
+                    case "UNKNOWN_ERROR":
+                        print("Error: \(status)")
+                        break   // TODO: - indicates a server side error; possible success on retry
+                    case "ZERO_RESULTS":
+                        print("Error: \(status)")
+                        break   // TODO: - update UI to indicate no results were returned
+                    case "OVER_QUERY_LIMIT":
+                        print("Error: \(status)")
+                        break   // TODO: -
+                    case "REQUEST_DENIED":
+                        print("Error: \(status)")
+                        break   // TODO: - request might be missing API key or invalid key parameter
+                    case "INVALID_REQUEST":
+                        print("Error: \(status)")
+                        break   // TODO: - generally indicates a missing placeid
+                    case "NOT_FOUND":
+                        print("Error: \(status)")
+                        break   // TODO: - indicates placeid was not found in Places database
+                    default:
+                        print("Error: \(status)")
+                        break
                     }
                 } else {
-                        // TODO: - status != OK
-                        // handleHttpStatusError(json, status)
+                    // TODO: - this is a response error
                 }
             } catch {
             // TODO: - present alert on json conversion error
@@ -130,7 +152,7 @@ class LocationViewModel: NSObject {
     
     // Function to handle all HTTP responses with status != OK
     // e.g. 301, 304, 404,...
-    func handleHttpStatusError(response: NSDictionary, status: String) {
+    private func handleHttpStatusError(response: NSDictionary, status: String) {
         switch status {
         case "Moved Permanently",
              "Permanent Redirect":

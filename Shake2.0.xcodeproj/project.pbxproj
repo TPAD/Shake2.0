@@ -28,7 +28,6 @@
 		3475862622C2AA6900E1E8A4 /* CosmosView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3475862522C2AA6900E1E8A4 /* CosmosView.swift */; };
 		348A689022CC114700308B9F /* DVHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 348A688F22CC114700308B9F /* DVHeader.swift */; };
 		348A689222CC119200308B9F /* DVImageCollection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 348A689122CC119200308B9F /* DVImageCollection.swift */; };
-		348A689A22CC127500308B9F /* ReviewsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 348A689922CC127500308B9F /* ReviewsView.swift */; };
 		34BFB50022B058B0003EBCE9 /* Detail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34BFB4FF22B058B0003EBCE9 /* Detail.swift */; };
 		34E40ABC22A0D85700E09F92 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34E40ABB22A0D85700E09F92 /* AppDelegate.swift */; };
 		34E40ABE22A0D85700E09F92 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34E40ABD22A0D85700E09F92 /* ViewController.swift */; };
@@ -67,7 +66,7 @@
 		3475862522C2AA6900E1E8A4 /* CosmosView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CosmosView.swift; sourceTree = "<group>"; };
 		348A688F22CC114700308B9F /* DVHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DVHeader.swift; sourceTree = "<group>"; };
 		348A689122CC119200308B9F /* DVImageCollection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DVImageCollection.swift; sourceTree = "<group>"; };
-		348A689922CC127500308B9F /* ReviewsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewsView.swift; sourceTree = "<group>"; };
+		34A85C0E230B01A300E1D885 /* location.gpx */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = location.gpx; sourceTree = "<group>"; };
 		34BFB4FF22B058B0003EBCE9 /* Detail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Detail.swift; sourceTree = "<group>"; };
 		34E40AB822A0D85600E09F92 /* Shake2.0.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Shake2.0.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		34E40ABB22A0D85700E09F92 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -142,7 +141,6 @@
 				348A688F22CC114700308B9F /* DVHeader.swift */,
 				348A689122CC119200308B9F /* DVImageCollection.swift */,
 				345808772306169100FDDD7A /* DVActionView.swift */,
-				348A689922CC127500308B9F /* ReviewsView.swift */,
 			);
 			path = Detail;
 			sourceTree = "<group>";
@@ -188,6 +186,7 @@
 				F86ACE5A22B05D5B00445009 /* Assets.xcassets */,
 				34E40AC722A0D85800E09F92 /* Info.plist */,
 				3458087F230739B600FDDD7A /* TitilliumWeb-SemiBold.ttf */,
+				34A85C0E230B01A300E1D885 /* location.gpx */,
 			);
 			path = Shake2.0;
 			sourceTree = "<group>";
@@ -286,7 +285,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				348A689A22CC127500308B9F /* ReviewsView.swift in Sources */,
 				3475862222C2AA3F00E1E8A4 /* CosmosTouchTarget.swift in Sources */,
 				34E40ABE22A0D85700E09F92 /* ViewController.swift in Sources */,
 				3475861622C2A94300E1E8A4 /* CosmosLayers.swift in Sources */,

@@ -15,6 +15,8 @@ import CoreLocation
 internal var shakeNum: Int = 0
 // upper bound: number of locations 
 internal var numOfLocations: Int = 0
+// string for google maps app
+internal var googleMaps: String = "comgooglemaps://"
 
 // MARK: Helper functions and extensions
 
@@ -180,3 +182,79 @@ internal func showGoToSettingsController(from parent: ViewController) {
     parent.present(alertController, animated: true, completion: nil)
 }
 
+internal func showTryCallRedirectController(from parent: ViewController, num: String, name: String) {
+    let action: UIAlertAction = UIAlertAction(title: "Ok", style: .default) { _ in
+        dial(number: num)
+    }
+    let cancel: UIAlertAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
+    let title: String = "Call \(name)?"
+    let alertController: UIAlertController =
+        UIAlertController(title: title, message: "", preferredStyle: .actionSheet)
+    alertController.addAction(action)
+    alertController.addAction(cancel)
+    parent.present(alertController, animated: true, completion: nil)
+}
+
+internal func showTryGoogleMapsController(from parent: ViewController, name: String) {
+    let action: UIAlertAction = UIAlertAction(title: "OK", style: .default) { _ in
+        tryGoToMaps(name: name)
+    }
+    let cancel: UIAlertAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
+    let title: String = "Navigate to \(name) using Google Maps"
+    let alertController: UIAlertController =
+        UIAlertController(title: title, message: "", preferredStyle: .actionSheet)
+    alertController.addAction(action)
+    alertController.addAction(cancel)
+    parent.present(alertController, animated: true, completion: nil)
+    
+}
+
+internal func dial(number: String) {
+    if let url = URL(string: "tel://\(number.formattedForCall())") {
+        if #available(iOS 12.0, *) {
+            UIApplication.shared.open(url, completionHandler: nil)
+        } else {
+            print("iOS version error")
+            // TODO: - fall back on previous verisons
+        }
+    } else {
+        // TODO: - raise error on malformed url
+        print("url error")
+    }
+}
+
+// TODO: - display maps
+internal func tryGoToMaps(name: String) {
+//    if let url = URL(string: "https://www.google.com/maps/@42.585444,13.007813,6z") {
+//        UIApplication.shared.open(url, completionHandler: nil)
+//    } else {
+//        // TODO: - raise error on malformed url
+//        print("url error")
+//    }
+//    var mapString: String = googleMaps
+//    // redirects the user to google maps if they have the app installed
+//    if (UIApplication.shared.canOpenURL(URL(string: googleMaps)!)) {
+//        mapString.append("?\(name)")
+//        UIApplication.shared.open(URL(string: mapString)!, completionHandler: nil)
+//    } else { // redirects the user to google maps webpage on their browser
+//        if let url = URL(string: "https://www.google.com/maps/@\(name),6z") {
+//            UIApplication.shared.open(url, completionHandler: nil)
+//        } else {
+//            // TODO: - raise error on malformed url
+//            print("url error")
+//        }
+//    }
+}
+
+extension String {
+    
+    // method for formatting a phone number string for call redirection
+    func formattedForCall() -> String {
+        let cToReplace: [String] = ["(", ")", " ", "-"]
+        var filteredNum: String = self
+        for c in cToReplace {
+            filteredNum = filteredNum.replacingOccurrences(of: c, with: "")
+        }
+        return filteredNum
+    }
+}

@@ -34,7 +34,7 @@ func getApiKey() -> String {
 /// - tblue = rgba(0.306, 0.576, 0.871, 1.0)
 /// - phoneGreen = rgba(0.275, 0.702, 0.678, 1.0)
 /// - pearlBlack = rgba(0.047, 0.071, 0.075, 1.0)
-/// - CFOrange = rgba(0.976, 0.694, 0.384, 1.0)
+/// - CFOrange = rgba(0.976, 0.694, 0.384, 1.0) #FAB162
 enum Colors {
     // CoinFlip colors
     static let pearlBlack = #colorLiteral(red:0.047, green:0.071, blue:0.075, alpha:1.0)

@@ -204,7 +204,9 @@ extension ViewController: ViewModelDelegate {
             if self.initialLoad {
                 UIView.animate(withDuration: 0.5, animations: {
                     self.locationView.alpha = 1
-                })
+                }) { (_) in
+                    self.initialLoad = false
+                }
             }
         }
     }

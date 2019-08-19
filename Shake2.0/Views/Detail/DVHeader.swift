@@ -50,10 +50,11 @@ internal class DVHeader: UIView {
     private func config(_ label: UILabel) {
         let customFont: UIFont = UIFont(name: appFont, size: UIFont.labelFontSize)!
         label.textAlignment = .center
-        label.font = UIFontMetrics.default.scaledFont(for: customFont)
+        //label.font = UIFont.preferredFont(forTextStyle: .title1)
         label.textColor = .white
-        label.textAlignment = .center
+        label.font = UIFontMetrics.default.scaledFont(for: customFont)
         label.adjustsFontForContentSizeCategory = true
+        label.adjustsFontSizeToFitWidth = true
     }
     
     // MARK: - label auto layout constraints
@@ -100,7 +101,7 @@ internal class DVHeader: UIView {
         var address: String = ""
         for i in 1...max-1 { address.append(addressComponents[i]) }
         nameLabel.text = info.name
-        locationLabel.text = info.components![0].longName
+        locationLabel.text = info.components![0].longName //TODO: - not always correct
         addressLabel.text = address
         backgroundColor = isOpen ? Colors.mediumSeaweed:Colors.mediumFirebrick
     }
