@@ -50,7 +50,6 @@ internal class DVHeader: UIView {
     private func config(_ label: UILabel) {
         let customFont: UIFont = UIFont(name: appFont, size: UIFont.labelFontSize)!
         label.textAlignment = .center
-        //label.font = UIFont.preferredFont(forTextStyle: .title1)
         label.textColor = .white
         label.font = UIFontMetrics.default.scaledFont(for: customFont)
         label.adjustsFontForContentSizeCategory = true

@@ -33,16 +33,19 @@ class DetailSView: UIScrollView, DVActionViewDelegate {
     var addressView: DVActionView = DVActionView(frame: .zero, actionType: .location)
     var openHrsView: DVActionView = DVActionView(frame: .zero, actionType: .openingHour)
     var reviewsView: DVActionView = DVActionView(frame: .zero, actionType: .reviews)
+    var moreHrsView: DVOpeningHoursView = DVOpeningHoursView(frame: .zero)
+    
     var showOpnHrs: Bool = false
     var showReviews: Bool  = false
 
-    var details: Detail! {
+    var details: Detail! {      // set in view controller right after this view is initialized
         didSet {
             headerView.updateView(using: details)
             phoneNumberView.updateView(using: details)
             addressView.updateView(using: details)
             openHrsView.updateView(using: details)
             reviewsView.updateView(using: details)
+            moreHrsView.updateView(using: details)
             backgroundColor = details.openingHours.openNow ? Colors.seaweed:Colors.mediumFirebrick
         }
     }
@@ -52,6 +55,7 @@ class DetailSView: UIScrollView, DVActionViewDelegate {
     
     let headerHeightMultiplier: CGFloat = 0.225             // relative to superview height
     let actionHeightMultiplier: CGFloat = 0.1               // relative to superview height
+    let opnHrsHeightMultiplier: CGFloat = 0.25               // relative to superview height
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -69,6 +73,8 @@ class DetailSView: UIScrollView, DVActionViewDelegate {
         initAddressView()
         initOpnHrsView()
         initReviewsView()
+        initMoreHrsView()
+        self.contentSize.height = getContentHeight()
         upSwipe = UISwipeGestureRecognizer(target: self, action: #selector(handleSwipe(_:)))
         downSwipe = UISwipeGestureRecognizer(target: self, action: #selector(handleSwipe(_:)))
         upSwipe!.direction = .up
@@ -153,6 +159,21 @@ class DetailSView: UIScrollView, DVActionViewDelegate {
         self.openHrsView.frame = rect
     }
     
+    private func initMoreHrsView() {
+        adjustMoreHrsRect()
+        moreHrsView.backgroundColor = .lightText
+        self.addSubview(moreHrsView)
+    }
+    
+    private func adjustMoreHrsRect() {
+        let h: CGFloat = (showOpnHrs) ? (opnHrsHeightMultiplier * frameH):0.0
+        let y: CGFloat = frameH * ((2 * headerHeightMultiplier) + (3 * actionHeightMultiplier))
+        let rect: CGRect = CGRect(x: 0.0, y: y, width: frameW, height: h)
+        moreHrsView.frame = rect
+        moreHrsView.alpha = (showOpnHrs) ? 1.0:0.0
+    }
+    
+    
     private func initReviewsView() {
         adjustReviewsRect()
         reviewsView.dADelegate = self
@@ -163,10 +184,24 @@ class DetailSView: UIScrollView, DVActionViewDelegate {
     // places the reviews view underneath the opn hrs view. delegate method handles readjusting the frame rect
     private func adjustReviewsRect() {
         let h: CGFloat = actionHeightMultiplier * frameH
-        let y: CGFloat = (headerHeightMultiplier * frameH * 2) + (3 * h)
+        let y: CGFloat = (!showOpnHrs) ? (headerHeightMultiplier * frameH * 2) + (3 * h):
+        (headerHeightMultiplier * frameH * 2) + (3 * h) + (opnHrsHeightMultiplier*frameH)
         let rect: CGRect = CGRect(x: 0.0, y: y, width: frameW, height: h)
         self.reviewsView.frame = rect
     }
+    
+    func getContentHeight() -> CGFloat{
+        var result: CGFloat = 0.0
+        for sv in self.subviews {
+            if (sv.isKind(of: DVHeader.self) || sv.isKind(of: DVImageCollection.self) ||
+                sv.isKind(of: DVActionView.self) || sv.isKind(of: DVOpeningHoursView.self)) {
+                result += sv.frameH
+            }
+        }
+        return result
+    }
+    
+    // MARK: - delegate methods
     
     // adjusts subviews initial frame rect and handles resizing from the delegate method
     func adjustSubviews() {
@@ -176,6 +211,7 @@ class DetailSView: UIScrollView, DVActionViewDelegate {
         adjustAddressRect()
         adjustOpnHrsRect()
         adjustReviewsRect()
+        adjustMoreHrsRect()
     }
     
     // allows user to call the location store's phone number
@@ -195,7 +231,15 @@ class DetailSView: UIScrollView, DVActionViewDelegate {
     }
     
     func openingHours(shouldDisplay: Bool) {
-        
+        showOpnHrs = (shouldDisplay) ? true:false
+        DispatchQueue.main.async {
+            UIView.animate(withDuration: 0.5, animations: {
+                self.adjustMoreHrsRect()
+                self.adjustReviewsRect()
+            }) { _ in
+                self.contentSize.height = self.getContentHeight()
+            }
+        }
     }
     
     func reviews(shouldDisplay: Bool) {

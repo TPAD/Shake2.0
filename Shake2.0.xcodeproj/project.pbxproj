@@ -29,6 +29,7 @@
 		348A689022CC114700308B9F /* DVHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 348A688F22CC114700308B9F /* DVHeader.swift */; };
 		348A689222CC119200308B9F /* DVImageCollection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 348A689122CC119200308B9F /* DVImageCollection.swift */; };
 		34BFB50022B058B0003EBCE9 /* Detail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34BFB4FF22B058B0003EBCE9 /* Detail.swift */; };
+		34C37225230B530900E5CE96 /* DVOpeningHoursView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34C37224230B530900E5CE96 /* DVOpeningHoursView.swift */; };
 		34E40ABC22A0D85700E09F92 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34E40ABB22A0D85700E09F92 /* AppDelegate.swift */; };
 		34E40ABE22A0D85700E09F92 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34E40ABD22A0D85700E09F92 /* ViewController.swift */; };
 		34E40AC122A0D85700E09F92 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 34E40ABF22A0D85700E09F92 /* Main.storyboard */; };
@@ -68,6 +69,7 @@
 		348A689122CC119200308B9F /* DVImageCollection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DVImageCollection.swift; sourceTree = "<group>"; };
 		34A85C0E230B01A300E1D885 /* location.gpx */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = location.gpx; sourceTree = "<group>"; };
 		34BFB4FF22B058B0003EBCE9 /* Detail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Detail.swift; sourceTree = "<group>"; };
+		34C37224230B530900E5CE96 /* DVOpeningHoursView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DVOpeningHoursView.swift; sourceTree = "<group>"; };
 		34E40AB822A0D85600E09F92 /* Shake2.0.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Shake2.0.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		34E40ABB22A0D85700E09F92 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		34E40ABD22A0D85700E09F92 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -141,6 +143,7 @@
 				348A688F22CC114700308B9F /* DVHeader.swift */,
 				348A689122CC119200308B9F /* DVImageCollection.swift */,
 				345808772306169100FDDD7A /* DVActionView.swift */,
+				34C37224230B530900E5CE96 /* DVOpeningHoursView.swift */,
 			);
 			path = Detail;
 			sourceTree = "<group>";
@@ -292,6 +295,7 @@
 				348A689022CC114700308B9F /* DVHeader.swift in Sources */,
 				34E40AD222A0E60000E09F92 /* LocationView.swift in Sources */,
 				34E40AD622A0E62700E09F92 /* Network.swift in Sources */,
+				34C37225230B530900E5CE96 /* DVOpeningHoursView.swift in Sources */,
 				34E40ABC22A0D85700E09F92 /* AppDelegate.swift in Sources */,
 				F84F0B7722AAE436004439DD /* Location.swift in Sources */,
 				341A807222A7202E00676B8A /* LocationViewModel.swift in Sources */,
