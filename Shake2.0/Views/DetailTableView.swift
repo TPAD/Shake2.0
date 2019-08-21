@@ -13,9 +13,12 @@ class DetailTableView: UITableView {
     
     weak var detailViewDelegate: DetailViewDelegate!
     
-    var detail: Detail!
+    var detail: Detail! { didSet { roundTableView() } }
     var showOpnHrs: Bool = false
     var showReviews: Bool = false
+    
+    var upSwipe: UISwipeGestureRecognizer?
+    var downSwipe: UISwipeGestureRecognizer?
     
     private let cellTypes =
         [DVTHeaderCell.self, DTVImagesCell.self, DTVActionCell.self, DTVActionCell.self,
@@ -31,10 +34,41 @@ class DetailTableView: UITableView {
         for (index, cell) in cellTypes.enumerated() {
             register(cell, forCellReuseIdentifier: cellNames[index])
         }
+        addGestures()
     }
     
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
+    }
+    
+    private func addGestures() {
+        upSwipe = UISwipeGestureRecognizer(target: self, action: #selector(handleSwipe(_:)))
+        downSwipe = UISwipeGestureRecognizer(target: self, action: #selector(handleSwipe(_:)))
+        upSwipe!.direction = .up
+        downSwipe!.direction = .down
+        self.addGestureRecognizer(upSwipe!)
+        self.addGestureRecognizer(downSwipe!)
+    }
+    
+    // expands the detail view in the case the user swipes up, and minimizes if swipe down
+    @objc func handleSwipe(_ sender: UISwipeGestureRecognizer) {
+        print("swiped")
+        if (sender.direction == .down) { detailViewDelegate.removeDetailView() }
+        else if (sender.direction == .up) { detailViewDelegate.expandDetailView() }
+    }
+    
+    func roundTableView() {
+        let corners: UIRectCorner = [.topLeft, .topRight]
+        let radius: CGFloat = 15.0
+        let radii: CGSize = CGSize(width: radius, height: radius)
+        let path = UIBezierPath(roundedRect: bounds, byRoundingCorners: corners, cornerRadii: radii)
+        let mask = CAShapeLayer()
+        mask.path = path.cgPath
+        layer.mask = mask
+        layer.borderWidth = 3.0
+        layer.masksToBounds = false
+        layer.borderColor = Colors.mediumSeaweed.cgColor
+        clipsToBounds = true
     }
     
 }

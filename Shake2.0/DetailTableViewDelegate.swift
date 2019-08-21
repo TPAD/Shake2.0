@@ -31,26 +31,6 @@ extension ViewController: UITableViewDelegate {
         return tableView.frameH * actionHeightMultiplier
     }
     
-//    func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
-//        let headerHeightMultiplier: CGFloat = 0.225
-//        let actionHeightMultiplier: CGFloat = 0.1
-//        let opnHrsHeightMultiplier: CGFloat = 0.25
-//        let reviewHeightMultiplier: CGFloat = 0.15
-//        let i: Int = indexPath.row
-//        // header and image collection
-//        if (i == 0 || i == 1) {
-//            return tableView.frameH * headerHeightMultiplier
-//        } else if (i == 2 || i == 3 || i == 4 || ((i == 5) && !detailView.showOpnHrs)) {
-//            return tableView.frameH * actionHeightMultiplier
-//        } else if (detailView.showOpnHrs && i == 5) {
-//            return tableView.frameH * opnHrsHeightMultiplier
-//        } else if (i == 6) {
-//            return tableView.frameH * reviewHeightMultiplier
-//        }
-//        // index path row cases are exhaustive
-//        return tableView.frameH * actionHeightMultiplier
-//    }
-    
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let i: Int = indexPath.row
         if (i == 2) { // row used for calling location

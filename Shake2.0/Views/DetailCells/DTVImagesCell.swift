@@ -16,6 +16,7 @@ class DTVImagesCell: UITableViewCell {
     // MARK: - Override methods
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
+        selectionStyle = .none
         let layout: UICollectionViewLayout = UICollectionViewFlowLayout()
         view = UICollectionView(frame: self.bounds, collectionViewLayout: layout)
         view.backgroundColor = .lightText

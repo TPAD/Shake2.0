@@ -31,7 +31,6 @@
 		3475862622C2AA6900E1E8A4 /* CosmosView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3475862522C2AA6900E1E8A4 /* CosmosView.swift */; };
 		348A689022CC114700308B9F /* DVHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 348A688F22CC114700308B9F /* DVHeader.swift */; };
 		348A689222CC119200308B9F /* DVImageCollection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 348A689122CC119200308B9F /* DVImageCollection.swift */; };
-		34A515D8230DAF0B004834DB /* DVReviewTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34A515D7230DAF0B004834DB /* DVReviewTableView.swift */; };
 		34BFB50022B058B0003EBCE9 /* Detail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34BFB4FF22B058B0003EBCE9 /* Detail.swift */; };
 		34C37225230B530900E5CE96 /* DVOpeningHoursView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34C37224230B530900E5CE96 /* DVOpeningHoursView.swift */; };
 		34D9AE33230DC38400A8E03A /* DTVHeaderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34D9AE32230DC38400A8E03A /* DTVHeaderCell.swift */; };
@@ -78,7 +77,6 @@
 		3475862522C2AA6900E1E8A4 /* CosmosView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CosmosView.swift; sourceTree = "<group>"; };
 		348A688F22CC114700308B9F /* DVHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DVHeader.swift; sourceTree = "<group>"; };
 		348A689122CC119200308B9F /* DVImageCollection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DVImageCollection.swift; sourceTree = "<group>"; };
-		34A515D7230DAF0B004834DB /* DVReviewTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DVReviewTableView.swift; sourceTree = "<group>"; };
 		34A85C0E230B01A300E1D885 /* location.gpx */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = location.gpx; sourceTree = "<group>"; };
 		34BFB4FF22B058B0003EBCE9 /* Detail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Detail.swift; sourceTree = "<group>"; };
 		34C37224230B530900E5CE96 /* DVOpeningHoursView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DVOpeningHoursView.swift; sourceTree = "<group>"; };
@@ -161,7 +159,6 @@
 				345808772306169100FDDD7A /* DVActionView.swift */,
 				34C37224230B530900E5CE96 /* DVOpeningHoursView.swift */,
 				34EF94BA230C548800E89143 /* DVReviewCell.swift */,
-				34A515D7230DAF0B004834DB /* DVReviewTableView.swift */,
 			);
 			path = Detail;
 			sourceTree = "<group>";
@@ -326,7 +323,6 @@
 				3475861622C2A94300E1E8A4 /* CosmosLayers.swift in Sources */,
 				3475861422C2A91E00E1E8A4 /* CosmosSize.swift in Sources */,
 				348A689022CC114700308B9F /* DVHeader.swift in Sources */,
-				34A515D8230DAF0B004834DB /* DVReviewTableView.swift in Sources */,
 				34E40AD222A0E60000E09F92 /* LocationView.swift in Sources */,
 				34E40AD622A0E62700E09F92 /* Network.swift in Sources */,
 				34C37225230B530900E5CE96 /* DVOpeningHoursView.swift in Sources */,

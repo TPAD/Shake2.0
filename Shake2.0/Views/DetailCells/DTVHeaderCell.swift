@@ -25,6 +25,7 @@ class DVTHeaderCell: UITableViewCell {
     // MARK: - Override methods
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
+        selectionStyle = .none
         for label in [nameLabel, locationLabel, addressLabel] {
             config(label)
             addSubview(label)

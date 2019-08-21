@@ -17,6 +17,7 @@ import CoreLocation
 //         maybe let the user know where the nearest coinflip atms are.
 //         fix bug where the detail model or view model fail to retrieve every piece of info.
 //         fix bug: shakeNum index out of range error
+//         remove the bottom border fromm the detail view
 class ViewController: UIViewController {
     
     @IBOutlet weak var iconImage: UIImageView!
@@ -98,6 +99,8 @@ class ViewController: UIViewController {
         detailView.delegate = self
         detailView.dataSource = self
         detailView.detailViewDelegate = self
+        initialDVFrame =
+            CGRect(x: detailView.frame.origin.x, y: detailView.frame.origin.y, width: w, height: h)
         view.addSubview(detailView)
     }
     
@@ -249,11 +252,10 @@ extension ViewController: DetailViewModelDelegate {
         detailShouldDisplay = false
         DispatchQueue.main.async {
             UIView.animate(withDuration: 0.5, animations: {
-                self.detailView.frame = self.initialDVFrame
-                //self.detailView.adjustSubviews()
-                //self.detailView.layoutIfNeeded()
+                self.detailView.frame.origin.y = self.view.frame.height
+                self.detailView.roundTableView()
             }) { _ in
-                //self.detailView.contentSize.height = self.detailView.getContentHeight()
+                if self.detailShouldDisplay == false { self.detailView.frame = self.initialDVFrame }
             }
         }
     }
@@ -262,10 +264,8 @@ extension ViewController: DetailViewModelDelegate {
         DispatchQueue.main.async {
             UIView.animate(withDuration: 0.5, animations: {
                 self.detailView.frame = self.view.frame
-                //self.detailView.adjustSubviews()
-                //self.detailView.layoutIfNeeded()
+                self.detailView.roundTableView()
             }) { _ in
-                //self.detailView.contentSize.height = self.detailView.getContentHeight()
             }
         }
     }

@@ -31,6 +31,7 @@ class DTVActionCell: UITableViewCell {
     // MARK: - Override methods
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
+        selectionStyle = .none
         if let id = reuseIdentifier {
             if id == "phone" { actionType = .phoneNumber }
             else if  id == "place" { actionType = .location }
