@@ -233,11 +233,12 @@ extension ViewController: DetailViewModelDelegate {
     }
     
     func hideDV() {
-        self.detailShouldDisplay = false
+        detailShouldDisplay = false
         DispatchQueue.main.async {
             UIView.animate(withDuration: 0.5, animations: {
                 self.detailView.frame = self.initialDVFrame
                 self.detailView.adjustSubviews()
+                //self.detailView.layoutIfNeeded()
             }) { _ in
                 self.detailView.contentSize.height = self.detailView.getContentHeight()
             }
@@ -249,6 +250,7 @@ extension ViewController: DetailViewModelDelegate {
             UIView.animate(withDuration: 0.5, animations: {
                 self.detailView.frame = self.view.frame
                 self.detailView.adjustSubviews()
+                //self.detailView.layoutIfNeeded()
             }) { _ in
                 self.detailView.contentSize.height = self.detailView.getContentHeight()
             }

@@ -36,9 +36,6 @@ internal class DVHeader: UIView {
             config(label)
             addSubview(label)
         }
-        activateLocationLabelLayoutConstraints()
-        activateNameLabelLayoutConstraints()
-        activateAddressLabelLayoutConstraints()
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -103,6 +100,9 @@ internal class DVHeader: UIView {
         locationLabel.text = info.components![0].longName //TODO: - not always correct
         addressLabel.text = address
         backgroundColor = isOpen ? Colors.mediumSeaweed:Colors.mediumFirebrick
+        activateLocationLabelLayoutConstraints()
+        activateNameLabelLayoutConstraints()
+        activateAddressLabelLayoutConstraints()
     }
 
 }

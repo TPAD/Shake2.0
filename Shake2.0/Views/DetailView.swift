@@ -22,7 +22,7 @@ import UIKit
 // TODO: - add gestures for the action cells
 //       - auto layout constaints so manual placement of cells becomes unnecessary, but
 //         FOR NOW redrawing the dimenstions of each cell might help smooth the animation
-class DetailSView: UIScrollView, DVActionViewDelegate {
+class DetailSView: UIScrollView {
     
     weak var dVDelegate: DetailViewDelegate!
     
@@ -55,7 +55,7 @@ class DetailSView: UIScrollView, DVActionViewDelegate {
     
     let headerHeightMultiplier: CGFloat = 0.225             // relative to superview height
     let actionHeightMultiplier: CGFloat = 0.1               // relative to superview height
-    let opnHrsHeightMultiplier: CGFloat = 0.25               // relative to superview height
+    let opnHrsHeightMultiplier: CGFloat = 0.25              // relative to superview height
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -74,6 +74,8 @@ class DetailSView: UIScrollView, DVActionViewDelegate {
         initOpnHrsView()
         initReviewsView()
         initMoreHrsView()
+        initReviewsView()
+        initUserReview()
         self.contentSize.height = getContentHeight()
         upSwipe = UISwipeGestureRecognizer(target: self, action: #selector(handleSwipe(_:)))
         downSwipe = UISwipeGestureRecognizer(target: self, action: #selector(handleSwipe(_:)))
@@ -91,33 +93,35 @@ class DetailSView: UIScrollView, DVActionViewDelegate {
     
     private func initDetailHeader() {
         adjustHeaderRect()
-        self.addSubview(headerView)
+        addSubview(headerView)
     }
     
     // places the header view at the top of the view. delegate handles readjusting the frame rect
     private func adjustHeaderRect() {
         let h: CGFloat = headerHeightMultiplier * frameH
         let rect = CGRect(x: 0.0, y: 0.0, width: frameW, height: h)
-        self.headerView.frame = rect
+        headerView.frame = rect
+        headerView.layoutIfNeeded()
     }
     
     private func initImageCollection() {
         adjustCollectionRect()
         imageCollection.backgroundColor = .lightText
-        self.addSubview(imageCollection)
+        addSubview(imageCollection)
     }
     
     // places the image collection underneath the header. delegate handles readjusting the frame rect
     private func adjustCollectionRect() {
         let h: CGFloat = headerHeightMultiplier * frameH
         let rect = CGRect(x: 0.0, y: h, width: frameW, height: h)
-        self.imageCollection.frame = rect
+        imageCollection.frame = rect
+        imageCollection.layoutIfNeeded()
     }
     
     private func initPhoneNumberView() {
         adjustPhoneNumberRect()
         phoneNumberView.dADelegate = self
-        self.addSubview(phoneNumberView)
+        addSubview(phoneNumberView)
         phoneNumberView.backgroundColor = .white
     }
     
@@ -126,13 +130,14 @@ class DetailSView: UIScrollView, DVActionViewDelegate {
         let h: CGFloat = actionHeightMultiplier * frameH
         let y: CGFloat = headerHeightMultiplier * frameH * 2
         let rect: CGRect = CGRect(x: 0.0, y: y, width: frameW, height: h)
-        self.phoneNumberView.frame = rect
+        phoneNumberView.frame = rect
+        phoneNumberView.layoutIfNeeded()
     }
     
     private func initAddressView() {
         adjustAddressRect()
         addressView.dADelegate = self
-        self.addSubview(addressView)
+        addSubview(addressView)
         addressView.backgroundColor = .white
     }
     
@@ -141,13 +146,14 @@ class DetailSView: UIScrollView, DVActionViewDelegate {
         let h: CGFloat = actionHeightMultiplier * frameH
         let y: CGFloat = (headerHeightMultiplier * frameH * 2) + h
         let rect: CGRect = CGRect(x: 0.0, y: y, width: frameW, height: h)
-        self.addressView.frame = rect
+        addressView.frame = rect
+        addressView.layoutIfNeeded()
     }
     
     private func initOpnHrsView() {
         adjustOpnHrsRect()
         openHrsView.dADelegate = self
-        self.addSubview(openHrsView)
+        addSubview(openHrsView)
         openHrsView.backgroundColor = .white
     }
     
@@ -156,13 +162,14 @@ class DetailSView: UIScrollView, DVActionViewDelegate {
         let h: CGFloat = actionHeightMultiplier * frameH
         let y: CGFloat = (headerHeightMultiplier * frameH * 2) + (2 * h)
         let rect: CGRect = CGRect(x: 0.0, y: y, width: frameW, height: h)
-        self.openHrsView.frame = rect
+        openHrsView.frame = rect
+        openHrsView.layoutIfNeeded()
     }
     
     private func initMoreHrsView() {
         adjustMoreHrsRect()
         moreHrsView.backgroundColor = .lightText
-        self.addSubview(moreHrsView)
+        addSubview(moreHrsView)
     }
     
     private func adjustMoreHrsRect() {
@@ -170,14 +177,14 @@ class DetailSView: UIScrollView, DVActionViewDelegate {
         let y: CGFloat = frameH * ((2 * headerHeightMultiplier) + (3 * actionHeightMultiplier))
         let rect: CGRect = CGRect(x: 0.0, y: y, width: frameW, height: h)
         moreHrsView.frame = rect
-        moreHrsView.alpha = (showOpnHrs) ? 1.0:0.0
+        moreHrsView.layoutIfNeeded()
     }
     
     
     private func initReviewsView() {
         adjustReviewsRect()
         reviewsView.dADelegate = self
-        self.addSubview(reviewsView)
+        addSubview(reviewsView)
         reviewsView.backgroundColor = .white
     }
     
@@ -185,14 +192,15 @@ class DetailSView: UIScrollView, DVActionViewDelegate {
     private func adjustReviewsRect() {
         let h: CGFloat = actionHeightMultiplier * frameH
         let y: CGFloat = (!showOpnHrs) ? (headerHeightMultiplier * frameH * 2) + (3 * h):
-        (headerHeightMultiplier * frameH * 2) + (3 * h) + (opnHrsHeightMultiplier*frameH)
+        (headerHeightMultiplier * frameH * 2) + (3 * h) + (opnHrsHeightMultiplier * frameH)
         let rect: CGRect = CGRect(x: 0.0, y: y, width: frameW, height: h)
-        self.reviewsView.frame = rect
+        reviewsView.frame = rect
+        reviewsView.layoutIfNeeded()
     }
     
     func getContentHeight() -> CGFloat{
         var result: CGFloat = 0.0
-        for sv in self.subviews {
+        for sv in subviews {
             if (sv.isKind(of: DVHeader.self) || sv.isKind(of: DVImageCollection.self) ||
                 sv.isKind(of: DVActionView.self) || sv.isKind(of: DVOpeningHoursView.self)) {
                 result += sv.frameH
@@ -201,7 +209,28 @@ class DetailSView: UIScrollView, DVActionViewDelegate {
         return result
     }
     
-    // MARK: - delegate methods
+    private func initUserReview() {
+
+    }
+    
+    private func adjustUserReview() {
+        
+    }
+    
+}
+
+protocol DVActionViewDelegate: class {
+    
+    func tryCall()
+    func tryGoToMaps()
+    func openingHours(shouldDisplay: Bool)
+    func reviews(shouldDisplay: Bool)
+    
+}
+
+// MARK: - delegate methods
+
+extension DetailSView: DVActionViewDelegate {
     
     // adjusts subviews initial frame rect and handles resizing from the delegate method
     func adjustSubviews() {
@@ -211,7 +240,6 @@ class DetailSView: UIScrollView, DVActionViewDelegate {
         adjustAddressRect()
         adjustOpnHrsRect()
         adjustReviewsRect()
-        adjustMoreHrsRect()
     }
     
     // allows user to call the location store's phone number
@@ -243,16 +271,7 @@ class DetailSView: UIScrollView, DVActionViewDelegate {
     }
     
     func reviews(shouldDisplay: Bool) {
-        
-    }
-    
-}
 
-protocol DVActionViewDelegate: class {
-    
-    func tryCall()
-    func tryGoToMaps()
-    func openingHours(shouldDisplay: Bool)
-    func reviews(shouldDisplay: Bool)
+    }
     
 }

@@ -28,6 +28,7 @@
 		3475862622C2AA6900E1E8A4 /* CosmosView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3475862522C2AA6900E1E8A4 /* CosmosView.swift */; };
 		348A689022CC114700308B9F /* DVHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 348A688F22CC114700308B9F /* DVHeader.swift */; };
 		348A689222CC119200308B9F /* DVImageCollection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 348A689122CC119200308B9F /* DVImageCollection.swift */; };
+		34A515D8230DAF0B004834DB /* DVReviewTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34A515D7230DAF0B004834DB /* DVReviewTableView.swift */; };
 		34BFB50022B058B0003EBCE9 /* Detail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34BFB4FF22B058B0003EBCE9 /* Detail.swift */; };
 		34C37225230B530900E5CE96 /* DVOpeningHoursView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34C37224230B530900E5CE96 /* DVOpeningHoursView.swift */; };
 		34E40ABC22A0D85700E09F92 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34E40ABB22A0D85700E09F92 /* AppDelegate.swift */; };
@@ -38,6 +39,7 @@
 		34E40AD222A0E60000E09F92 /* LocationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34E40AD122A0E60000E09F92 /* LocationView.swift */; };
 		34E40AD422A0E61100E09F92 /* DetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34E40AD322A0E61100E09F92 /* DetailView.swift */; };
 		34E40AD622A0E62700E09F92 /* Network.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34E40AD522A0E62700E09F92 /* Network.swift */; };
+		34EF94BB230C548800E89143 /* DVReviewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34EF94BA230C548800E89143 /* DVReviewCell.swift */; };
 		F84F0B7522AAE3F9004439DD /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = F84F0B7422AAE3F9004439DD /* Constants.swift */; };
 		F84F0B7722AAE436004439DD /* Location.swift in Sources */ = {isa = PBXBuildFile; fileRef = F84F0B7622AAE436004439DD /* Location.swift */; };
 		F86ACE5522B03E5600445009 /* LocationBubble.xib in Resources */ = {isa = PBXBuildFile; fileRef = F86ACE5422B03E5600445009 /* LocationBubble.xib */; };
@@ -67,6 +69,7 @@
 		3475862522C2AA6900E1E8A4 /* CosmosView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CosmosView.swift; sourceTree = "<group>"; };
 		348A688F22CC114700308B9F /* DVHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DVHeader.swift; sourceTree = "<group>"; };
 		348A689122CC119200308B9F /* DVImageCollection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DVImageCollection.swift; sourceTree = "<group>"; };
+		34A515D7230DAF0B004834DB /* DVReviewTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DVReviewTableView.swift; sourceTree = "<group>"; };
 		34A85C0E230B01A300E1D885 /* location.gpx */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = location.gpx; sourceTree = "<group>"; };
 		34BFB4FF22B058B0003EBCE9 /* Detail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Detail.swift; sourceTree = "<group>"; };
 		34C37224230B530900E5CE96 /* DVOpeningHoursView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DVOpeningHoursView.swift; sourceTree = "<group>"; };
@@ -80,6 +83,7 @@
 		34E40AD122A0E60000E09F92 /* LocationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationView.swift; sourceTree = "<group>"; };
 		34E40AD322A0E61100E09F92 /* DetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailView.swift; sourceTree = "<group>"; };
 		34E40AD522A0E62700E09F92 /* Network.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Network.swift; sourceTree = "<group>"; };
+		34EF94BA230C548800E89143 /* DVReviewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DVReviewCell.swift; sourceTree = "<group>"; };
 		F84F0B7422AAE3F9004439DD /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		F84F0B7622AAE436004439DD /* Location.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Location.swift; sourceTree = "<group>"; };
 		F86ACE5422B03E5600445009 /* LocationBubble.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LocationBubble.xib; sourceTree = "<group>"; };
@@ -144,6 +148,8 @@
 				348A689122CC119200308B9F /* DVImageCollection.swift */,
 				345808772306169100FDDD7A /* DVActionView.swift */,
 				34C37224230B530900E5CE96 /* DVOpeningHoursView.swift */,
+				34EF94BA230C548800E89143 /* DVReviewCell.swift */,
+				34A515D7230DAF0B004834DB /* DVReviewTableView.swift */,
 			);
 			path = Detail;
 			sourceTree = "<group>";
@@ -293,6 +299,7 @@
 				3475861622C2A94300E1E8A4 /* CosmosLayers.swift in Sources */,
 				3475861422C2A91E00E1E8A4 /* CosmosSize.swift in Sources */,
 				348A689022CC114700308B9F /* DVHeader.swift in Sources */,
+				34A515D8230DAF0B004834DB /* DVReviewTableView.swift in Sources */,
 				34E40AD222A0E60000E09F92 /* LocationView.swift in Sources */,
 				34E40AD622A0E62700E09F92 /* Network.swift in Sources */,
 				34C37225230B530900E5CE96 /* DVOpeningHoursView.swift in Sources */,
@@ -308,6 +315,7 @@
 				F8A9AB6122A6F44C0096C713 /* SavedLocationsView.swift in Sources */,
 				3475861022C2A89B00E1E8A4 /* CosmosText.swift in Sources */,
 				34E40AD422A0E61100E09F92 /* DetailView.swift in Sources */,
+				34EF94BB230C548800E89143 /* DVReviewCell.swift in Sources */,
 				34BFB50022B058B0003EBCE9 /* Detail.swift in Sources */,
 				3475862622C2AA6900E1E8A4 /* CosmosView.swift in Sources */,
 				3475862022C2AA1800E1E8A4 /* CosmosSettings.swift in Sources */,
