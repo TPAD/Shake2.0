@@ -8,6 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		341A807222A7202E00676B8A /* LocationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 341A807122A7202E00676B8A /* LocationViewModel.swift */; };
+		342EAC40230DB64500B18AD6 /* DetailTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 342EAC3F230DB64500B18AD6 /* DetailTableView.swift */; };
+		342EAC42230DBED300B18AD6 /* DetailTableViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 342EAC41230DBED300B18AD6 /* DetailTableViewDelegate.swift */; };
+		342EAC44230DBEF600B18AD6 /* DetailTableViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 342EAC43230DBEF600B18AD6 /* DetailTableViewDataSource.swift */; };
 		345808782306169100FDDD7A /* DVActionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 345808772306169100FDDD7A /* DVActionView.swift */; };
 		34580880230739B600FDDD7A /* TitilliumWeb-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 3458087F230739B600FDDD7A /* TitilliumWeb-SemiBold.ttf */; };
 		34693D5822B9A08D0024AB6C /* DetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34693D5722B9A08D0024AB6C /* DetailViewModel.swift */; };
@@ -31,6 +34,9 @@
 		34A515D8230DAF0B004834DB /* DVReviewTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34A515D7230DAF0B004834DB /* DVReviewTableView.swift */; };
 		34BFB50022B058B0003EBCE9 /* Detail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34BFB4FF22B058B0003EBCE9 /* Detail.swift */; };
 		34C37225230B530900E5CE96 /* DVOpeningHoursView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34C37224230B530900E5CE96 /* DVOpeningHoursView.swift */; };
+		34D9AE33230DC38400A8E03A /* DTVHeaderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34D9AE32230DC38400A8E03A /* DTVHeaderCell.swift */; };
+		34D9AE35230DD4F300A8E03A /* DTVActionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34D9AE34230DD4F300A8E03A /* DTVActionCell.swift */; };
+		34D9AE37230DDA1400A8E03A /* DTVImagesCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34D9AE36230DDA1400A8E03A /* DTVImagesCell.swift */; };
 		34E40ABC22A0D85700E09F92 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34E40ABB22A0D85700E09F92 /* AppDelegate.swift */; };
 		34E40ABE22A0D85700E09F92 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34E40ABD22A0D85700E09F92 /* ViewController.swift */; };
 		34E40AC122A0D85700E09F92 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 34E40ABF22A0D85700E09F92 /* Main.storyboard */; };
@@ -49,6 +55,9 @@
 
 /* Begin PBXFileReference section */
 		341A807122A7202E00676B8A /* LocationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationViewModel.swift; sourceTree = "<group>"; };
+		342EAC3F230DB64500B18AD6 /* DetailTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailTableView.swift; sourceTree = "<group>"; };
+		342EAC41230DBED300B18AD6 /* DetailTableViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailTableViewDelegate.swift; sourceTree = "<group>"; };
+		342EAC43230DBEF600B18AD6 /* DetailTableViewDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailTableViewDataSource.swift; sourceTree = "<group>"; };
 		345808772306169100FDDD7A /* DVActionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DVActionView.swift; sourceTree = "<group>"; };
 		3458087F230739B600FDDD7A /* TitilliumWeb-SemiBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "TitilliumWeb-SemiBold.ttf"; sourceTree = "<group>"; };
 		34693D5722B9A08D0024AB6C /* DetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewModel.swift; sourceTree = "<group>"; };
@@ -73,6 +82,9 @@
 		34A85C0E230B01A300E1D885 /* location.gpx */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = location.gpx; sourceTree = "<group>"; };
 		34BFB4FF22B058B0003EBCE9 /* Detail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Detail.swift; sourceTree = "<group>"; };
 		34C37224230B530900E5CE96 /* DVOpeningHoursView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DVOpeningHoursView.swift; sourceTree = "<group>"; };
+		34D9AE32230DC38400A8E03A /* DTVHeaderCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DTVHeaderCell.swift; sourceTree = "<group>"; };
+		34D9AE34230DD4F300A8E03A /* DTVActionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DTVActionCell.swift; sourceTree = "<group>"; };
+		34D9AE36230DDA1400A8E03A /* DTVImagesCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DTVImagesCell.swift; sourceTree = "<group>"; };
 		34E40AB822A0D85600E09F92 /* Shake2.0.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Shake2.0.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		34E40ABB22A0D85700E09F92 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		34E40ABD22A0D85700E09F92 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -164,6 +176,16 @@
 			path = Models;
 			sourceTree = "<group>";
 		};
+		34D9AE31230DC36D00A8E03A /* DetailCells */ = {
+			isa = PBXGroup;
+			children = (
+				34D9AE32230DC38400A8E03A /* DTVHeaderCell.swift */,
+				34D9AE36230DDA1400A8E03A /* DTVImagesCell.swift */,
+				34D9AE34230DD4F300A8E03A /* DTVActionCell.swift */,
+			);
+			path = DetailCells;
+			sourceTree = "<group>";
+		};
 		34E40AAF22A0D85600E09F92 = {
 			isa = PBXGroup;
 			children = (
@@ -190,6 +212,8 @@
 				34E40ACD22A0DEDE00E09F92 /* Views */,
 				34E40ABB22A0D85700E09F92 /* AppDelegate.swift */,
 				34E40ABD22A0D85700E09F92 /* ViewController.swift */,
+				342EAC41230DBED300B18AD6 /* DetailTableViewDelegate.swift */,
+				342EAC43230DBEF600B18AD6 /* DetailTableViewDataSource.swift */,
 				34E40ABF22A0D85700E09F92 /* Main.storyboard */,
 				34E40AC422A0D85800E09F92 /* LaunchScreen.storyboard */,
 				F86ACE5A22B05D5B00445009 /* Assets.xcassets */,
@@ -203,11 +227,13 @@
 		34E40ACD22A0DEDE00E09F92 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				34D9AE31230DC36D00A8E03A /* DetailCells */,
 				348A688E22CC109C00308B9F /* Detail */,
 				3475860822C2A78000E1E8A4 /* Cosmos */,
 				34E40AD122A0E60000E09F92 /* LocationView.swift */,
 				F8A9AB6022A6F44C0096C713 /* SavedLocationsView.swift */,
 				34E40AD322A0E61100E09F92 /* DetailView.swift */,
+				342EAC3F230DB64500B18AD6 /* DetailTableView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -294,6 +320,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				34D9AE35230DD4F300A8E03A /* DTVActionCell.swift in Sources */,
 				3475862222C2AA3F00E1E8A4 /* CosmosTouchTarget.swift in Sources */,
 				34E40ABE22A0D85700E09F92 /* ViewController.swift in Sources */,
 				3475861622C2A94300E1E8A4 /* CosmosLayers.swift in Sources */,
@@ -310,20 +337,25 @@
 				F84F0B7522AAE3F9004439DD /* Constants.swift in Sources */,
 				3475861822C2A95A00E1E8A4 /* CosmosLocalizedRating.swift in Sources */,
 				3475862422C2AA5B00E1E8A4 /* RightToLeft.swift in Sources */,
+				34D9AE33230DC38400A8E03A /* DTVHeaderCell.swift in Sources */,
 				3475861A22C2A9A300E1E8A4 /* CosmosLayerHelper.swift in Sources */,
 				3475860A22C2A7E600E1E8A4 /* StarFillMode.swift in Sources */,
+				342EAC42230DBED300B18AD6 /* DetailTableViewDelegate.swift in Sources */,
 				F8A9AB6122A6F44C0096C713 /* SavedLocationsView.swift in Sources */,
 				3475861022C2A89B00E1E8A4 /* CosmosText.swift in Sources */,
 				34E40AD422A0E61100E09F92 /* DetailView.swift in Sources */,
 				34EF94BB230C548800E89143 /* DVReviewCell.swift in Sources */,
+				342EAC44230DBEF600B18AD6 /* DetailTableViewDataSource.swift in Sources */,
 				34BFB50022B058B0003EBCE9 /* Detail.swift in Sources */,
 				3475862622C2AA6900E1E8A4 /* CosmosView.swift in Sources */,
 				3475862022C2AA1800E1E8A4 /* CosmosSettings.swift in Sources */,
 				3475860C22C2A81300E1E8A4 /* StarLayer.swift in Sources */,
+				34D9AE37230DDA1400A8E03A /* DTVImagesCell.swift in Sources */,
 				34E40AD022A0DF1300E09F92 /* Helper.swift in Sources */,
 				345808782306169100FDDD7A /* DVActionView.swift in Sources */,
 				34693D5822B9A08D0024AB6C /* DetailViewModel.swift in Sources */,
 				3475861222C2A8BA00E1E8A4 /* CosmosDefaultSettings.swift in Sources */,
+				342EAC40230DB64500B18AD6 /* DetailTableView.swift in Sources */,
 				3475861E22C2A9F500E1E8A4 /* CosmosRating.swift in Sources */,
 				348A689222CC119200308B9F /* DVImageCollection.swift in Sources */,
 				3475861C22C2A9D100E1E8A4 /* CosmosTouch.swift in Sources */,

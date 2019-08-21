@@ -37,7 +37,7 @@ class ViewController: UIViewController {
     var indicator: UIActivityIndicatorView = UIActivityIndicatorView(style: .gray)
     var userCoord: CLLocationCoordinate2D?
     var initialLoad: Bool = true
-    var detailView: DetailSView = DetailSView.init(frame: .zero)
+    var detailView: DetailTableView = DetailTableView(frame: .zero, style: .plain)
     var initialDVFrame: CGRect = .zero
     var detailShouldDisplay: Bool = false {
         didSet {
@@ -72,20 +72,32 @@ class ViewController: UIViewController {
         DispatchQueue.main.async { self.locationView.view.roundView(borderWidth: 6) }
         let tap = UITapGestureRecognizer(target: self, action: #selector(toggleDetail(_:)))
         view.addGestureRecognizer(tap)
-        initDetailView()
+        //initDetailView()
     }
     
     func initDetailView() {
+//        let w = view.frameW*0.9
+//        let h = view.frameH*0.825
+//        let y = view.frameH
+//        let rect = CGRect(x: 0.0, y: y, width: w, height: h)
+//        detailView = DetailSView(frame: rect)
+//        detailView.center.x = view.center.x
+//        detailView.backgroundColor = UIColor.white
+//        detailView.dVDelegate = self
+//        initialDVFrame = CGRect(x: detailView.frame.origin.x,
+//                                y: detailView.frame.origin.y, width: w, height: h)
+//        view.addSubview(detailView)
+        
         let w = view.frameW*0.9
         let h = view.frameH*0.825
         let y = view.frameH
         let rect = CGRect(x: 0.0, y: y, width: w, height: h)
-        detailView = DetailSView(frame: rect)
+        detailView = DetailTableView(frame: rect, style: .plain)
         detailView.center.x = view.center.x
         detailView.backgroundColor = UIColor.white
-        detailView.dVDelegate = self
-        initialDVFrame = CGRect(x: detailView.frame.origin.x,
-                                y: detailView.frame.origin.y, width: w, height: h)
+        detailView.delegate = self
+        detailView.dataSource = self
+        detailView.detailViewDelegate = self
         view.addSubview(detailView)
     }
     
@@ -227,8 +239,9 @@ extension ViewController: DetailViewModelDelegate {
     // TODO: - animation for when view model is waiting for detail query response
     func detailSearchSucceded() {
         // TODO: - send view updates!
+        if initialLoad { initDetailView() }
         let detail = detailModel.placeDetails[shakeNum]
-        self.detailView.dVDelegate.loadDetailView(with: detail)
+        detailView.detailViewDelegate.loadDetailView(with: detail)
         DispatchQueue.main.async { self.updateLocationUI() }
     }
     
@@ -237,10 +250,10 @@ extension ViewController: DetailViewModelDelegate {
         DispatchQueue.main.async {
             UIView.animate(withDuration: 0.5, animations: {
                 self.detailView.frame = self.initialDVFrame
-                self.detailView.adjustSubviews()
+                //self.detailView.adjustSubviews()
                 //self.detailView.layoutIfNeeded()
             }) { _ in
-                self.detailView.contentSize.height = self.detailView.getContentHeight()
+                //self.detailView.contentSize.height = self.detailView.getContentHeight()
             }
         }
     }
@@ -249,10 +262,10 @@ extension ViewController: DetailViewModelDelegate {
         DispatchQueue.main.async {
             UIView.animate(withDuration: 0.5, animations: {
                 self.detailView.frame = self.view.frame
-                self.detailView.adjustSubviews()
+                //self.detailView.adjustSubviews()
                 //self.detailView.layoutIfNeeded()
             }) { _ in
-                self.detailView.contentSize.height = self.detailView.getContentHeight()
+                //self.detailView.contentSize.height = self.detailView.getContentHeight()
             }
         }
     }
@@ -271,7 +284,7 @@ extension ViewController: DetailViewDelegate {
     }
     
     func loadDetailView(with info: Detail) {
-        self.detailView.details = info
+        self.detailView.detail = info
     }
 }
 
@@ -329,3 +342,4 @@ extension ViewController {
     }
     
 }
+
