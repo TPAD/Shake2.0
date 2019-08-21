@@ -44,3 +44,10 @@ enum Colors {
     // Green used for phone button in DualSwitchview
     static let phoneGreen = #colorLiteral(red:0.275, green:0.702, blue:0.678, alpha:1.0)
 }
+
+enum Fonts {
+    // System
+    static let fontSystemSmall = UIFont(name: "System", size: 17.0)
+    static let fontSystemMedium = UIFont(name: "System", size: 20.0)
+    static let fontSystemLarge = UIFont(name: "System", size: 23.0)
+}

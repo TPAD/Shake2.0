@@ -8,11 +8,21 @@
 
 import UIKit
 
+// MARK: ContactView
+
+///
+/// ContactView
+///
+/// Composed of a phone icon, the phone number, and is 'tappable' in order to
+///  allow the user to instantly call the store
+///
 internal class ContactView: UIView {
     
     weak var label: UILabel?
     weak var imgIcon: UIImageView?
     var tap: UITapGestureRecognizer?
+    
+    // MARK: Init
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -20,17 +30,20 @@ internal class ContactView: UIView {
         initSubviews()
     }
     
-    // no implementation needed but function in required
     required init?(coder aDecoder: NSCoder) {
+        // no implementation needed but function is required
         fatalError("init(coder:) has not been implemented")
     }
     
+    // Initialize a ContactView with a label (for phone #), a phone icon,
+    //  and functionality for calling the # post-tap
     private func initSubviews() {
         initImgIcon()
         initLabel()
         addTap()
     }
     
+    // Initialize the ContactView's phone # label
     private func initLabel() {
         let label = UILabel(frame: .zero)
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -43,11 +56,12 @@ internal class ContactView: UIView {
             label.leadingAnchor.constraint(equalTo: self.imgIcon!.trailingAnchor, constant: leadingConstant)
         ])
         label.text = "(312) 288-4905"
-        label.font = UIFont(name: "System", size: 20.0)
+        label.font = Fonts.fontSystemMedium
         label.adjustsFontSizeToFitWidth = true
         self.label = label
     }
     
+    // Initialize the ContactView's icon image
     private func initImgIcon() {
         let img = UIImageView(frame: .zero)
         img.translatesAutoresizingMaskIntoConstraints = false
@@ -63,6 +77,7 @@ internal class ContactView: UIView {
         self.imgIcon = img
     }
     
+    // Give the ContactView an IBAction for calling upon 'tapping'
     private func addTap() {
         
     }
