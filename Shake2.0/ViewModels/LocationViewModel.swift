@@ -23,7 +23,7 @@ class LocationViewModel: NSObject {
     var placeImgs: [UIImage] = [UIImage]()
     var locationNames: [String]!
     
-    weak var delegate: ViewModelDelegate!
+    weak var delegate: LocationViewModelDelegate!
     
     override init() {
         super.init()

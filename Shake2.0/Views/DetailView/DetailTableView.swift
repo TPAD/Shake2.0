@@ -13,7 +13,11 @@ class DetailTableView: UITableView {
     
     weak var detailViewDelegate: DetailViewDelegate!
     
-    var detail: Detail! { didSet { roundTableView() } }
+    var detail: Detail! {
+        didSet {
+            print("detail set")
+        }
+    }
     var showOpnHrs: Bool = false
     var showReviews: Bool = false
     
@@ -52,8 +56,7 @@ class DetailTableView: UITableView {
     
     // expands the detail view in the case the user swipes up, and minimizes if swipe down
     @objc func handleSwipe(_ sender: UISwipeGestureRecognizer) {
-        print("swiped")
-        if (sender.direction == .down) { detailViewDelegate.removeDetailView() }
+        if (sender.direction == .down) { detailViewDelegate.hideDetailView() }
         else if (sender.direction == .up) { detailViewDelegate.expandDetailView() }
     }
     
