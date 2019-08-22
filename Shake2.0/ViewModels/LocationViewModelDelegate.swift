@@ -47,7 +47,6 @@ extension ViewController: LocationViewModelDelegate {
                 self.locationView.locationImage.backgroundColor = Colors.pearlBlack
             }
         } else {
-            print("no photos")
             if let warrington = UIImage(named: "warrington") {
                 setLocationImage(to: warrington)
             }

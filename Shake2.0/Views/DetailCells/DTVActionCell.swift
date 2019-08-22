@@ -23,7 +23,7 @@ class DTVActionCell: UITableViewCell {
     var iconImageView: UIImageView = UIImageView(frame: .zero)
     var label: UILabel = UILabel(frame: .zero)
     
-    let labelWidthMultiplier: CGFloat = 0.75             // relative to superview width
+    let labelWidthMultiplier: CGFloat = 0.85             // relative to superview width
     let insetConstantMultiplier: CGFloat = 0.04          // relative to superview width
     let labelHeight: CGFloat = 30.0                      // arbitrary for now
     let iconImageHeightMultiplier: CGFloat = 0.60        // relative to superview height
@@ -38,21 +38,18 @@ class DTVActionCell: UITableViewCell {
             else if id == "time" { actionType = .openingHour }
             else if id == "reviews" { actionType = .reviews }
         }
-        initIconImageView()
-        initLabel()
+        configIconImageView()
+        configLabel()
+        activateIconImageConstraints()
+        activateLabelConstraints()
     }
     
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
     }
     
-    override func layoutSubviews() {
-        super.layoutSubviews()
-        
-    }
-    
     // adds an icon image to view depending on action type. reviews type doesnt have an icon image
-    private func initIconImageView() {
+    private func configIconImageView() {
         var photoName: String = ""
         switch self.actionType {
         case .phoneNumber?:
@@ -82,7 +79,7 @@ class DTVActionCell: UITableViewCell {
                                                constant: x).isActive = true
     }
     
-    private func initLabel() {
+    private func configLabel() {
         let customFont: UIFont = UIFont(name: appFont, size: UIFont.labelFontSize)!
         label.font = UIFontMetrics.default.scaledFont(for: customFont)
         label.adjustsFontForContentSizeCategory = true
@@ -96,9 +93,8 @@ class DTVActionCell: UITableViewCell {
         let tAnchor: NSLayoutAnchor =
             (actionType == .reviews) ? self.leadingAnchor:iconImageView.trailingAnchor
         let x: CGFloat = insetConstantMultiplier * frameW
-        let w: CGFloat = labelWidthMultiplier * frameW
         label.heightAnchor.constraint(equalToConstant: labelHeight).isActive = true
-        label.widthAnchor.constraint(equalToConstant: w).isActive = true
+        label.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant:x/2).isActive = true
         label.leadingAnchor.constraint(equalTo: tAnchor, constant: x).isActive = true
         label.centerYAnchor.constraint(equalTo: self.centerYAnchor).isActive = true
     }
@@ -121,13 +117,13 @@ class DTVActionCell: UITableViewCell {
         case .openingHour?:
             label.text = info.openingHours.text[0]; break // TODO: - today might not be 1st entry
         case .reviews?:
-            label.text = "\(info.reviews.count) Reviews"
+            var count: Int = 0
+            if let reviews: [Detail.Reviews] = info.reviews { count = reviews.count }
+            label.text = "\(count) Reviews"
             break
         case nil:
             return
         }
-        activateIconImageConstraints()
-        activateLabelConstraints()
     }
 
     

@@ -31,7 +31,7 @@ struct Place: Codable {
     
     let geometry: Location
     let name: String
-    let openingHours: OpenNow?
+    let openingHours: OpenNow
     let photos: [PhotoInfo]?
     let types: [String]
     let address: String

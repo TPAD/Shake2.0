@@ -30,17 +30,13 @@ class DVTHeaderCell: UITableViewCell {
             config(label)
             addSubview(label)
         }
+        activateLocationLabelLayoutConstraints()
+        activateNameLabelLayoutConstraints()
+        activateAddressLabelLayoutConstraints()
     }
     
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
-    }
-    
-    override func layoutSubviews() {
-        super.layoutSubviews()
-        activateLocationLabelLayoutConstraints()
-        activateNameLabelLayoutConstraints()
-        activateAddressLabelLayoutConstraints()
     }
     
     private func config(_ label: UILabel) {

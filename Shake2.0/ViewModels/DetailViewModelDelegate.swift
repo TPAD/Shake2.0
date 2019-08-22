@@ -18,10 +18,12 @@ extension ViewController: DetailViewModelDelegate {
     // TODO: - animation for when view model is waiting for detail query response
     func detailSearchSucceded() {
         // TODO: - send view updates!
-        if initialLoad { initDetailView() }
-        let detail = detailModel.placeDetails[shakeNum]
-        detailView.detailViewDelegate.loadDetailView(with: detail)
-        DispatchQueue.main.async { self.updateLocationUI() }
+        DispatchQueue.main.async {
+            if self.initialLoad { self.initDetailView() }
+            let detail = self.detailModel.placeDetails[shakeNum]
+            self.detailView.detailViewDelegate.loadDetailView(with: detail)
+            self.updateLocationUI()
+        }
     }
     
 }

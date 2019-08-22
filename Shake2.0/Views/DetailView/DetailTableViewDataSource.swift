@@ -14,7 +14,7 @@ extension ViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         let sH: Bool = detailView.showOpnHrs
         let sR: Bool = detailView.showReviews
-        let rN: Int = (detailView.detail != nil) ? detailView.detail.reviews.count:0
+        let rN: Int = getReviewsNum(in: tableView as! DetailTableView)
         if !sH && !sR { return 6 }
         else if (sH && !sR) { return 7 }
         else if (!sH && sR) { return 6 + rN }
@@ -66,5 +66,11 @@ extension ViewController: UITableViewDataSource {
         else { return UITableViewCell() }
     }
     
+    private func getReviewsNum(in tableView: DetailTableView) -> Int {
+        if let detail = tableView.detail {
+            if let reviews = detail.reviews { return reviews.count }
+        }
+        return 0
+    }
     
 }

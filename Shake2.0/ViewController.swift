@@ -80,14 +80,12 @@ class ViewController: UIViewController {
         if (self.isViewLoaded == true && self.view.window != nil) {
             if let motion = event {
                 if motion.subtype == .motionShake {
-                    let max = viewModel.places.count
+                    let max = viewModel.places.count - 1
                     shakeNum = (shakeNum < max && max != 0) ? (shakeNum + 1): 0
-                    DispatchQueue.main.async {
-                        self.locationView.shakeAnimation()
-                        self.runNextImageSearch()
-                        self.runNextDetailSearch()
-                        self.updateLocationUI()
-                    }
+                    self.locationView.shakeAnimation()
+                    self.runNextImageSearch()
+                    self.runNextDetailSearch()
+                    self.updateLocationUI()
                 }
             }
         }
@@ -104,31 +102,11 @@ class ViewController: UIViewController {
         indicator.hidesWhenStopped = true
     }
     
-    @objc func toggleDetail(_ sender: UITapGestureRecognizer) {
-        if viewModel.places == nil { return }
-        let bounds: CGRect = locationView!.frame
-        let pointTapped: CGPoint = sender.location(in: view)
-        print("tapped outside")
-        if viewModel.places.count == 0 {
-            // TODO: - detail should not be displayed if there are no locations in range
-            return
-        }
-        print("detail should display: \(detailShouldDisplay)")
-        if detailShouldDisplay == false {
-            print("tapped inside")
-            if bounds.contains(pointTapped) {
-                detailShouldDisplay = !detailShouldDisplay
-            }
-        }
-    }
-    
     func showDetailView() {
-        DispatchQueue.main.async {
-            UIView.animate(withDuration: 0.5, animations: {
-                self.detailView.frame.origin.y = self.view.frameH - self.detailView.frameH
-                self.detailView.center.x = self.view.center.x
-            })
-        }
+        UIView.animate(withDuration: 0.5, animations: {
+            self.detailView.frame.origin.y = self.view.frameH - self.detailView.frameH
+            self.detailView.center.x = self.view.center.x
+        })
     }
     
 }
@@ -179,11 +157,9 @@ extension ViewController {
     }
     
     func animateUserCancelledLabel() {
-        DispatchQueue.main.async {
-            UIView.animate(withDuration: 0.25, animations: { self.hideDevaultViewInterface() })
-            { (_) in
-                UIView.animate(withDuration: 0.5, animations: { self.initUserCancelledLabel() })
-            }
+        UIView.animate(withDuration: 0.25, animations: { self.hideDevaultViewInterface() })
+        { (_) in
+            UIView.animate(withDuration: 0.5, animations: { self.initUserCancelledLabel() })
         }
     }
     

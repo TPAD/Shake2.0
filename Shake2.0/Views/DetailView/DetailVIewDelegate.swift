@@ -19,28 +19,26 @@ extension ViewController: DetailViewDelegate {
     
     func loadDetailView(with info: Detail) {
         self.detailView.detail = info
+        self.detailView.reloadData()
+        self.detailView.layoutIfNeeded()
     }
     
     func expandDetailView() {
-        DispatchQueue.main.async {
-            UIView.animate(withDuration: 0.5, animations: {
-                self.detailView.frame = self.view.frame
-                self.detailView.layoutIfNeeded()
-                self.detailView.roundTableView()
-            })
-        }
+        UIView.animate(withDuration: 0.5, animations: {
+            self.detailView.frame = self.view.frame
+            self.detailView.layoutIfNeeded()
+            self.detailView.roundTableView()
+        })
     }
     
     func hideDetailView() {
         detailShouldDisplay = false
-        DispatchQueue.main.async {
-            UIView.animate(withDuration: 0.5, animations: {
-                self.detailView.frame.origin.y = self.view.frame.height
-                self.detailView.roundTableView()
-            }) { _ in
-                self.detailView.frame = self.initialDVFrame
-                self.detailView.roundTableView()
-            }
+        UIView.animate(withDuration: 0.5, animations: {
+            self.detailView.frame.origin.y = self.view.frame.height
+            self.detailView.roundTableView()
+        }) { _ in
+            self.detailView.frame = self.initialDVFrame
+            self.detailView.roundTableView()
         }
     }
     

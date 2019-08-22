@@ -72,7 +72,7 @@ class LocationViewModel: NSObject {
         // check if results is not empty
         appDelegate.locationManager.stopUpdatingLocation()
         print("done")
-        DispatchQueue.main.sync {
+        DispatchQueue.main.sync {   
             self.delegate!.runNextImageSearch()
             self.delegate!.runNextDetailSearch()
         }
@@ -206,22 +206,20 @@ class LocationViewModel: NSObject {
         let lat: Double = place.geometry.location.latitude
         let long: Double = place.geometry.location.longitude
         let destination: CLLocation = CLLocation(latitude: lat, longitude: long)
-        DispatchQueue.main.async {
-            if let userLocation: CLLocation = manager.location {
-                let distance = userLocation.distanceInMilesFromLocation(destination)
-                let distanceString = String(format: "%.2f", distance)
-                label.text = "\(distanceString)mi"
-            }
-            // TODO: - notify user distance update failed
+        if let userLocation: CLLocation = manager.location {
+            let distance = userLocation.distanceInMilesFromLocation(destination)
+            let distanceString = String(format: "%.2f", distance)
+            label.text = "\(distanceString)mi"
         }
+        // TODO: - notify user distance update failed
        
     }
     
     func configure(locationBubble: LocationView, using place: Place) {
         let name = place.name
         // place name in bubble displays the neighborhood of location (usually in parentheses)
-        if let r1 = name.range(of: "(")?.upperBound, let r2 = name.range(of: ")")?.lowerBound,
-            let hrs = place.openingHours {
+        if let r1 = name.range(of: "(")?.upperBound, let r2 = name.range(of: ")")?.lowerBound {
+            let hrs = place.openingHours
             // TODO: - check for case: desired name not in parentheses
             locationBubble.infoViewLabel.text = String(name[r1..<r2])
             // TODO: - check for case: place missing openingHours

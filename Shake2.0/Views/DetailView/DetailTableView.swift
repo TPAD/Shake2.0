@@ -13,11 +13,7 @@ class DetailTableView: UITableView {
     
     weak var detailViewDelegate: DetailViewDelegate!
     
-    var detail: Detail! {
-        didSet {
-            print("detail set")
-        }
-    }
+    var detail: Detail! 
     var showOpnHrs: Bool = false
     var showReviews: Bool = false
     
