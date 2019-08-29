@@ -15,6 +15,8 @@ import CoreLocation
 internal var shakeNum: Int = 0
 // upper bound: number of locations 
 internal var numOfLocations: Int = 0
+// string for google maps app
+internal var googleMaps: String = "comgooglemaps://"
 
 // MARK: Helper functions and extensions
 
@@ -42,6 +44,22 @@ public extension UIView {
     var frameH: CGFloat { return self.frame.height }
     // shortcut for getting frame width of a view
     var frameW: CGFloat { return self.frame.width }
+    
+    func centerXAnchorConstraint(to parent: UIView) -> NSLayoutConstraint {
+        return self.centerXAnchor.constraint(equalTo: parent.centerXAnchor)
+    }
+    
+    func centerYAnchorConstraint(to parent: UIView) -> NSLayoutConstraint {
+        return self.centerYAnchor.constraint(equalTo: parent.centerYAnchor)
+    }
+    
+    func equalWidthsConstraint(to parent: UIView, m: CGFloat) -> NSLayoutConstraint {
+        return self.widthAnchor.constraint(equalTo: parent.widthAnchor, multiplier: m)
+    }
+    
+    func equalHeightsConstraint(to parent: UIView, m: CGFloat) -> NSLayoutConstraint {
+        return self.heightAnchor.constraint(equalTo: parent.heightAnchor, multiplier: m)
+    }
     
     func shakeAnimation() {
         let animation = CABasicAnimation(keyPath: "position")
@@ -92,12 +110,6 @@ public extension UIView {
         let width = self.frame.width
         return originx + width + withOffset
     }
-    
-    // check if a view is beneath another
-    func frameIsBelow(view: UIView) -> Bool {
-        return self.frame.origin.y >= view.by(withOffset: 0) &&
-            view != self
-    }
 }
 
 
@@ -144,19 +156,106 @@ public extension CLLocationCoordinate2D {
     }
 }
 
+internal func showGoToSettingsController(from parent: ViewController) {
+    let title: String = "Shake2.0 requires location services"
+    let message: String = "Please go into settings and enable \"when in use\" authorization"
+    let alertController: UIAlertController =
+        UIAlertController(title: title, message: message, preferredStyle: .alert)
+    let cancelAction: UIAlertAction =
+        UIAlertAction(title: "Cancel", style: .default) { (_) in
+            print("cancelled") // TODO: - update UI to show that user has denied location services
+            parent.animateUserCancelledLabel()
+    }
+    let settingsAction: UIAlertAction =
+        UIAlertAction(title: "Settings", style: .default) {
+            (_) in
+            guard let settingsURL = URL(string: UIApplication.openSettingsURLString) else {
+                return
+            }
+            if UIApplication.shared.canOpenURL(settingsURL) {
+                UIApplication.shared.open(settingsURL)
+            }
+            //TODO: - update UI case: "open settings failed". Ask user to go into settings manually
+        }
+    alertController.addAction(settingsAction)
+    alertController.addAction(cancelAction)
+    parent.present(alertController, animated: true, completion: nil)
+}
 
-public extension UILabel {
-    // adjusts height
-    func requiredHeight() -> CGFloat {
-        let frame: CGRect = CGRect(x: 0, y: 0, width: self.frame.width,
-                                   height: CGFloat.greatestFiniteMagnitude)
-        let new: UILabel = UILabel(frame: frame)
-        new.numberOfLines = 0
-        new.lineBreakMode = .byWordWrapping
-        new.font = self.font
-        new.text = self.text
-        new.sizeToFit()
-        
-        return new.frame.height
+internal func showTryCallRedirectController(from parent: ViewController, num: String, name: String) {
+    let action: UIAlertAction = UIAlertAction(title: "Ok", style: .default) { _ in
+        dial(number: num)
+    }
+    let cancel: UIAlertAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
+    let title: String = "Call \(name)?"
+    let alertController: UIAlertController =
+        UIAlertController(title: title, message: "", preferredStyle: .actionSheet)
+    alertController.addAction(action)
+    alertController.addAction(cancel)
+    parent.present(alertController, animated: true, completion: nil)
+}
+
+internal func showTryGoogleMapsController(from parent: ViewController, name: String) {
+    let action: UIAlertAction = UIAlertAction(title: "OK", style: .default) { _ in
+        tryGoToMaps(name: name)
+    }
+    let cancel: UIAlertAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
+    let title: String = "Navigate to \(name) using Google Maps"
+    let alertController: UIAlertController =
+        UIAlertController(title: title, message: "", preferredStyle: .actionSheet)
+    alertController.addAction(action)
+    alertController.addAction(cancel)
+    parent.present(alertController, animated: true, completion: nil)
+    
+}
+
+internal func dial(number: String) {
+    if let url = URL(string: "tel://\(number.formattedForCall())") {
+        if #available(iOS 12.0, *) {
+            UIApplication.shared.open(url, completionHandler: nil)
+        } else {
+            print("iOS version error")
+            // TODO: - fall back on previous verisons
+        }
+    } else {
+        // TODO: - raise error on malformed url
+        print("url error")
     }
 }
+
+// TODO: - display maps
+internal func tryGoToMaps(name: String) {
+//    if let url = URL(string: "https://www.google.com/maps/@42.585444,13.007813,6z") {
+//        UIApplication.shared.open(url, completionHandler: nil)
+//    } else {
+//        // TODO: - raise error on malformed url
+//        print("url error")
+//    }
+//    var mapString: String = googleMaps
+//    // redirects the user to google maps if they have the app installed
+//    if (UIApplication.shared.canOpenURL(URL(string: googleMaps)!)) {
+//        mapString.append("?\(name)")
+//        UIApplication.shared.open(URL(string: mapString)!, completionHandler: nil)
+//    } else { // redirects the user to google maps webpage on their browser
+//        if let url = URL(string: "https://www.google.com/maps/@\(name),6z") {
+//            UIApplication.shared.open(url, completionHandler: nil)
+//        } else {
+//            // TODO: - raise error on malformed url
+//            print("url error")
+//        }
+//    }
+}
+
+extension String {
+    
+    // method for formatting a phone number string for call redirection
+    func formattedForCall() -> String {
+        let cToReplace: [String] = ["(", ")", " ", "-"]
+        var filteredNum: String = self
+        for c in cToReplace {
+            filteredNum = filteredNum.replacingOccurrences(of: c, with: "")
+        }
+        return filteredNum
+    }
+}
+

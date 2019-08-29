@@ -64,7 +64,7 @@
       <AdditionalOptions>
       </AdditionalOptions>
       <LocationScenarioReference
-         identifier = "../../../../../../Downloads/belmont.gpx"
+         identifier = "../../Shake2.0/location.gpx"
          referenceType = "0">
       </LocationScenarioReference>
    </LaunchAction>

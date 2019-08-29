@@ -61,18 +61,20 @@ struct Detail: Codable {
     
     struct Reviews: Codable {
         let name: String
+        let photoRef: String
         let text: String
         let rating: Int
 
         enum CodingKeys: String, CodingKey {
             case name = "author_name"
+            case photoRef = "profile_photo_url"
             case text = "text"
             case rating = "rating"
         }
     }
     
     struct PhotoReference: Codable {
-        let ref = "photo_reference"
+        let ref: String
         
         enum CodingKeys: String, CodingKey {
             case ref = "photo_reference"

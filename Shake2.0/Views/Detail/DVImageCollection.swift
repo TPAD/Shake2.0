@@ -10,11 +10,10 @@ import UIKit
 
 // MARK: LocationImagesView
 
-internal class LocationImagesView: UIView, UIScrollViewDelegate {
+internal class DVImageCollection: UICollectionView {
     
-    override init(frame: CGRect) {
-        super.init(frame: frame)
-        self.backgroundColor = UIColor.lightGray
+    override init(frame: CGRect, collectionViewLayout layout: UICollectionViewLayout) {
+        super.init(frame: frame, collectionViewLayout: layout)
     }
     
     required init?(coder aDecoder: NSCoder) {
