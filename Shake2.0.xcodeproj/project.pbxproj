@@ -84,6 +84,9 @@
 		34E40AD122A0E60000E09F92 /* LocationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationView.swift; sourceTree = "<group>"; };
 		34E40AD322A0E61100E09F92 /* DetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailView.swift; sourceTree = "<group>"; };
 		34E40AD522A0E62700E09F92 /* Network.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Network.swift; sourceTree = "<group>"; };
+		F8056BA222FB8C6500EFC83C /* popeyes.gpx */ = {isa = PBXFileReference; lastKnownFileType = text.xml; name = popeyes.gpx; path = ../../../../Downloads/popeyes.gpx; sourceTree = "<group>"; };
+		F8056BA322FB8D6900EFC83C /* coinflip.gpx */ = {isa = PBXFileReference; lastKnownFileType = text.xml; name = coinflip.gpx; path = ../../../../Downloads/coinflip.gpx; sourceTree = "<group>"; };
+		F8056BA422FB8DA800EFC83C /* belmont.gpx */ = {isa = PBXFileReference; lastKnownFileType = text.xml; name = belmont.gpx; path = ../../../../Downloads/belmont.gpx; sourceTree = "<group>"; };
 		F84F0B7422AAE3F9004439DD /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		F84F0B7622AAE436004439DD /* Location.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Location.swift; sourceTree = "<group>"; };
 		F86ACE5422B03E5600445009 /* LocationBubble.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LocationBubble.xib; sourceTree = "<group>"; };
@@ -169,6 +172,9 @@
 		34E40AAF22A0D85600E09F92 = {
 			isa = PBXGroup;
 			children = (
+				F8056BA422FB8DA800EFC83C /* belmont.gpx */,
+				F8056BA322FB8D6900EFC83C /* coinflip.gpx */,
+				F8056BA222FB8C6500EFC83C /* popeyes.gpx */,
 				34E40ABA22A0D85600E09F92 /* Shake2.0 */,
 				34E40AB922A0D85600E09F92 /* Products */,
 			);
@@ -476,13 +482,13 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = A2N9APJ4GT;
+				DEVELOPMENT_TEAM = TK5T4F2UKU;
 				INFOPLIST_FILE = Shake2.0/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "com-Shake";
+				PRODUCT_BUNDLE_IDENTIFIER = "com-Shake-jak22";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -494,13 +500,13 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = A2N9APJ4GT;
+				DEVELOPMENT_TEAM = TK5T4F2UKU;
 				INFOPLIST_FILE = Shake2.0/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "com-Shake";
+				PRODUCT_BUNDLE_IDENTIFIER = "com-Shake-jak22";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
