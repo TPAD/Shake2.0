@@ -1,23 +1,16 @@
 //
-//  TitleView.swift
+//  DTVHeader.swift
 //  Shake2.0
 //
-//  Created by Antonio Padilla on 7/2/19.
+//  Created by Antonio Padilla on 8/21/19.
 //  Copyright © 2019 GenOrg. All rights reserved.
 //
 
+import Foundation
 import UIKit
 
-/// DVHeader - header (topmost) view on DetailSView
-///
-/// - contains three labels for location name, location store, and location address
-///
-
-// TODO: - make sure label text size apppropriately across devices; might have to set no. of lines to 0
-//       - change label heights and y position constants according to device screen size
-internal class DVHeader: UIView {
+class DVTHeaderCell: UITableViewCell {
     
-    /// Header View Labels
     var nameLabel: UILabel = UILabel(frame: .zero)
     var locationLabel: UILabel = UILabel(frame: .zero)
     var addressLabel: UILabel = UILabel(frame: .zero)
@@ -29,21 +22,23 @@ internal class DVHeader: UIView {
     // arbitrary label height
     private let h: CGFloat = 30.0
     
-    // MARK: - initializer for DVHeader and its subviews
-    override init(frame: CGRect) {
-        super.init(frame: frame)
+    // MARK: - Override methods
+    override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
+        super.init(style: style, reuseIdentifier: reuseIdentifier)
+        selectionStyle = .none
         for label in [nameLabel, locationLabel, addressLabel] {
             config(label)
             addSubview(label)
         }
+        activateLocationLabelLayoutConstraints()
+        activateNameLabelLayoutConstraints()
+        activateAddressLabelLayoutConstraints()
     }
     
     required init?(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
+        super.init(coder: aDecoder)
     }
     
-    
-    // MARK: - label configuration
     private func config(_ label: UILabel) {
         let customFont: UIFont = UIFont(name: appFont, size: UIFont.labelFontSize)!
         label.textAlignment = .center
@@ -87,9 +82,6 @@ internal class DVHeader: UIView {
         NSLayoutConstraint.activate([wC, hC, xC, yC])
     }
     
-    // MARK: - view updates
-    
-    // populates the labels with the respective location detail
     func updateView(using info: Detail) {
         let isOpen: Bool = info.openingHours.openNow
         let addressComponents = info.fAddress.components(separatedBy: ",")
@@ -100,9 +92,5 @@ internal class DVHeader: UIView {
         locationLabel.text = info.components![0].longName //TODO: - not always correct
         addressLabel.text = address
         backgroundColor = isOpen ? Colors.mediumSeaweed:Colors.mediumFirebrick
-        activateLocationLabelLayoutConstraints()
-        activateNameLabelLayoutConstraints()
-        activateAddressLabelLayoutConstraints()
     }
-
 }

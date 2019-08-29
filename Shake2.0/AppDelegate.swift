@@ -123,10 +123,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
         let viewController = UIApplication.shared.topMostViewController() as? ViewController
         if self.locationManager.location != nil, let controller = viewController {
             if controller.userCanceledMessageLabel != nil {
-                DispatchQueue.main.async {
-                    controller.userCanceledMessageLabel!.removeFromSuperview()
-                    controller.iconImage.alpha = 1
-                }
+                controller.userCanceledMessageLabel!.removeFromSuperview()
+                controller.iconImage.alpha = 1
             }
             if controller.initialLoad {
                 controller.viewModel.runNearbyQuery()

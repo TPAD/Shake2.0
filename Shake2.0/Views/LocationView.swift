@@ -14,9 +14,14 @@
 import Foundation
 import UIKit
 
-// MARK: LocationView
+protocol LocationViewDelegate: class {
+    func handleTap()
+}
 
+// MARK: LocationView
 class LocationView: UIView {
+    
+    weak var delegate: LocationViewDelegate!
     
     var view: UIView!  // this will be our nib
     @IBOutlet weak var locationImage: UIImageView!
@@ -25,6 +30,8 @@ class LocationView: UIView {
     @IBOutlet weak var name: UILabel!
     @IBOutlet weak var infoViewLabel: UILabel!
     @IBOutlet weak var cosmosView: CosmosView!
+    var tapGestureRecognizer: UITapGestureRecognizer = UITapGestureRecognizer()
+    var indicator: UIActivityIndicatorView = UIActivityIndicatorView(style: .gray)
     
     // Initialization
     override init(frame: CGRect) {
@@ -41,6 +48,8 @@ class LocationView: UIView {
         view = loadViewFromNib()
         view.frame = bounds
         view.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+        configTapGestureRecognizer()
+        activityIndicatorSetup()
         addSubview(view)
     }
     
@@ -50,4 +59,29 @@ class LocationView: UIView {
             .instantiate(withOwner: self, options: nil)[0] as! UIView
     }
     
+    private func configTapGestureRecognizer() {
+        tapGestureRecognizer.addTarget(self, action: #selector(toggleDetail(_:)))
+        view.addGestureRecognizer(tapGestureRecognizer)
+    }
+    
+    @objc func toggleDetail(_ sender: UITapGestureRecognizer) {
+        delegate.handleTap()
+    }
+    
+    private func activityIndicatorSetup() {
+        indicator.color = Colors.CFOrange
+        indicator.frame = bounds
+        indicator.hidesWhenStopped = true
+        view.addSubview(indicator)
+    }
+    
+}
+
+extension ViewController: LocationViewDelegate {
+    
+    func handleTap() {
+        if (!detailShouldDisplay) { showDetailView() }
+        else { hideDetailView() }
+        detailShouldDisplay = (detailShouldDisplay) ? false:true
+    }
 }

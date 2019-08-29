@@ -25,13 +25,13 @@ struct Detail: Codable {
     let fAddress: String        // formatted address
     let fPNumber: String        // formatted phone number
     let id: String
-    let reviews: [Reviews]
+    let reviews: [Reviews]?
     let photoRef: [PhotoReference]
     let iconLink: String
     let name: String
     let openingHours: OpeningHours
     let components: [AddressComponents]?
-    let rating: Double
+    let rating: Double?
 
     enum CodingKeys: String, CodingKey {
         case fAddress = "formatted_address"
