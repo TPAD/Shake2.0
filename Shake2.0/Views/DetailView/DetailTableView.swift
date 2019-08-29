@@ -57,6 +57,7 @@ class DetailTableView: UITableView {
     }
     
     func roundTableView() {
+        let white: UIColor = UIColor(red:255/255.0, green:255/255.0, blue:255/255.0, alpha:0.7)
         let corners: UIRectCorner = [.topLeft, .topRight]
         let radius: CGFloat = 15.0
         let radii: CGSize = CGSize(width: radius, height: radius)
@@ -66,7 +67,7 @@ class DetailTableView: UITableView {
         layer.mask = mask
         layer.borderWidth = 3.0
         layer.masksToBounds = false
-        layer.borderColor = Colors.mediumSeaweed.cgColor
+        layer.borderColor = white.cgColor
         clipsToBounds = true
     }
     

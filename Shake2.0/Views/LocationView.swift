@@ -31,6 +31,7 @@ class LocationView: UIView {
     @IBOutlet weak var infoViewLabel: UILabel!
     @IBOutlet weak var cosmosView: CosmosView!
     var tapGestureRecognizer: UITapGestureRecognizer = UITapGestureRecognizer()
+    var indicator: UIActivityIndicatorView = UIActivityIndicatorView(style: .gray)
     
     // Initialization
     override init(frame: CGRect) {
@@ -48,6 +49,7 @@ class LocationView: UIView {
         view.frame = bounds
         view.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         configTapGestureRecognizer()
+        activityIndicatorSetup()
         addSubview(view)
     }
     
@@ -64,6 +66,13 @@ class LocationView: UIView {
     
     @objc func toggleDetail(_ sender: UITapGestureRecognizer) {
         delegate.handleTap()
+    }
+    
+    private func activityIndicatorSetup() {
+        indicator.color = Colors.CFOrange
+        indicator.frame = bounds
+        indicator.hidesWhenStopped = true
+        view.addSubview(indicator)
     }
     
 }

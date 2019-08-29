@@ -16,6 +16,7 @@ import UIKit
 class DetailViewModel: NSObject {
     
     var placeDetails: [Detail] = [Detail]()
+    var placeImageRefs: [[Detail.PhotoReference]] = [[Detail.PhotoReference]]()
     weak var delegate: DetailViewModelDelegate!
     
     override init() {
@@ -43,6 +44,7 @@ class DetailViewModel: NSObject {
                     do {
                         let resp = try JSONDecoder().decode(GoogleDetailResponse.self, from: data!)
                         placeDetails.append(resp.result)
+                        placeImageRefs.append(resp.result.photoRef)
                         delegate!.detailSearchSucceded()
                     } catch {
                         // TODO: - handle json decoding error robustly

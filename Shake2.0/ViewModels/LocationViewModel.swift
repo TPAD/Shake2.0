@@ -61,6 +61,7 @@ class LocationViewModel: NSObject {
     }
     
     private func handleStatusOK(data: Data) {
+        let concurrentQueue = DispatchQueue(label: "concurrent", attributes: .concurrent)
         do {
             let resp = try JSONDecoder().decode(GooglePlacesResponse.self, from: data)
             places = resp.results
@@ -72,10 +73,8 @@ class LocationViewModel: NSObject {
         // check if results is not empty
         appDelegate.locationManager.stopUpdatingLocation()
         print("done")
-        DispatchQueue.main.sync {   
-            self.delegate!.runNextImageSearch()
-            self.delegate!.runNextDetailSearch()
-        }
+        concurrentQueue.async { self.delegate!.runNextImageSearch() }
+        concurrentQueue.async { self.delegate!.runNextDetailSearch() }
     }
     
     

@@ -35,31 +35,30 @@ extension ViewController: LocationViewModelDelegate {
     }
     
     func runNextImageSearch() {
+        showLocationViewActivityIndicator()
         if let info = viewModel.places[shakeNum].photos {
             if info.count != 0 {
                 let photoRef = info[0].photoReference
-                let width = Float(locationView!.frameW)
-                viewModel.getImage(from: photoRef, with: width)
+                viewModel.getImage(from: photoRef, with: self.w)
             } else {    // TODO: - change deafult image in case where location has no images
                 if let warrington = UIImage(named: "warrington") {
                     setLocationImage(to: warrington)
                 }
-                self.locationView.locationImage.backgroundColor = Colors.pearlBlack
             }
         } else {
             if let warrington = UIImage(named: "warrington") {
                 setLocationImage(to: warrington)
             }
-            self.locationView.locationImage.backgroundColor = Colors.pearlBlack
         }
     }
     
     // called by viewModel in getImage response handler
     func setLocationImage(to image: UIImage) {
         DispatchQueue.main.async {
-            self.locationView!.locationImage.image = image
-            self.indicator.stopAnimating()
+            self.locationView.locationImage.image = image
+            self.locationView.indicator.stopAnimating()
             if self.initialLoad {
+                self.indicator.stopAnimating()
                 UIView.animate(withDuration: 0.5, animations: {
                     self.locationView.alpha = 1
                 }) { (_) in
@@ -76,6 +75,14 @@ extension ViewController: LocationViewModelDelegate {
         viewModel.configureLocationName(locationNameLabel, using: location)
         viewModel.configureDistance(distanceLabel, using: location, manager)
         viewModel.configure(locationBubble: locationView, using: location)
+    }
+    
+    private func showLocationViewActivityIndicator() {
+        DispatchQueue.main.async {
+            self.locationView.locationImage.image = nil
+            self.locationView.view.backgroundColor = Colors.pearlBlack
+            self.locationView.indicator.startAnimating()
+        }
     }
     
 }

@@ -34,11 +34,11 @@ extension ViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let i: Int = indexPath.row
         if (i == 2) { // row used for calling location
-            
+            print("tapped 2")
         } else if (i == 3) { // row potentially used to transfer navigation to map
-            
+            print("tapped 3")
         } else if (i == 4) { // row used for displaying opening hours
-            
+            print("tapped 4")
         } else if ((!detailView.showOpnHrs && i == 5) || (detailView.showOpnHrs && i == 6)) {
             // show reviews
         }
