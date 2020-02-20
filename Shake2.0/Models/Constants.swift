@@ -2,7 +2,7 @@
 //  Constants.swift
 //  Shake2.0
 //
-//  Created by Jack Kasbeer on 6/7/19.
+//  Created by Antonio Padilla on 6/7/19.
 //  Copyright © 2019 GenOrg. All rights reserved.
 //
 
